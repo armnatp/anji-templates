@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>ANJI Templates — Google Sheets สำหรับธุรกิจไทย</title>
-<meta name="description" content="Template Google Sheets คุณภาพสูง พร้อม Dashboard อัตโนมัติ สำหรับ SME, HR, และร้านออนไลน์ ราคาเริ่มต้น 299 บาท"/>
+<title>ANJI Templates — Google Sheets Dashboard สำหรับธุรกิจไทย</title>
+<meta name="description" content="Template Google Sheets พร้อม Dashboard อัตโนมัติ สำหรับ SME, HR, ร้านออนไลน์ ราคาเริ่มต้น 299 บาท จ่ายครั้งเดียวใช้ได้ตลอด"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
 <style>
@@ -12,1171 +12,1376 @@
 :root{
   --navy:#1a237e;--blue:#1565c0;--lblue:#e3f2fd;--dblue:#0d47a1;
   --gold:#f9a825;--lgold:#fff8e1;--dgold:#f57f17;
+  --teal:#00695c;--lteal:#e0f2f1;
+  --purple:#6a1b9a;--lpurple:#f3e5f5;
   --green:#2e7d32;--lgreen:#e8f5e9;
-  --red:#c62828;--lred:#ffebee;
   --gray:#546e7a;--lgray:#f5f7fa;--mgray:#eceff1;
-  --white:#ffffff;--dark:#0f172a;
-  --r:16px;--sh:0 4px 24px rgba(26,35,126,.10);--sh2:0 12px 48px rgba(26,35,126,.18);
+  --white:#ffffff;--dark:#0f172a;--dark2:#1e293b;
+  --r:14px;--r2:20px;
+  --sh:0 4px 24px rgba(26,35,126,.10);
+  --sh2:0 12px 48px rgba(26,35,126,.18);
 }
 html{scroll-behavior:smooth}
 body{font-family:'Sarabun',sans-serif;color:var(--dark);background:var(--white);line-height:1.7;overflow-x:hidden}
-
-/* ── SCROLLBAR ── */
 ::-webkit-scrollbar{width:6px}
 ::-webkit-scrollbar-track{background:#f1f1f1}
 ::-webkit-scrollbar-thumb{background:var(--blue);border-radius:3px}
 
-/* ── NAV ── */
+/* ─── NAV ─── */
 nav{
-  position:sticky;top:0;z-index:200;
+  position:sticky;top:0;z-index:300;
   display:flex;align-items:center;justify-content:space-between;
-  padding:0 6%;height:68px;
-  background:rgba(13,71,161,.97);backdrop-filter:blur(16px);
-  box-shadow:0 2px 24px rgba(0,0,0,.25);
+  padding:0 6%;height:66px;
+  background:rgba(10,22,60,.96);backdrop-filter:blur(20px);
+  border-bottom:1px solid rgba(255,255,255,.07);
 }
 .logo{display:flex;align-items:center;gap:10px;text-decoration:none}
 .logo-icon{
-  width:36px;height:36px;border-radius:8px;
+  width:34px;height:34px;border-radius:8px;
   background:linear-gradient(135deg,var(--gold),var(--dgold));
   display:flex;align-items:center;justify-content:center;
-  font-weight:900;font-size:1rem;color:var(--navy);
+  font-weight:900;font-size:.95rem;color:var(--navy);
 }
-.logo-text{font-size:1.4rem;font-weight:800;color:var(--white);letter-spacing:3px}
+.logo-text{font-size:1.35rem;font-weight:800;color:#fff;letter-spacing:3px}
 .logo-text span{color:var(--gold)}
-.nav-links{display:flex;align-items:center;gap:24px}
-.nav-links a{color:rgba(255,255,255,.8);text-decoration:none;font-size:.9rem;font-weight:500;transition:color .2s}
+.nav-links{display:flex;align-items:center;gap:20px}
+.nav-links a{color:rgba(255,255,255,.75);text-decoration:none;font-size:.88rem;font-weight:500;transition:.2s}
 .nav-links a:hover{color:var(--gold)}
 .nav-cta{
-  background:linear-gradient(135deg,var(--gold),var(--dgold));
+  background:linear-gradient(135deg,var(--gold),var(--dgold))!important;
   color:var(--navy)!important;font-weight:700!important;
-  padding:9px 22px;border-radius:50px;font-size:.9rem!important;
-  box-shadow:0 4px 12px rgba(249,168,37,.4);
+  padding:8px 20px!important;border-radius:50px;
+  box-shadow:0 4px 14px rgba(249,168,37,.4);
   transition:transform .2s,box-shadow .2s!important;
 }
 .nav-cta:hover{transform:translateY(-2px)!important;box-shadow:0 8px 20px rgba(249,168,37,.5)!important}
-.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
-.hamburger span{display:block;width:22px;height:2px;background:white;border-radius:2px;transition:.3s}
 
-/* ── HERO ── */
+/* ─── HERO ─── */
 .hero{
   min-height:100vh;
-  background:linear-gradient(150deg,#0a1628 0%,var(--navy) 40%,var(--dblue) 70%,#1565c0 100%);
+  background:linear-gradient(150deg,#050d1f 0%,#0a1628 30%,var(--navy) 65%,#1565c0 100%);
   display:flex;align-items:center;justify-content:center;
-  padding:100px 6% 60px;position:relative;overflow:hidden;
+  padding:90px 6% 60px;position:relative;overflow:hidden;
 }
-.hero-bg{
-  position:absolute;inset:0;
-  background:
-    radial-gradient(ellipse 60% 50% at 80% 20%,rgba(249,168,37,.08) 0%,transparent 70%),
-    radial-gradient(ellipse 50% 60% at 10% 80%,rgba(21,101,192,.3) 0%,transparent 70%);
+.hero::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 70% 55% at 75% 15%,rgba(249,168,37,.07) 0%,transparent 65%),
+    radial-gradient(ellipse 50% 60% at 15% 85%,rgba(21,101,192,.25) 0%,transparent 65%);
 }
-.hero-grid-bg{
-  position:absolute;inset:0;opacity:.04;
-  background-image:linear-gradient(rgba(255,255,255,.5) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(255,255,255,.5) 1px,transparent 1px);
-  background-size:40px 40px;
+.hero-grid{
+  position:absolute;inset:0;opacity:.035;
+  background-image:linear-gradient(rgba(255,255,255,1) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,1) 1px,transparent 1px);
+  background-size:44px 44px;
 }
-.hero-content{position:relative;z-index:1;max-width:700px;margin:0 auto;text-align:center}
+.hero-wrap{position:relative;z-index:1;max-width:1100px;margin:0 auto;
+  display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.hero-left{}
 .hero-badge{
   display:inline-flex;align-items:center;gap:8px;
-  background:rgba(249,168,37,.15);color:var(--gold);
-  border:1px solid rgba(249,168,37,.35);border-radius:50px;
-  padding:7px 20px;font-size:.82rem;font-weight:600;margin-bottom:24px;letter-spacing:.5px;
+  background:rgba(249,168,37,.12);color:var(--gold);
+  border:1px solid rgba(249,168,37,.3);border-radius:50px;
+  padding:6px 18px;font-size:.8rem;font-weight:600;margin-bottom:22px;letter-spacing:.5px;
 }
-.hero-badge-dot{width:7px;height:7px;border-radius:50%;background:var(--gold);animation:pulse 2s infinite}
-@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)}}
+.badge-dot{width:7px;height:7px;border-radius:50%;background:var(--gold);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.75)}}
 .hero h1{
-  font-size:clamp(2.2rem,5.5vw,4rem);font-weight:800;color:var(--white);
-  line-height:1.15;margin-bottom:20px;
+  font-size:clamp(2rem,4vw,3.4rem);font-weight:800;color:#fff;
+  line-height:1.18;margin-bottom:18px;
 }
-.hero h1 .highlight{
-  color:transparent;
+.hero h1 em{
+  font-style:normal;color:transparent;
   background:linear-gradient(135deg,var(--gold),#ffca28);
   -webkit-background-clip:text;background-clip:text;
 }
-.hero p{font-size:clamp(1rem,2vw,1.2rem);color:rgba(255,255,255,.75);max-width:560px;margin:0 auto 36px}
-.hero-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.hero-sub{font-size:1.05rem;color:rgba(255,255,255,.7);margin-bottom:32px;line-height:1.75}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap}
 .btn-gold{
   background:linear-gradient(135deg,var(--gold),var(--dgold));
-  color:var(--navy);font-weight:700;font-size:1rem;
-  padding:15px 36px;border-radius:50px;text-decoration:none;
-  box-shadow:0 8px 28px rgba(249,168,37,.45);
+  color:var(--navy);font-weight:700;font-size:.97rem;
+  padding:14px 32px;border-radius:50px;text-decoration:none;cursor:pointer;border:none;
+  box-shadow:0 8px 24px rgba(249,168,37,.45);
   transition:transform .2s,box-shadow .2s;display:inline-flex;align-items:center;gap:8px;
 }
-.btn-gold:hover{transform:translateY(-3px);box-shadow:0 14px 36px rgba(249,168,37,.55)}
-.btn-outline{
-  background:transparent;color:var(--white);font-weight:600;font-size:1rem;
-  padding:14px 32px;border-radius:50px;text-decoration:none;
-  border:2px solid rgba(255,255,255,.4);
-  transition:all .2s;display:inline-flex;align-items:center;gap:8px;
+.btn-gold:hover{transform:translateY(-3px);box-shadow:0 14px 32px rgba(249,168,37,.55)}
+.btn-ghost{
+  background:transparent;color:#fff;font-weight:600;font-size:.97rem;
+  padding:13px 28px;border-radius:50px;text-decoration:none;cursor:pointer;
+  border:2px solid rgba(255,255,255,.35);
+  transition:all .2s;display:inline-flex;align-items:center;gap:8px;font-family:'Sarabun',sans-serif;
 }
-.btn-outline:hover{border-color:var(--white);background:rgba(255,255,255,.08)}
-
+.btn-ghost:hover{border-color:#fff;background:rgba(255,255,255,.08)}
 .hero-stats{
-  display:flex;gap:0;justify-content:center;margin-top:60px;
-  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);
-  border-radius:var(--r);overflow:hidden;backdrop-filter:blur(8px);
+  display:flex;gap:0;margin-top:44px;
+  background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);
+  border-radius:var(--r);overflow:hidden;
 }
-.stat{flex:1;padding:20px;text-align:center;border-right:1px solid rgba(255,255,255,.1)}
+.stat{flex:1;padding:16px 10px;text-align:center;border-right:1px solid rgba(255,255,255,.08)}
 .stat:last-child{border-right:none}
-.stat-num{font-size:1.8rem;font-weight:800;color:var(--gold)}
-.stat-lbl{font-size:.8rem;color:rgba(255,255,255,.6);margin-top:2px}
+.stat-n{font-size:1.6rem;font-weight:800;color:var(--gold)}
+.stat-l{font-size:.75rem;color:rgba(255,255,255,.55);margin-top:2px}
 
-/* ── SECTION BASE ── */
-section{padding:88px 6%}
+/* Hero right — big spreadsheet mockup */
+.hero-right{display:flex;justify-content:center}
+.hero-mockup{
+  width:100%;max-width:480px;
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:var(--r2);overflow:hidden;
+  box-shadow:0 32px 80px rgba(0,0,0,.5);
+}
+.hm-titlebar{
+  display:flex;align-items:center;gap:8px;
+  padding:12px 16px;background:rgba(255,255,255,.06);
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+.hm-dot{width:11px;height:11px;border-radius:50%}
+.hm-tabs{display:flex;gap:4px;margin-left:8px}
+.hm-tab{
+  padding:4px 12px;border-radius:6px 6px 0 0;font-size:.72rem;font-weight:600;
+  background:rgba(255,255,255,.06);color:rgba(255,255,255,.5);
+}
+.hm-tab.active{background:rgba(249,168,37,.2);color:var(--gold)}
+.hm-body{padding:16px}
+/* KPI row */
+.hm-kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px}
+.hm-kpi{
+  background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);
+  border-radius:8px;padding:10px;text-align:center;
+}
+.hm-kpi-val{font-size:1rem;font-weight:700;color:var(--gold)}
+.hm-kpi-lbl{font-size:.65rem;color:rgba(255,255,255,.45);margin-top:2px}
+/* Chart bars */
+.hm-chart{display:flex;align-items:flex-end;gap:5px;height:90px;margin-bottom:10px;padding:0 4px}
+.hm-bar-wrap{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px}
+.hm-bar{
+  width:100%;border-radius:4px 4px 0 0;
+  background:linear-gradient(180deg,rgba(249,168,37,.8),rgba(249,168,37,.4));
+  transition:height .4s;
+}
+.hm-bar.blue{background:linear-gradient(180deg,rgba(100,181,246,.8),rgba(100,181,246,.4))}
+.hm-bar-lbl{font-size:.6rem;color:rgba(255,255,255,.4)}
+/* Table rows */
+.hm-table{border-radius:6px;overflow:hidden;border:1px solid rgba(255,255,255,.07)}
+.hm-tr{display:flex;gap:0;border-bottom:1px solid rgba(255,255,255,.05)}
+.hm-tr:last-child{border-bottom:none}
+.hm-td{
+  flex:1;padding:6px 8px;font-size:.65rem;color:rgba(255,255,255,.55);
+  border-right:1px solid rgba(255,255,255,.05);
+}
+.hm-td:last-child{border-right:none}
+.hm-td.hd{background:rgba(255,255,255,.06);color:rgba(255,255,255,.7);font-weight:600}
+.hm-td.pos{color:#69f0ae}
+.hm-td.neg{color:#ef9a9a}
+
+/* ─── TRUSTED BAR ─── */
+.trusted{
+  padding:20px 6%;background:#f8faff;
+  border-top:1px solid #e8ecf0;border-bottom:1px solid #e8ecf0;
+  display:flex;align-items:center;gap:24px;flex-wrap:wrap;justify-content:center;
+}
+.trusted-lbl{font-size:.78rem;color:var(--gray);font-weight:600;letter-spacing:.5px;text-transform:uppercase;white-space:nowrap}
+.trusted-badges{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+.t-badge{
+  display:flex;align-items:center;gap:6px;
+  background:#fff;border:1px solid #dce4f0;border-radius:50px;
+  padding:6px 14px;font-size:.8rem;font-weight:600;color:var(--dark2);
+  box-shadow:0 2px 8px rgba(0,0,0,.05);
+}
+
+/* ─── SECTION BASE ─── */
+section{padding:86px 6%}
+.tc{text-align:center;max-width:640px;margin:0 auto 52px}
 .section-tag{
   display:inline-block;background:var(--lblue);color:var(--blue);
-  font-size:.78rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;
-  padding:5px 14px;border-radius:50px;margin-bottom:12px;
+  font-size:.72rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;
+  padding:5px 14px;border-radius:50px;margin-bottom:14px;
 }
-.section-title{font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:800;margin-bottom:14px;line-height:1.2}
-.section-sub{color:var(--gray);font-size:1.05rem;max-width:560px}
-.tc{text-align:center}.tc .section-sub{margin:0 auto}
+.section-tag.gold{background:var(--lgold);color:var(--dgold)}
+.section-title{font-size:clamp(1.7rem,3.5vw,2.6rem);font-weight:800;line-height:1.25;margin-bottom:14px}
+.section-sub{font-size:1rem;color:var(--gray)}
 
-/* ── TRUSTED BY ── */
-.trusted{background:var(--mgray);padding:32px 6%;text-align:center}
-.trusted-label{font-size:.82rem;color:var(--gray);font-weight:600;letter-spacing:1px;margin-bottom:20px;text-transform:uppercase}
-.trusted-badges{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
-.t-badge{
-  display:flex;align-items:center;gap:8px;
-  background:var(--white);padding:10px 20px;border-radius:50px;
-  font-size:.88rem;font-weight:600;color:var(--gray);
-  box-shadow:0 2px 8px rgba(0,0,0,.06);
-}
-
-/* ── HOW IT WORKS ── */
+/* ─── HOW IT WORKS ─── */
 .how{background:var(--lgray)}
-.steps-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:0;margin-top:56px;position:relative}
-.steps-grid::before{
-  content:'';position:absolute;top:36px;left:10%;right:10%;height:2px;
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;position:relative}
+.steps::before{
+  content:'';position:absolute;top:30px;left:calc(12.5% + 16px);
+  right:calc(12.5% + 16px);height:2px;
   background:linear-gradient(90deg,var(--blue),var(--gold));
   z-index:0;
 }
-.step{text-align:center;padding:0 20px;position:relative;z-index:1}
+.step{background:#fff;border-radius:var(--r2);padding:28px 22px;text-align:center;
+  box-shadow:var(--sh);position:relative;z-index:1;
+  transition:transform .25s,box-shadow .25s;
+}
+.step:hover{transform:translateY(-4px);box-shadow:var(--sh2)}
 .step-num{
-  width:72px;height:72px;border-radius:50%;margin:0 auto 20px;
+  width:52px;height:52px;border-radius:50%;margin:0 auto 16px;
   background:linear-gradient(135deg,var(--navy),var(--blue));
-  color:var(--white);font-size:1.6rem;font-weight:800;
   display:flex;align-items:center;justify-content:center;
-  box-shadow:0 8px 24px rgba(26,35,126,.3);border:4px solid var(--white);
+  font-size:1.3rem;font-weight:800;color:#fff;
+  box-shadow:0 6px 18px rgba(26,35,126,.3);
 }
 .step h3{font-size:1rem;font-weight:700;margin-bottom:8px}
-.step p{color:var(--gray);font-size:.9rem}
+.step p{font-size:.87rem;color:var(--gray)}
 
-/* ── PRODUCTS ── */
-.products{background:var(--white)}
-.products-grid{
-  display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));
-  gap:32px;margin-top:56px;
-}
+/* ─── PRODUCTS ─── */
+.products{background:#fff}
+.products-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+
 .product-card{
-  border-radius:20px;overflow:hidden;
-  box-shadow:var(--sh);border:2px solid var(--mgray);
-  transition:transform .3s,box-shadow .3s,border-color .3s;
+  border-radius:var(--r2);overflow:hidden;
+  border:1px solid #e2e8f0;background:#fff;
   display:flex;flex-direction:column;
+  transition:transform .25s,box-shadow .25s,border-color .25s;
 }
-.product-card:hover{transform:translateY(-8px);box-shadow:var(--sh2);border-color:var(--blue)}
+.product-card:hover{transform:translateY(-6px);box-shadow:var(--sh2);border-color:transparent}
+.product-card.soon{opacity:.75}
 
-.product-preview{
-  height:200px;display:flex;align-items:center;justify-content:center;
-  position:relative;overflow:hidden;
+/* Spreadsheet preview area */
+.prod-preview{
+  height:190px;position:relative;overflow:hidden;
+  display:flex;align-items:center;justify-content:center;
 }
-.product-preview.blue{background:linear-gradient(135deg,var(--navy),var(--blue))}
-.product-preview.teal{background:linear-gradient(135deg,#004d40,#00897b)}
-.product-preview.orange{background:linear-gradient(135deg,#bf360c,#e64a19)}
-.product-preview.purple{background:linear-gradient(135deg,#4a148c,#7b1fa2)}
-.product-preview.coming{background:linear-gradient(135deg,#37474f,#546e7a)}
+.prod-preview.c-blue{background:linear-gradient(145deg,#0d47a1,#1565c0,#1976d2)}
+.prod-preview.c-teal{background:linear-gradient(145deg,#004d40,#00695c,#00796b)}
+.prod-preview.c-purple{background:linear-gradient(145deg,#4a148c,#6a1b9a,#7b1fa2)}
+.prod-preview.c-orange{background:linear-gradient(145deg,#bf360c,#d84315,#e64a19)}
+.prod-preview.c-gray{background:linear-gradient(145deg,#263238,#37474f,#455a64)}
+.prod-preview.c-gold{background:linear-gradient(145deg,#e65100,#f57c00,#ff8f00)}
 
-.preview-mockup{
-  width:80%;background:rgba(255,255,255,.1);border-radius:10px;
-  border:1px solid rgba(255,255,255,.2);overflow:hidden;
+/* Mini spreadsheet inside each card */
+.mini-sheet{
+  width:86%;max-width:300px;
+  background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);
+  border-radius:10px;overflow:hidden;
+  box-shadow:0 8px 32px rgba(0,0,0,.3);
 }
-.mock-header{
-  height:28px;background:rgba(255,255,255,.15);
-  display:flex;align-items:center;padding:0 10px;gap:6px;
+.ms-head{
+  display:flex;align-items:center;gap:6px;padding:8px 10px;
+  background:rgba(0,0,0,.25);border-bottom:1px solid rgba(255,255,255,.1);
 }
-.mock-dot{width:8px;height:8px;border-radius:50%}
-.mock-body{padding:10px;display:flex;flex-direction:column;gap:6px}
-.mock-row{display:flex;gap:6px}
-.mock-cell{height:12px;border-radius:3px;background:rgba(255,255,255,.2)}
-.mock-cell.hd{background:rgba(249,168,37,.6)}
-.mock-chart{
-  height:60px;margin-top:6px;display:flex;align-items:flex-end;gap:4px;padding:0 4px;
+.ms-dot{width:8px;height:8px;border-radius:50%}
+.ms-body{padding:8px}
+.ms-row{display:flex;gap:4px;margin-bottom:4px}
+.ms-cell{
+  height:10px;border-radius:3px;
+  background:rgba(255,255,255,.2);
 }
-.mock-bar{border-radius:3px 3px 0 0;flex:1;background:rgba(255,255,255,.25)}
-.mock-bar.gold{background:rgba(249,168,37,.7)}
-.product-tag{
-  position:absolute;top:14px;right:14px;
-  background:rgba(255,255,255,.15);color:white;
-  font-size:.72rem;font-weight:700;letter-spacing:1px;
-  padding:4px 10px;border-radius:50px;border:1px solid rgba(255,255,255,.25);
+.ms-cell.hd{background:rgba(249,168,37,.5)}
+.ms-cell.hi{background:rgba(255,255,255,.45)}
+.ms-bars{display:flex;align-items:flex-end;gap:4px;height:40px;margin-top:6px}
+.ms-b{border-radius:3px 3px 0 0;background:rgba(249,168,37,.7);flex:1}
+.ms-b.b2{background:rgba(255,255,255,.35)}
+.ms-pies{display:flex;gap:8px;align-items:center;margin-top:4px}
+.ms-pie{
+  width:36px;height:36px;border-radius:50%;
+  background:conic-gradient(rgba(249,168,37,.8) 0% 45%,rgba(255,255,255,.3) 45% 65%,rgba(100,181,246,.6) 65% 85%,rgba(129,199,132,.5) 85% 100%);
 }
-.product-tag.new{background:rgba(249,168,37,.3);border-color:rgba(249,168,37,.5);color:var(--gold)}
-.product-tag.hot{background:rgba(198,40,40,.3);border-color:rgba(198,40,40,.5);color:#ef9a9a}
-.product-tag.soon{background:rgba(255,255,255,.1);color:rgba(255,255,255,.5)}
 
-.product-body{padding:24px;flex:1;display:flex;flex-direction:column}
-.product-cat{font-size:.75rem;font-weight:700;color:var(--blue);letter-spacing:1px;text-transform:uppercase;margin-bottom:8px}
-.product-name{font-size:1.2rem;font-weight:800;margin-bottom:8px;color:var(--dark)}
-.product-desc{color:var(--gray);font-size:.9rem;margin-bottom:16px;flex:1}
-.product-features{display:flex;flex-direction:column;gap:6px;margin-bottom:20px}
-.pf{display:flex;align-items:center;gap:8px;font-size:.88rem;color:var(--gray)}
-.pf-icon{width:18px;height:18px;border-radius:50%;background:var(--lgreen);display:flex;align-items:center;justify-content:center;font-size:.65rem;flex-shrink:0}
-.product-footer{display:flex;align-items:center;justify-content:space-between;padding-top:16px;border-top:1px solid var(--mgray)}
-.product-price{font-size:1.6rem;font-weight:800;color:var(--navy)}
-.product-price sup{font-size:.9rem;vertical-align:super;margin-top:4px}
-.product-price .old{font-size:.85rem;color:var(--gray);text-decoration:line-through;font-weight:400;margin-left:6px}
+.prod-badge{
+  position:absolute;top:12px;right:12px;
+  padding:4px 10px;border-radius:50px;font-size:.7rem;font-weight:700;
+  background:rgba(249,168,37,.9);color:var(--navy);letter-spacing:.5px;
+}
+.prod-badge.soon{background:rgba(255,255,255,.2);color:#fff}
+
+.prod-body{padding:22px;flex:1;display:flex;flex-direction:column}
+.prod-cat{font-size:.75rem;font-weight:700;color:var(--blue);letter-spacing:.5px;text-transform:uppercase;margin-bottom:6px}
+.prod-name{font-size:1.1rem;font-weight:800;margin-bottom:8px;line-height:1.3}
+.prod-desc{font-size:.87rem;color:var(--gray);margin-bottom:14px;flex:1}
+.prod-feats{display:flex;flex-direction:column;gap:5px;margin-bottom:18px}
+.pf{display:flex;align-items:flex-start;gap:7px;font-size:.83rem;color:var(--dark2)}
+.pf-check{
+  width:16px;height:16px;border-radius:4px;flex-shrink:0;margin-top:2px;
+  background:var(--lgreen);display:flex;align-items:center;justify-content:center;
+  font-size:.6rem;color:var(--green);
+}
+.prod-footer{
+  display:flex;align-items:center;justify-content:space-between;
+  padding-top:16px;border-top:1px solid #f0f4f8;
+}
+.prod-price{font-size:1.7rem;font-weight:800;color:var(--navy)}
+.prod-price sup{font-size:.9rem;vertical-align:super;font-weight:600;margin-right:1px}
+.prod-price s{font-size:.85rem;font-weight:400;color:var(--gray);margin-left:4px;display:block}
+.prod-actions{display:flex;gap:8px}
+.btn-preview{
+  background:var(--lgray);color:var(--navy);font-weight:600;font-size:.82rem;
+  padding:9px 14px;border-radius:50px;border:1px solid #dce4f0;cursor:pointer;
+  font-family:'Sarabun',sans-serif;transition:.2s;white-space:nowrap;
+}
+.btn-preview:hover{background:var(--lblue);border-color:var(--blue)}
 .btn-buy{
   background:linear-gradient(135deg,var(--navy),var(--blue));
-  color:white;font-weight:700;font-size:.9rem;
-  padding:11px 24px;border-radius:50px;border:none;cursor:pointer;
-  font-family:'Sarabun',sans-serif;text-decoration:none;
-  transition:transform .2s,box-shadow .2s;display:inline-block;
-}
-.btn-buy:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(26,35,126,.3)}
-.btn-coming{
-  background:var(--mgray);color:var(--gray);font-weight:600;font-size:.9rem;
-  padding:11px 24px;border-radius:50px;border:none;cursor:not-allowed;
+  color:#fff;font-weight:700;font-size:.85rem;
+  padding:9px 18px;border-radius:50px;border:none;cursor:pointer;
   font-family:'Sarabun',sans-serif;
+  box-shadow:0 4px 14px rgba(26,35,126,.3);transition:.2s;white-space:nowrap;
+}
+.btn-buy:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(26,35,126,.4)}
+.btn-disabled{
+  background:var(--mgray);color:var(--gray);font-weight:600;font-size:.85rem;
+  padding:9px 18px;border-radius:50px;border:none;cursor:not-allowed;
+  font-family:'Sarabun',sans-serif;white-space:nowrap;
 }
 
-/* ── FEATURES ── */
-.features{background:var(--lgray)}
-.features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px;margin-top:56px}
-.feat-card{
-  background:var(--white);border-radius:var(--r);padding:28px 24px;
-  box-shadow:var(--sh);border-top:4px solid transparent;
-  transition:transform .2s,box-shadow .2s,border-color .2s;
+/* ─── BUNDLE ─── */
+.bundle-banner{
+  background:linear-gradient(135deg,#0a1628,var(--navy),#1565c0);
+  border-radius:var(--r2);padding:40px 48px;
+  display:flex;align-items:center;justify-content:space-between;gap:32px;
+  margin-top:32px;position:relative;overflow:hidden;
+  border:1px solid rgba(249,168,37,.2);
 }
-.feat-card:hover{transform:translateY(-5px);box-shadow:var(--sh2);border-top-color:var(--blue)}
-.feat-icon{
-  width:48px;height:48px;border-radius:12px;
-  background:linear-gradient(135deg,var(--navy),var(--blue));
-  display:flex;align-items:center;justify-content:center;
-  font-size:1.4rem;margin-bottom:16px;
+.bundle-banner::before{
+  content:'';position:absolute;top:-40px;right:-40px;
+  width:200px;height:200px;border-radius:50%;
+  background:radial-gradient(rgba(249,168,37,.12),transparent 70%);
 }
-.feat-card h3{font-size:1rem;font-weight:700;margin-bottom:8px;color:var(--navy)}
-.feat-card p{color:var(--gray);font-size:.9rem;line-height:1.6}
+.bundle-left{}
+.bundle-tag{
+  display:inline-block;background:rgba(249,168,37,.2);color:var(--gold);
+  font-size:.72rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;
+  padding:4px 12px;border-radius:50px;margin-bottom:12px;
+  border:1px solid rgba(249,168,37,.3);
+}
+.bundle-title{font-size:1.5rem;font-weight:800;color:#fff;margin-bottom:8px}
+.bundle-desc{font-size:.9rem;color:rgba(255,255,255,.65);margin-bottom:14px}
+.bundle-includes{display:flex;gap:8px;flex-wrap:wrap}
+.bi{
+  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);
+  color:rgba(255,255,255,.8);font-size:.78rem;font-weight:600;
+  padding:4px 12px;border-radius:50px;
+}
+.bundle-right{text-align:center;flex-shrink:0}
+.bundle-price{font-size:3rem;font-weight:800;color:var(--gold);line-height:1}
+.bundle-price sup{font-size:1.2rem;vertical-align:super}
+.bundle-save{
+  background:rgba(46,125,50,.25);color:#a5d6a7;
+  font-size:.78rem;font-weight:700;padding:4px 12px;border-radius:50px;
+  margin:8px 0;display:inline-block;border:1px solid rgba(46,125,50,.4);
+}
+.bundle-buy{
+  background:linear-gradient(135deg,var(--gold),var(--dgold));
+  color:var(--navy);font-weight:800;font-size:1rem;
+  padding:13px 32px;border-radius:50px;border:none;cursor:pointer;
+  font-family:'Sarabun',sans-serif;margin-top:8px;
+  box-shadow:0 8px 24px rgba(249,168,37,.4);transition:.2s;
+}
+.bundle-buy:hover{transform:translateY(-3px);box-shadow:0 12px 28px rgba(249,168,37,.5)}
 
-/* ── COMPARISON TABLE ── */
-.comparison{background:var(--white)}
-.comp-wrap{overflow-x:auto;margin-top:48px}
-table{width:100%;border-collapse:collapse;min-width:500px}
-thead tr{background:linear-gradient(135deg,var(--navy),var(--blue))}
-th{padding:16px 20px;text-align:center;color:white;font-size:.9rem;font-weight:700}
-th:first-child{text-align:left}
-td{padding:14px 20px;border-bottom:1px solid var(--mgray);font-size:.9rem}
-td:first-child{font-weight:600;color:var(--dark)}
-td:not(:first-child){text-align:center}
-tr:nth-child(even) td{background:var(--lgray)}
-.check{color:var(--green);font-size:1.1rem;font-weight:700}
-.cross{color:#bbb;font-size:1rem}
-.badge-tag{
-  display:inline-block;background:var(--lgold);color:var(--dgold);
-  font-size:.72rem;font-weight:700;padding:2px 8px;border-radius:50px;margin-left:6px;
+/* ─── COMPARE TABLE ─── */
+.compare-section{background:var(--lgray)}
+.compare-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+table.compare{
+  width:100%;border-collapse:collapse;
+  background:#fff;border-radius:var(--r2);overflow:hidden;
+  box-shadow:var(--sh);font-size:.88rem;
 }
+.compare th{
+  padding:14px 16px;text-align:center;font-weight:700;font-size:.82rem;
+  background:var(--navy);color:#fff;
+}
+.compare th:first-child{text-align:left;background:#0a1628}
+.compare td{padding:13px 16px;text-align:center;border-bottom:1px solid #f0f4f8}
+.compare td:first-child{text-align:left;font-weight:600;color:var(--dark2)}
+.compare tr:last-child td{border-bottom:none}
+.compare tr:nth-child(even) td{background:#f8faff}
+.chk{color:var(--green);font-size:1rem}
+.dash{color:var(--gray);font-size:.9rem}
 
-/* ── TESTIMONIALS ── */
-.testimonials{background:var(--lgray)}
-.testi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;margin-top:48px}
+/* ─── TESTIMONIALS ─── */
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
 .testi-card{
-  background:var(--white);border-radius:var(--r);padding:28px;
-  box-shadow:var(--sh);position:relative;
+  background:#fff;border-radius:var(--r2);padding:28px;
+  border:1px solid #e8edf2;box-shadow:var(--sh);
+  transition:.25s;
 }
-.testi-quote{font-size:3rem;color:var(--lblue);line-height:1;margin-bottom:12px;font-family:Georgia,serif}
-.testi-text{color:var(--gray);font-size:.95rem;line-height:1.7;margin-bottom:20px}
+.testi-card:hover{transform:translateY(-4px);box-shadow:var(--sh2)}
+.testi-stars{color:var(--gold);font-size:1rem;letter-spacing:2px;margin-bottom:12px}
+.testi-text{font-size:.92rem;color:var(--dark2);line-height:1.75;margin-bottom:18px;font-style:italic}
 .testi-author{display:flex;align-items:center;gap:12px}
 .testi-avatar{
-  width:44px;height:44px;border-radius:50%;
+  width:42px;height:42px;border-radius:50%;
   background:linear-gradient(135deg,var(--navy),var(--blue));
   display:flex;align-items:center;justify-content:center;
-  color:white;font-weight:700;font-size:1rem;flex-shrink:0;
+  font-weight:700;font-size:.9rem;color:#fff;flex-shrink:0;
 }
-.testi-name{font-weight:700;font-size:.9rem}
-.testi-role{font-size:.8rem;color:var(--gray)}
-.stars{color:var(--gold);font-size:.9rem;margin-bottom:12px}
+.testi-name{font-weight:700;font-size:.88rem}
+.testi-role{font-size:.78rem;color:var(--gray)}
 
-/* ── PAYMENT ── */
-.payment-section{background:var(--navy);padding:56px 6%;text-align:center}
-.payment-title{font-size:1.1rem;font-weight:700;color:rgba(255,255,255,.7);margin-bottom:28px}
-.payment-grid{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-bottom:28px}
+/* ─── PAYMENT ─── */
+.payment-section{
+  background:linear-gradient(150deg,#050d1f,#0a1628,var(--navy));
+  padding:80px 6%;text-align:center;position:relative;overflow:hidden;
+}
+.payment-section::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 60% 50% at 50% 50%,rgba(249,168,37,.05),transparent 70%);
+}
+.pay-title{font-size:clamp(1.6rem,3vw,2.2rem);font-weight:800;color:#fff;margin-bottom:10px;position:relative}
+.pay-sub{color:rgba(255,255,255,.6);margin-bottom:36px;position:relative}
+.pay-methods{
+  display:flex;gap:16px;justify-content:center;flex-wrap:wrap;
+  position:relative;
+}
 .pay-card{
-  background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);
-  padding:14px 24px;border-radius:12px;color:white;font-weight:600;font-size:.95rem;
-  display:flex;align-items:center;gap:10px;
+  background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);
+  border-radius:var(--r);padding:20px 28px;
+  display:flex;align-items:center;gap:12px;
+  font-size:.92rem;font-weight:600;color:rgba(255,255,255,.85);
+  transition:.2s;
 }
-.pay-card span{font-size:1.4rem}
-.secure-note{color:rgba(255,255,255,.5);font-size:.82rem}
+.pay-card:hover{background:rgba(255,255,255,.12);transform:translateY(-2px)}
+.pay-icon{font-size:1.5rem}
+.pay-note{
+  margin-top:28px;color:rgba(255,255,255,.4);font-size:.8rem;position:relative;
+}
 
-/* ── FAQ ── */
-.faq{background:var(--lgray)}
-.faq-list{max-width:740px;margin:48px auto 0}
-.faq-item{background:var(--white);border-radius:12px;margin-bottom:12px;overflow:hidden;box-shadow:var(--sh)}
+/* ─── FAQ ─── */
+.faq-section{background:#fff}
+.faq-list{max-width:740px;margin:0 auto;display:flex;flex-direction:column;gap:12px}
+.faq-item{
+  border:1px solid #e2e8f0;border-radius:var(--r);overflow:hidden;
+  transition:.25s;
+}
+.faq-item.open{border-color:var(--blue);box-shadow:0 4px 16px rgba(21,101,192,.1)}
 .faq-q{
-  width:100%;padding:20px 24px;display:flex;justify-content:space-between;align-items:center;
-  background:none;border:none;cursor:pointer;font-family:'Sarabun',sans-serif;
-  font-size:1rem;font-weight:700;color:var(--dark);text-align:left;
+  width:100%;text-align:left;background:none;border:none;cursor:pointer;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:18px 22px;font-family:'Sarabun',sans-serif;
+  font-size:.95rem;font-weight:700;color:var(--dark2);gap:16px;
 }
-.faq-icon{
-  width:28px;height:28px;border-radius:50%;background:var(--lgray);
+.faq-q:hover{color:var(--blue)}
+.faq-arr{
+  width:26px;height:26px;border-radius:50%;
+  background:var(--lblue);color:var(--blue);
   display:flex;align-items:center;justify-content:center;
-  font-size:.8rem;color:var(--blue);flex-shrink:0;margin-left:12px;
-  transition:transform .3s,background .2s;
+  font-size:.9rem;flex-shrink:0;transition:.3s;
 }
-.faq-item.open .faq-icon{transform:rotate(45deg);background:var(--blue);color:white}
-.faq-a{padding:0 24px;max-height:0;overflow:hidden;transition:max-height .3s ease,padding .3s}
-.faq-item.open .faq-a{max-height:200px;padding:0 24px 20px}
-.faq-a p{color:var(--gray);font-size:.95rem;line-height:1.7}
+.faq-item.open .faq-arr{transform:rotate(180deg);background:var(--blue);color:#fff}
+.faq-a{
+  max-height:0;overflow:hidden;transition:max-height .35s ease;
+  font-size:.9rem;color:var(--gray);line-height:1.8;
+}
+.faq-item.open .faq-a{max-height:300px}
+.faq-a-inner{padding:0 22px 18px}
 
-/* ── CTA ── */
-.cta{
-  background:linear-gradient(135deg,var(--navy) 0%,var(--dblue) 50%,var(--blue) 100%);
-  padding:96px 6%;text-align:center;position:relative;overflow:hidden;
+/* ─── FOOTER ─── */
+footer{
+  background:#050d1f;padding:56px 6% 28px;
 }
-.cta::before{
-  content:'';position:absolute;width:600px;height:600px;
-  border-radius:50%;background:rgba(249,168,37,.06);
-  top:-200px;right:-100px;pointer-events:none;
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:48px;margin-bottom:40px}
+.footer-brand .logo{margin-bottom:14px}
+.footer-desc{font-size:.88rem;color:rgba(255,255,255,.45);line-height:1.75;max-width:280px}
+.footer-col h4{color:#fff;font-size:.85rem;font-weight:700;margin-bottom:14px;letter-spacing:.5px}
+.footer-col a{
+  display:block;color:rgba(255,255,255,.45);text-decoration:none;
+  font-size:.85rem;margin-bottom:8px;transition:.2s;
 }
-.cta h2{font-size:clamp(1.8rem,4vw,3rem);font-weight:800;color:var(--white);margin-bottom:16px}
-.cta p{color:rgba(255,255,255,.75);font-size:1.1rem;margin-bottom:40px;max-width:520px;margin-left:auto;margin-right:auto}
-
-/* ── FOOTER ── */
-footer{background:#060e1f;color:rgba(255,255,255,.5);padding:48px 6% 32px}
-.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px;margin-bottom:40px}
-.footer-brand .logo-text{display:block;margin-bottom:12px;font-size:1.3rem}
-.footer-brand p{font-size:.88rem;line-height:1.7;max-width:280px}
-.footer-col h4{color:white;font-weight:700;margin-bottom:16px;font-size:.95rem}
-.footer-col a{display:block;color:rgba(255,255,255,.5);text-decoration:none;font-size:.88rem;margin-bottom:8px;transition:color .2s}
 .footer-col a:hover{color:var(--gold)}
-.footer-bottom{border-top:1px solid rgba(255,255,255,.08);padding-top:24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
-.footer-bottom p{font-size:.82rem}
+.footer-bottom{
+  border-top:1px solid rgba(255,255,255,.07);padding-top:22px;
+  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;
+}
+.footer-copy{font-size:.8rem;color:rgba(255,255,255,.3)}
+.footer-line{font-size:.8rem;color:rgba(255,255,255,.3)}
+.footer-line a{color:var(--gold);text-decoration:none}
 
-/* ── MODAL ── */
-.modal-bg{
-  display:none;position:fixed;inset:0;
-  background:rgba(0,0,0,.65);z-index:500;
+/* ─── MODAL ─── */
+.modal-overlay{
+  display:none;position:fixed;inset:0;z-index:500;
+  background:rgba(0,0,0,.65);backdrop-filter:blur(6px);
   align-items:center;justify-content:center;padding:20px;
-  backdrop-filter:blur(4px);
 }
-.modal-bg.show{display:flex}
-.modal{
-  background:var(--white);border-radius:24px;width:100%;max-width:500px;
-  position:relative;animation:popIn .3s cubic-bezier(.34,1.56,.64,1);overflow:hidden;
+.modal-overlay.active{display:flex}
+.modal-box{
+  background:#fff;border-radius:var(--r2);
+  width:100%;max-width:560px;max-height:90vh;overflow-y:auto;
+  box-shadow:0 32px 80px rgba(0,0,0,.4);
+  animation:slideUp .3s ease;
 }
-@keyframes popIn{from{transform:scale(.85);opacity:0}to{transform:scale(1);opacity:1}}
-.modal-header{
-  background:linear-gradient(135deg,var(--navy),var(--blue));
-  padding:28px 28px 20px;color:white;
+@keyframes slideUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.modal-head{
+  padding:24px 28px 20px;border-bottom:1px solid #f0f4f8;
+  display:flex;align-items:center;justify-content:space-between;
 }
+.modal-title{font-size:1.15rem;font-weight:800;color:var(--dark)}
 .modal-close{
-  position:absolute;top:16px;right:18px;
-  background:rgba(255,255,255,.15);border:none;color:white;
-  width:32px;height:32px;border-radius:50%;cursor:pointer;
-  font-size:1rem;display:flex;align-items:center;justify-content:center;
-  transition:background .2s;
+  width:32px;height:32px;border-radius:50%;border:none;cursor:pointer;
+  background:var(--lgray);color:var(--gray);font-size:1.1rem;
+  display:flex;align-items:center;justify-content:center;transition:.2s;
 }
-.modal-close:hover{background:rgba(255,255,255,.3)}
-.modal-header h3{font-size:1.1rem;font-weight:700;margin-bottom:4px}
-.modal-header p{font-size:.85rem;opacity:.8}
-.modal-product{
-  margin-top:16px;background:rgba(255,255,255,.1);
-  border-radius:10px;padding:14px 16px;
-  display:flex;justify-content:space-between;align-items:center;
+.modal-close:hover{background:var(--mgray);color:var(--dark)}
+.modal-body{padding:24px 28px}
+/* Preview modal */
+.preview-sheets{display:flex;flex-direction:column;gap:12px;margin-bottom:20px}
+.sheet-row{
+  display:flex;align-items:center;gap:12px;padding:12px 14px;
+  background:var(--lgray);border-radius:10px;border:1px solid #e8edf2;
 }
-.modal-product-name{font-size:.9rem;font-weight:600}
-.modal-price-tag{font-size:1.5rem;font-weight:800;color:var(--gold)}
-.modal-body{padding:24px 28px 28px}
-.form-group{margin-bottom:16px}
-.form-group label{display:block;font-weight:600;font-size:.88rem;margin-bottom:6px;color:var(--dark)}
+.sheet-icon{font-size:1.2rem}
+.sheet-name{font-weight:700;font-size:.9rem}
+.sheet-desc{font-size:.8rem;color:var(--gray)}
+.preview-feats{margin-bottom:24px}
+.preview-feats h4{font-size:.9rem;font-weight:700;margin-bottom:10px}
+.feat-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.feat-item{
+  display:flex;align-items:center;gap:6px;font-size:.82rem;color:var(--dark2);
+  background:var(--lgreen);border-radius:6px;padding:5px 8px;
+}
+.feat-item::before{content:'✓';color:var(--green);font-weight:700}
+/* Buy modal */
+.buy-form{display:flex;flex-direction:column;gap:14px}
+.form-group label{display:block;font-size:.85rem;font-weight:700;margin-bottom:5px;color:var(--dark2)}
 .form-group input{
-  width:100%;padding:12px 16px;border-radius:10px;
-  border:2px solid var(--mgray);font-family:'Sarabun',sans-serif;font-size:.95rem;
-  transition:border-color .2s;outline:none;color:var(--dark);
+  width:100%;padding:11px 14px;border:1.5px solid #dce4f0;border-radius:10px;
+  font-family:'Sarabun',sans-serif;font-size:.92rem;color:var(--dark);outline:none;
+  transition:border-color .2s;
 }
 .form-group input:focus{border-color:var(--blue)}
+.order-summary{
+  background:var(--lgray);border-radius:10px;padding:16px;
+  display:flex;align-items:center;justify-content:space-between;
+  font-weight:700;font-size:1rem;margin-bottom:4px;
+}
+.order-price{font-size:1.4rem;color:var(--navy)}
 .btn-pay{
-  width:100%;padding:15px;
-  background:linear-gradient(135deg,var(--gold),var(--dgold));
-  color:var(--navy);font-weight:800;font-size:1.05rem;
-  border:none;border-radius:50px;cursor:pointer;font-family:'Sarabun',sans-serif;
-  box-shadow:0 6px 20px rgba(249,168,37,.4);
-  transition:transform .2s,box-shadow .2s;margin-top:4px;
+  width:100%;background:linear-gradient(135deg,var(--navy),var(--blue));
+  color:#fff;font-weight:800;font-size:1rem;
+  padding:15px;border-radius:50px;border:none;cursor:pointer;
+  font-family:'Sarabun',sans-serif;
+  box-shadow:0 8px 24px rgba(26,35,126,.35);transition:.2s;
 }
-.btn-pay:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(249,168,37,.5)}
-.modal-pays{display:flex;gap:8px;justify-content:center;margin-top:14px;flex-wrap:wrap}
-.modal-pay-badge{
-  background:var(--lgray);padding:5px 12px;border-radius:8px;
-  font-size:.78rem;font-weight:600;color:var(--gray);
-}
-.modal-note{text-align:center;color:var(--gray);font-size:.8rem;margin-top:10px}
+.btn-pay:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(26,35,126,.45)}
+.pay-note-modal{font-size:.78rem;color:var(--gray);text-align:center;margin-top:8px}
 
-/* ── PREVIEW MODAL ── */
-.preview-modal-bg{
-  display:none;position:fixed;inset:0;
-  background:rgba(0,0,0,.75);z-index:500;
-  align-items:center;justify-content:center;padding:20px;
-  backdrop-filter:blur(6px);
+/* ─── RESPONSIVE ─── */
+@media(max-width:1024px){
+  .hero-wrap{grid-template-columns:1fr;text-align:center}
+  .hero-btns{justify-content:center}
+  .hero-right{display:none}
+  .products-grid{grid-template-columns:repeat(2,1fr)}
+  .footer-grid{grid-template-columns:1fr 1fr;gap:32px}
+  .steps::before{display:none}
 }
-.preview-modal-bg.show{display:flex}
-.preview-modal{
-  background:var(--white);border-radius:24px;width:100%;max-width:680px;
-  max-height:90vh;overflow-y:auto;
-  animation:popIn .3s cubic-bezier(.34,1.56,.64,1);
-}
-.pm-header{
-  background:linear-gradient(135deg,var(--navy),var(--blue));
-  padding:24px 28px;color:white;position:sticky;top:0;z-index:1;
-  display:flex;justify-content:space-between;align-items:center;
-}
-.pm-header h3{font-size:1.2rem;font-weight:800}
-.pm-close{
-  background:rgba(255,255,255,.15);border:none;color:white;
-  width:34px;height:34px;border-radius:50%;cursor:pointer;font-size:1rem;
-  display:flex;align-items:center;justify-content:center;
-}
-.pm-body{padding:28px}
-.pm-sheets{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:24px}
-.pm-sheet{
-  background:var(--lgray);border-radius:12px;padding:16px;
-  border:2px solid transparent;transition:all .2s;cursor:default;
-}
-.pm-sheet:hover{border-color:var(--blue);background:var(--lblue)}
-.pm-sheet-icon{font-size:1.6rem;margin-bottom:8px}
-.pm-sheet-name{font-weight:700;font-size:.9rem;color:var(--navy);margin-bottom:4px}
-.pm-sheet-desc{font-size:.8rem;color:var(--gray)}
-.pm-features{margin-bottom:24px}
-.pm-features h4{font-weight:700;margin-bottom:12px;color:var(--navy)}
-.pm-feat{display:flex;align-items:flex-start;gap:10px;margin-bottom:10px;font-size:.9rem;color:var(--gray)}
-.pm-feat-check{color:var(--green);font-weight:700;margin-top:1px;flex-shrink:0}
-.pm-footer{display:flex;align-items:center;justify-content:space-between;padding-top:20px;border-top:1px solid var(--mgray)}
-.pm-price{font-size:2rem;font-weight:800;color:var(--navy)}
-.pm-price small{font-size:.9rem;color:var(--gray);font-weight:400;margin-left:4px}
-
 @media(max-width:768px){
-  .nav-links{display:none}
-  .hamburger{display:flex}
-  .hero-stats{flex-direction:column;gap:0}
-  .stat{border-right:none;border-bottom:1px solid rgba(255,255,255,.1)}
-  .stat:last-child{border-bottom:none}
-  .footer-top{grid-template-columns:1fr}
-  .pm-sheets{grid-template-columns:1fr}
-  .steps-grid::before{display:none}
+  nav{padding:0 4%}
+  .nav-links a:not(.nav-cta){display:none}
+  section{padding:60px 4%}
+  .products-grid{grid-template-columns:1fr}
+  .testi-grid{grid-template-columns:1fr}
+  .compare th,.compare td{padding:10px 10px;font-size:.78rem}
+  .bundle-banner{flex-direction:column;text-align:center;padding:28px 24px}
+  .footer-grid{grid-template-columns:1fr}
   .footer-bottom{flex-direction:column;text-align:center}
+  .steps{grid-template-columns:repeat(2,1fr)}
 }
 </style>
 </head>
 <body>
 
-<!-- NAV -->
+<!-- ═══════════════════════════════ NAV ═══════════════════════════════ -->
 <nav>
-  <a class="logo" href="#">
+  <a href="#" class="logo">
     <div class="logo-icon">A</div>
-    <span class="logo-text">ANJ<span>I</span></span>
+    <div class="logo-text">AN<span>J</span>I</div>
   </a>
   <div class="nav-links">
     <a href="#products">สินค้า</a>
-    <a href="#features">ฟีเจอร์</a>
-    <a href="#comparison">เปรียบเทียบ</a>
+    <a href="#how">วิธีใช้</a>
     <a href="#faq">FAQ</a>
-    <a href="#products" class="nav-cta">🛒 ดูสินค้า</a>
-  </div>
-  <div class="hamburger" onclick="toggleMenu()">
-    <span></span><span></span><span></span>
+    <a href="#products" class="nav-cta">🛒 ซื้อเลย</a>
   </div>
 </nav>
 
-<!-- HERO -->
+<!-- ═══════════════════════════════ HERO ═══════════════════════════════ -->
 <section class="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-grid-bg"></div>
-  <div class="hero-content">
-    <div class="hero-badge">
-      <span class="hero-badge-dot"></span>
-      Template พร้อมใช้ — ดาวน์โหลดได้ทันที
+  <div class="hero-grid"></div>
+  <div class="hero-wrap">
+    <div class="hero-left">
+      <div class="hero-badge">
+        <span class="badge-dot"></span>
+        Template พร้อมใช้งานทันที · ไม่ต้องเขียนโค้ด
+      </div>
+      <h1>Dashboard <em>อัตโนมัติ</em><br/>สำหรับธุรกิจไทย</h1>
+      <p class="hero-sub">Template Google Sheets คุณภาพสูง ออกแบบมาเพื่อ SME ไทยโดยเฉพาะ<br/>ซื้อครั้งเดียว ใช้ได้ตลอดชีพ เริ่มต้นเพียง <strong style="color:var(--gold)">299 บาท</strong></p>
+      <div class="hero-btns">
+        <a href="#products" class="btn-gold">🛒 ดูสินค้าทั้งหมด</a>
+        <button class="btn-ghost" onclick="document.getElementById('how').scrollIntoView({behavior:'smooth'})">วิธีใช้งาน →</button>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><div class="stat-n">3+</div><div class="stat-l">Template พร้อมขาย</div></div>
+        <div class="stat"><div class="stat-n">299฿</div><div class="stat-l">ราคาเริ่มต้น</div></div>
+        <div class="stat"><div class="stat-n">5 นาที</div><div class="stat-l">เริ่มใช้ได้ทันที</div></div>
+        <div class="stat"><div class="stat-n">∞</div><div class="stat-l">ใช้ได้ตลอดชีพ</div></div>
+      </div>
     </div>
-    <h1>Template Google Sheets<br/>สำหรับ<span class="highlight">ธุรกิจไทย</span></h1>
-    <p>จัดการบัญชี, HR, และออเดอร์ออนไลน์ได้ง่ายขึ้น 10 เท่า ด้วย Template คุณภาพสูงพร้อม Dashboard อัตโนมัติ</p>
-    <div class="hero-btns">
-      <a href="#products" class="btn-gold">🛒 ดูสินค้าทั้งหมด</a>
-      <a href="#how" class="btn-outline">วิธีใช้งาน →</a>
-    </div>
-    <div class="hero-stats">
-      <div class="stat"><div class="stat-num">3+</div><div class="stat-lbl">Template พร้อมขาย</div></div>
-      <div class="stat"><div class="stat-num">299฿</div><div class="stat-lbl">ราคาเริ่มต้น</div></div>
-      <div class="stat"><div class="stat-num">5 นาที</div><div class="stat-lbl">เริ่มใช้ได้เลย</div></div>
-      <div class="stat"><div class="stat-num">100%</div><div class="stat-lbl">ใช้ได้ตลอดชีพ</div></div>
+    <div class="hero-right">
+      <div class="hero-mockup">
+        <div class="hm-titlebar">
+          <div class="hm-dot" style="background:#ff5f57"></div>
+          <div class="hm-dot" style="background:#febc2e"></div>
+          <div class="hm-dot" style="background:#28c840"></div>
+          <div class="hm-tabs">
+            <div class="hm-tab">📝 บันทึก</div>
+            <div class="hm-tab active">📊 Dashboard</div>
+            <div class="hm-tab">📅 สรุป</div>
+          </div>
+        </div>
+        <div class="hm-body">
+          <div class="hm-kpis">
+            <div class="hm-kpi"><div class="hm-kpi-val">85,200</div><div class="hm-kpi-lbl">รายรับ (฿)</div></div>
+            <div class="hm-kpi"><div class="hm-kpi-val">32,450</div><div class="hm-kpi-lbl">รายจ่าย (฿)</div></div>
+            <div class="hm-kpi"><div class="hm-kpi-val">52,750</div><div class="hm-kpi-lbl">กำไร (฿)</div></div>
+          </div>
+          <div class="hm-chart">
+            <div class="hm-bar-wrap"><div class="hm-bar blue" style="height:45%"></div><div class="hm-bar-lbl">ม.ค.</div></div>
+            <div class="hm-bar-wrap"><div class="hm-bar blue" style="height:60%"></div><div class="hm-bar-lbl">ก.พ.</div></div>
+            <div class="hm-bar-wrap"><div class="hm-bar" style="height:70%"></div><div class="hm-bar-lbl">มี.ค.</div></div>
+            <div class="hm-bar-wrap"><div class="hm-bar" style="height:55%"></div><div class="hm-bar-lbl">เม.ย.</div></div>
+            <div class="hm-bar-wrap"><div class="hm-bar blue" style="height:80%"></div><div class="hm-bar-lbl">พ.ค.</div></div>
+            <div class="hm-bar-wrap"><div class="hm-bar" style="height:90%"></div><div class="hm-bar-lbl">มิ.ย.</div></div>
+          </div>
+          <div class="hm-table">
+            <div class="hm-tr">
+              <div class="hm-td hd">รายการ</div>
+              <div class="hm-td hd">ประเภท</div>
+              <div class="hm-td hd">จำนวน</div>
+              <div class="hm-td hd">%</div>
+            </div>
+            <div class="hm-tr">
+              <div class="hm-td">ขายสินค้า</div>
+              <div class="hm-td">รายรับ</div>
+              <div class="hm-td pos">+45,000</div>
+              <div class="hm-td pos">53%</div>
+            </div>
+            <div class="hm-tr">
+              <div class="hm-td">ค่าเช่า</div>
+              <div class="hm-td">รายจ่าย</div>
+              <div class="hm-td neg">-8,000</div>
+              <div class="hm-td neg">9%</div>
+            </div>
+            <div class="hm-tr">
+              <div class="hm-td">บริการ</div>
+              <div class="hm-td">รายรับ</div>
+              <div class="hm-td pos">+40,200</div>
+              <div class="hm-td pos">47%</div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- TRUSTED -->
+<!-- ═══════════════════ TRUSTED ═══════════════════ -->
 <div class="trusted">
-  <div class="trusted-label">รองรับการใช้งานบน</div>
+  <div class="trusted-lbl">รองรับบน</div>
   <div class="trusted-badges">
     <div class="t-badge">📊 Google Sheets</div>
     <div class="t-badge">💻 Microsoft Excel</div>
     <div class="t-badge">📱 iOS &amp; Android</div>
-    <div class="t-badge">🔒 Google Drive ส่วนตัว</div>
+    <div class="t-badge">☁️ Google Drive</div>
+    <div class="t-badge">🔒 ข้อมูลเป็นของคุณ 100%</div>
   </div>
 </div>
 
-<!-- HOW IT WORKS -->
+<!-- ═══════════════════ HOW IT WORKS ═══════════════════ -->
 <section class="how" id="how">
   <div class="tc">
     <div class="section-tag">วิธีใช้งาน</div>
     <h2 class="section-title">ซื้อและเริ่มใช้ได้ใน 4 ขั้นตอน</h2>
-    <p class="section-sub">ไม่ต้องมีความรู้เทคนิค ใช้งานได้ทันทีหลังซื้อ</p>
+    <p class="section-sub">ไม่ต้องมีความรู้ด้านเทคนิค เริ่มใช้ได้ทันทีหลังซื้อ</p>
   </div>
-  <div class="steps-grid">
+  <div class="steps">
     <div class="step">
       <div class="step-num">1</div>
       <h3>เลือก Template</h3>
-      <p>เลือก Template ที่ตรงกับธุรกิจของคุณและกดซื้อเลย</p>
+      <p>เลือก Template ที่ตรงกับธุรกิจ กดดูตัวอย่างก่อนตัดสินใจซื้อ</p>
     </div>
     <div class="step">
       <div class="step-num">2</div>
       <h3>ชำระเงิน</h3>
-      <p>จ่ายผ่าน PromptPay หรือบัตรเครดิต ปลอดภัย 100%</p>
+      <p>จ่ายผ่าน PromptPay หรือบัตรเครดิต ปลอดภัย ไม่ต้องมีบัญชีธนาคารออนไลน์</p>
     </div>
     <div class="step">
       <div class="step-num">3</div>
       <h3>รับลิงก์ทันที</h3>
-      <p>ได้รับลิงก์ Google Sheets ทางอีเมล ภายใน 5 นาที</p>
+      <p>ได้รับลิงก์ Google Sheets ทางอีเมล ภายใน 5 นาที พร้อมคู่มือการใช้งาน</p>
     </div>
     <div class="step">
       <div class="step-num">4</div>
       <h3>Copy &amp; ใช้งาน</h3>
-      <p>กด "Make a copy" ได้ไฟล์ส่วนตัว เริ่มกรอกข้อมูลได้เลย</p>
+      <p>กด "Make a copy" ในโทรศัพท์หรือคอม ได้ไฟล์ส่วนตัว เริ่มกรอกได้เลย</p>
     </div>
   </div>
 </section>
 
-<!-- PRODUCTS -->
+<!-- ═══════════════════ PRODUCTS ═══════════════════ -->
 <section class="products" id="products">
   <div class="tc">
-    <div class="section-tag">สินค้าทั้งหมด</div>
+    <div class="section-tag gold">สินค้าทั้งหมด</div>
     <h2 class="section-title">เลือก Template ที่ใช่สำหรับคุณ</h2>
-    <p class="section-sub">ทุก Template ออกแบบมาเพื่อธุรกิจไทยโดยเฉพาะ จ่ายครั้งเดียวใช้ได้ตลอด</p>
+    <p class="section-sub">ออกแบบมาเพื่อธุรกิจไทยโดยเฉพาะ จ่ายครั้งเดียวใช้ได้ตลอด ไม่มีค่ารายเดือน</p>
   </div>
+
   <div class="products-grid">
 
-    <!-- Product 1 -->
+    <!-- ── Product 1: SME ── -->
     <div class="product-card">
-      <div class="product-preview blue">
-        <div class="preview-mockup">
-          <div class="mock-header">
-            <div class="mock-dot" style="background:#ff5f57"></div>
-            <div class="mock-dot" style="background:#febc2e"></div>
-            <div class="mock-dot" style="background:#28c840"></div>
+      <div class="prod-preview c-blue">
+        <div class="mini-sheet">
+          <div class="ms-head">
+            <div class="ms-dot" style="background:#ff5f57"></div>
+            <div class="ms-dot" style="background:#febc2e"></div>
+            <div class="ms-dot" style="background:#28c840"></div>
           </div>
-          <div class="mock-body">
-            <div class="mock-row">
-              <div class="mock-cell hd" style="width:20%"></div>
-              <div class="mock-cell hd" style="width:30%"></div>
-              <div class="mock-cell hd" style="width:25%"></div>
-              <div class="mock-cell hd" style="flex:1"></div>
+          <div style="padding:8px">
+            <div class="ms-row">
+              <div class="ms-cell hd" style="width:30%;height:8px"></div>
+              <div class="ms-cell hd" style="width:35%;height:8px;margin-left:4px"></div>
+              <div class="ms-cell hd" style="flex:1;height:8px;margin-left:4px"></div>
             </div>
-            <div class="mock-row"><div class="mock-cell" style="width:20%"></div><div class="mock-cell" style="width:30%"></div><div class="mock-cell" style="flex:1"></div></div>
-            <div class="mock-row"><div class="mock-cell" style="width:15%"></div><div class="mock-cell" style="width:35%"></div><div class="mock-cell" style="flex:1"></div></div>
-            <div class="mock-chart">
-              <div class="mock-bar" style="height:40%"></div>
-              <div class="mock-bar gold" style="height:70%"></div>
-              <div class="mock-bar" style="height:55%"></div>
-              <div class="mock-bar gold" style="height:85%"></div>
-              <div class="mock-bar" style="height:45%"></div>
-              <div class="mock-bar gold" style="height:65%"></div>
+            <div class="ms-row" style="margin-top:3px">
+              <div class="ms-cell hi" style="width:28%;height:7px"></div>
+              <div class="ms-cell" style="width:33%;height:7px;margin-left:4px"></div>
+              <div class="ms-cell hi" style="flex:1;height:7px;margin-left:4px"></div>
+            </div>
+            <div class="ms-row" style="margin-top:3px">
+              <div class="ms-cell" style="width:32%;height:7px"></div>
+              <div class="ms-cell hi" style="width:30%;height:7px;margin-left:4px"></div>
+              <div class="ms-cell" style="flex:1;height:7px;margin-left:4px"></div>
+            </div>
+            <div class="ms-bars" style="height:44px;margin-top:8px">
+              <div class="ms-b" style="height:55%"></div>
+              <div class="ms-b b2" style="height:75%"></div>
+              <div class="ms-b" style="height:60%"></div>
+              <div class="ms-b b2" style="height:90%"></div>
+              <div class="ms-b" style="height:70%"></div>
+              <div class="ms-b b2" style="height:80%"></div>
             </div>
           </div>
         </div>
-        <div class="product-tag new">✨ ใหม่</div>
+        <div class="prod-badge">✨ ขายดี</div>
       </div>
-      <div class="product-body">
-        <div class="product-cat">💼 SME / ธุรกิจ</div>
-        <div class="product-name">บัญชีรายรับ-รายจ่าย SME</div>
-        <div class="product-desc">ระบบบัญชีครบครันสำหรับธุรกิจขนาดเล็ก พร้อม Dashboard สรุปกำไร-ขาดทุน</div>
-        <div class="product-features">
-          <div class="pf"><div class="pf-icon">✓</div>บันทึกรายรับ-รายจ่ายรายวัน</div>
-          <div class="pf"><div class="pf-icon">✓</div>สรุปรายเดือนอัตโนมัติ 12 เดือน</div>
-          <div class="pf"><div class="pf-icon">✓</div>Dashboard กราฟกำไร-ขาดทุน</div>
-          <div class="pf"><div class="pf-icon">✓</div>Dropdown หมวดหมู่พร้อมใช้</div>
+      <div class="prod-body">
+        <div class="prod-cat">💼 SME · ธุรกิจ</div>
+        <div class="prod-name">บัญชีรายรับ-รายจ่าย SME</div>
+        <div class="prod-desc">ระบบบัญชีครบครันสำหรับธุรกิจขนาดเล็ก พร้อม Dashboard สรุปกำไร-ขาดทุนอัตโนมัติ</div>
+        <div class="prod-feats">
+          <div class="pf"><div class="pf-check">✓</div>บันทึกรายรับ-รายจ่ายด้วย Dropdown</div>
+          <div class="pf"><div class="pf-check">✓</div>สรุปรายเดือนอัตโนมัติ 12 เดือน</div>
+          <div class="pf"><div class="pf-check">✓</div>Dashboard กราฟกำไร-ขาดทุน</div>
+          <div class="pf"><div class="pf-check">✓</div>รองรับ 95+ รายการ</div>
         </div>
-        <div class="product-footer">
-          <div class="product-price"><sup>฿</sup>299</div>
-          <div style="display:flex;gap:8px">
-            <button class="btn-buy" style="background:var(--lgray);color:var(--navy);font-size:.82rem;padding:9px 16px" onclick="openPreview(0)">ดูตัวอย่าง</button>
-            <button class="btn-buy" onclick="openModal('บัญชีรายรับ-รายจ่าย SME',299)">ซื้อเลย</button>
+        <div class="prod-footer">
+          <div class="prod-price"><sup>฿</sup>299</div>
+          <div class="prod-actions">
+            <button class="btn-preview" onclick="openPreview(0)">👁 ตัวอย่าง</button>
+            <button class="btn-buy" onclick="openBuy('บัญชีรายรับ-รายจ่าย SME',299)">ซื้อเลย</button>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Product 2 -->
+    <!-- ── Product 2: HR ── -->
     <div class="product-card">
-      <div class="product-preview teal">
-        <div class="preview-mockup">
-          <div class="mock-header">
-            <div class="mock-dot" style="background:#ff5f57"></div>
-            <div class="mock-dot" style="background:#febc2e"></div>
-            <div class="mock-dot" style="background:#28c840"></div>
+      <div class="prod-preview c-teal">
+        <div class="mini-sheet">
+          <div class="ms-head">
+            <div class="ms-dot" style="background:#ff5f57"></div>
+            <div class="ms-dot" style="background:#febc2e"></div>
+            <div class="ms-dot" style="background:#28c840"></div>
           </div>
-          <div class="mock-body">
-            <div class="mock-row">
-              <div class="mock-cell hd" style="width:15%"></div>
-              <div class="mock-cell hd" style="width:25%"></div>
-              <div class="mock-cell hd" style="width:20%"></div>
-              <div class="mock-cell hd" style="flex:1"></div>
+          <div style="padding:8px">
+            <div class="ms-row">
+              <div class="ms-cell hd" style="width:20%;height:8px"></div>
+              <div class="ms-cell hd" style="width:28%;height:8px;margin-left:4px"></div>
+              <div class="ms-cell hd" style="width:22%;height:8px;margin-left:4px"></div>
+              <div class="ms-cell hd" style="flex:1;height:8px;margin-left:4px"></div>
             </div>
-            <div class="mock-row"><div class="mock-cell" style="width:15%"></div><div class="mock-cell" style="width:25%"></div><div class="mock-cell" style="flex:1"></div></div>
-            <div class="mock-row"><div class="mock-cell" style="width:15%"></div><div class="mock-cell" style="width:25%"></div><div class="mock-cell" style="flex:1"></div></div>
-            <div class="mock-row"><div class="mock-cell" style="width:15%"></div><div class="mock-cell" style="width:25%"></div><div class="mock-cell" style="flex:1"></div></div>
-            <div class="mock-row" style="margin-top:4px">
-              <div class="mock-cell" style="flex:1;background:rgba(249,168,37,.5)"></div>
+            <div class="ms-row" style="margin-top:3px">
+              <div class="ms-cell hi" style="width:18%;height:7px"></div>
+              <div class="ms-cell" style="width:26%;height:7px;margin-left:4px"></div>
+              <div class="ms-cell hi" style="width:20%;height:7px;margin-left:4px"></div>
+              <div class="ms-cell" style="flex:1;height:7px;margin-left:4px"></div>
+            </div>
+            <div class="ms-row" style="margin-top:3px">
+              <div class="ms-cell" style="width:22%;height:7px"></div>
+              <div class="ms-cell hi" style="width:24%;height:7px;margin-left:4px"></div>
+              <div class="ms-cell" style="width:18%;height:7px;margin-left:4px"></div>
+              <div class="ms-cell hi" style="flex:1;height:7px;margin-left:4px"></div>
+            </div>
+            <div class="ms-row" style="margin-top:3px">
+              <div class="ms-cell" style="width:20%;height:7px"></div>
+              <div class="ms-cell" style="width:26%;height:7px;margin-left:4px"></div>
+              <div class="ms-cell hi" style="width:22%;height:7px;margin-left:4px"></div>
+              <div class="ms-cell" style="flex:1;height:7px;margin-left:4px"></div>
+            </div>
+            <div style="margin-top:8px;display:flex;gap:6px;align-items:center">
+              <div class="ms-pie"></div>
+              <div style="flex:1">
+                <div style="display:flex;gap:3px;margin-bottom:3px">
+                  <div style="height:6px;flex:2;border-radius:3px;background:rgba(249,168,37,.7)"></div>
+                  <div style="height:6px;flex:1;border-radius:3px;background:rgba(255,255,255,.25)"></div>
+                </div>
+                <div style="display:flex;gap:3px">
+                  <div style="height:6px;flex:1;border-radius:3px;background:rgba(255,255,255,.2)"></div>
+                  <div style="height:6px;flex:3;border-radius:3px;background:rgba(100,220,190,.5)"></div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-        <div class="product-tag hot">🔥 ขายดี</div>
+        <div class="prod-badge">🔥 นิยม</div>
       </div>
-      <div class="product-body">
-        <div class="product-cat">👥 HR / พนักงาน</div>
-        <div class="product-name">HR เงินเดือน + ใบลา</div>
-        <div class="product-desc">ระบบ HR ครบวงจร จัดการเงินเดือน ใบลา ประกันสังคม พร้อม Dashboard HR</div>
-        <div class="product-features">
-          <div class="pf"><div class="pf-icon">✓</div>คำนวณเงินเดือนสุทธิอัตโนมัติ</div>
-          <div class="pf"><div class="pf-icon">✓</div>ระบบใบลา + สถานะอนุมัติ</div>
-          <div class="pf"><div class="pf-icon">✓</div>ประกันสังคม 5% อัตโนมัติ</div>
-          <div class="pf"><div class="pf-icon">✓</div>สรุปวันลาและโควต้ารายคน</div>
+      <div class="prod-body">
+        <div class="prod-cat">👥 HR · พนักงาน</div>
+        <div class="prod-name">HR เงินเดือน + ใบลา</div>
+        <div class="prod-desc">ระบบ HR ครบวงจร จัดการเงินเดือน ใบลา ประกันสังคม พร้อม Dashboard HR อัตโนมัติ</div>
+        <div class="prod-feats">
+          <div class="pf"><div class="pf-check">✓</div>คำนวณเงินเดือนสุทธิ + OT + โบนัส</div>
+          <div class="pf"><div class="pf-check">✓</div>ประกันสังคม 5% อัตโนมัติ</div>
+          <div class="pf"><div class="pf-check">✓</div>ระบบใบลา 6 ประเภท + สถานะอนุมัติ</div>
+          <div class="pf"><div class="pf-check">✓</div>Dashboard HR + สรุปวันลารายคน</div>
         </div>
-        <div class="product-footer">
-          <div class="product-price"><sup>฿</sup>399</div>
-          <div style="display:flex;gap:8px">
-            <button class="btn-buy" style="background:var(--lgray);color:var(--navy);font-size:.82rem;padding:9px 16px" onclick="openPreview(1)">ดูตัวอย่าง</button>
-            <button class="btn-buy" onclick="openModal('HR เงินเดือน + ใบลา',399)">ซื้อเลย</button>
+        <div class="prod-footer">
+          <div class="prod-price"><sup>฿</sup>399</div>
+          <div class="prod-actions">
+            <button class="btn-preview" onclick="openPreview(1)">👁 ตัวอย่าง</button>
+            <button class="btn-buy" onclick="openBuy('HR เงินเดือน + ใบลา',399)">ซื้อเลย</button>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Product 3 -->
+    <!-- ── Product 3: Order+Stock ── -->
     <div class="product-card">
-      <div class="product-preview orange">
-        <div class="preview-mockup">
-          <div class="mock-header">
-            <div class="mock-dot" style="background:#ff5f57"></div>
-            <div class="mock-dot" style="background:#febc2e"></div>
-            <div class="mock-dot" style="background:#28c840"></div>
+      <div class="prod-preview c-purple">
+        <div class="mini-sheet">
+          <div class="ms-head">
+            <div class="ms-dot" style="background:#ff5f57"></div>
+            <div class="ms-dot" style="background:#febc2e"></div>
+            <div class="ms-dot" style="background:#28c840"></div>
           </div>
-          <div class="mock-body">
-            <div class="mock-row">
-              <div class="mock-cell hd" style="width:18%"></div>
-              <div class="mock-cell hd" style="width:12%"></div>
-              <div class="mock-cell hd" style="width:28%"></div>
-              <div class="mock-cell hd" style="flex:1"></div>
+          <div style="padding:8px">
+            <div class="ms-row">
+              <div class="ms-cell hd" style="width:22%;height:8px"></div>
+              <div class="ms-cell hd" style="width:25%;height:8px;margin-left:4px"></div>
+              <div class="ms-cell hd" style="width:20%;height:8px;margin-left:4px"></div>
+              <div class="ms-cell hd" style="flex:1;height:8px;margin-left:4px"></div>
             </div>
-            <div class="mock-row"><div class="mock-cell" style="width:18%"></div><div class="mock-cell" style="width:12%;background:rgba(40,200,64,.4)"></div><div class="mock-cell" style="flex:1"></div></div>
-            <div class="mock-row"><div class="mock-cell" style="width:18%"></div><div class="mock-cell" style="width:12%;background:rgba(249,168,37,.5)"></div><div class="mock-cell" style="flex:1"></div></div>
-            <div class="mock-row"><div class="mock-cell" style="width:18%"></div><div class="mock-cell" style="width:12%;background:rgba(198,40,40,.4)"></div><div class="mock-cell" style="flex:1"></div></div>
-            <div class="mock-chart">
-              <div class="mock-bar gold" style="height:50%"></div>
-              <div class="mock-bar" style="height:80%"></div>
-              <div class="mock-bar gold" style="height:40%"></div>
-              <div class="mock-bar" style="height:65%"></div>
-              <div class="mock-bar gold" style="height:90%"></div>
-              <div class="mock-bar" style="height:55%"></div>
+            <div class="ms-row" style="margin-top:3px">
+              <div class="ms-cell hi" style="width:20%;height:7px"></div>
+              <div class="ms-cell" style="width:23%;height:7px;margin-left:4px"></div>
+              <div class="ms-cell hi" style="width:18%;height:7px;margin-left:4px"></div>
+              <div class="ms-cell" style="flex:1;height:7px;margin-left:4px;background:rgba(129,199,132,.5)"></div>
+            </div>
+            <div class="ms-row" style="margin-top:3px">
+              <div class="ms-cell" style="width:24%;height:7px"></div>
+              <div class="ms-cell hi" style="width:21%;height:7px;margin-left:4px"></div>
+              <div class="ms-cell" style="width:20%;height:7px;margin-left:4px"></div>
+              <div class="ms-cell" style="flex:1;height:7px;margin-left:4px;background:rgba(239,154,154,.5)"></div>
+            </div>
+            <div class="ms-bars" style="height:44px;margin-top:8px">
+              <div class="ms-b" style="height:60%;background:rgba(206,147,216,.7)"></div>
+              <div class="ms-b b2" style="height:80%"></div>
+              <div class="ms-b" style="height:50%;background:rgba(206,147,216,.7)"></div>
+              <div class="ms-b b2" style="height:95%"></div>
+              <div class="ms-b" style="height:65%;background:rgba(206,147,216,.7)"></div>
             </div>
           </div>
         </div>
-        <div class="product-tag new">✨ ใหม่</div>
+        <div class="prod-badge">📦 ร้านออนไลน์</div>
       </div>
-      <div class="product-body">
-        <div class="product-cat">🛒 ร้านออนไลน์</div>
-        <div class="product-name">ออเดอร์ + สต็อกสินค้า</div>
-        <div class="product-desc">ติดตามออเดอร์ Shopee/Lazada/TikTok และจัดการสต็อกสินค้า พร้อมแจ้งเตือนของใกล้หมด</div>
-        <div class="product-features">
-          <div class="pf"><div class="pf-icon">✓</div>รองรับ Shopee, Lazada, TikTok</div>
-          <div class="pf"><div class="pf-icon">✓</div>คำนวณกำไรหัก GP อัตโนมัติ</div>
-          <div class="pf"><div class="pf-icon">✓</div>แจ้งเตือนสต็อกใกล้หมด</div>
-          <div class="pf"><div class="pf-icon">✓</div>Dashboard ยอดขายตามช่องทาง</div>
+      <div class="prod-body">
+        <div class="prod-cat">🛒 ออเดอร์ · สต็อก</div>
+        <div class="prod-name">ออเดอร์ + สต็อกสินค้า</div>
+        <div class="prod-desc">ระบบจัดการออเดอร์และสต็อกสำหรับร้านออนไลน์ Shopee, Lazada, TikTok Shop</div>
+        <div class="prod-feats">
+          <div class="pf"><div class="pf-check">✓</div>บันทึกออเดอร์ + คำนวณกำไร GP%</div>
+          <div class="pf"><div class="pf-check">✓</div>สต็อกพร้อมแจ้งเตือนใกล้หมด ⚠️</div>
+          <div class="pf"><div class="pf-check">✓</div>สรุปยอดขายแยกช่องทาง</div>
+          <div class="pf"><div class="pf-check">✓</div>Dashboard ยอดขาย + Pie Chart</div>
         </div>
-        <div class="product-footer">
-          <div class="product-price"><sup>฿</sup>399</div>
-          <div style="display:flex;gap:8px">
-            <button class="btn-buy" style="background:var(--lgray);color:var(--navy);font-size:.82rem;padding:9px 16px" onclick="openPreview(2)">ดูตัวอย่าง</button>
-            <button class="btn-buy" onclick="openModal('ออเดอร์ + สต็อกสินค้า',399)">ซื้อเลย</button>
+        <div class="prod-footer">
+          <div class="prod-price"><sup>฿</sup>399</div>
+          <div class="prod-actions">
+            <button class="btn-preview" onclick="openPreview(2)">👁 ตัวอย่าง</button>
+            <button class="btn-buy" onclick="openBuy('ออเดอร์ + สต็อกสินค้า',399)">ซื้อเลย</button>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Product 4 Coming Soon -->
-    <div class="product-card" style="opacity:.7">
-      <div class="product-preview purple">
-        <div class="preview-mockup" style="opacity:.5">
-          <div class="mock-header"><div class="mock-dot" style="background:#666"></div><div class="mock-dot" style="background:#666"></div></div>
-          <div class="mock-body">
-            <div class="mock-row"><div class="mock-cell" style="flex:1"></div></div>
-            <div class="mock-row"><div class="mock-cell" style="flex:1"></div></div>
-            <div class="mock-row"><div class="mock-cell" style="flex:1"></div></div>
+    <!-- ── Product 4: Invoice (Coming Soon) ── -->
+    <div class="product-card soon">
+      <div class="prod-preview c-orange">
+        <div class="mini-sheet">
+          <div class="ms-head">
+            <div class="ms-dot" style="background:#555"></div>
+            <div class="ms-dot" style="background:#555"></div>
+            <div class="ms-dot" style="background:#555"></div>
+          </div>
+          <div style="padding:8px">
+            <div class="ms-row" style="justify-content:center;margin-bottom:6px">
+              <div class="ms-cell hd" style="width:60%;height:10px"></div>
+            </div>
+            <div class="ms-row">
+              <div class="ms-cell" style="width:45%;height:7px"></div>
+              <div class="ms-cell hd" style="flex:1;height:7px;margin-left:4px"></div>
+            </div>
+            <div class="ms-row" style="margin-top:3px">
+              <div class="ms-cell" style="width:50%;height:7px"></div>
+              <div class="ms-cell" style="flex:1;height:7px;margin-left:4px"></div>
+            </div>
+            <div class="ms-row" style="margin-top:8px;border-top:1px solid rgba(255,255,255,.2);padding-top:6px">
+              <div class="ms-cell hd" style="flex:1;height:8px"></div>
+            </div>
           </div>
         </div>
-        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px">
-          <div style="font-size:2.5rem">🔜</div>
-          <div style="color:white;font-weight:700;font-size:1rem">เร็วๆ นี้</div>
-        </div>
-        <div class="product-tag soon">Coming Soon</div>
+        <div class="prod-badge soon">🔜 เร็วๆ นี้</div>
       </div>
-      <div class="product-body">
-        <div class="product-cat">📄 Freelancer</div>
-        <div class="product-name">Invoice + ใบเสนอราคา</div>
-        <div class="product-desc">สร้างใบเสนอราคาและ Invoice อย่างมืออาชีพ ติดตามการชำระเงิน</div>
-        <div class="product-features">
-          <div class="pf"><div class="pf-icon" style="background:var(--mgray)">?</div>ใบเสนอราคามาตรฐาน</div>
-          <div class="pf"><div class="pf-icon" style="background:var(--mgray)">?</div>ติดตามสถานะการชำระ</div>
-          <div class="pf"><div class="pf-icon" style="background:var(--mgray)">?</div>สรุปรายได้รายเดือน</div>
+      <div class="prod-body">
+        <div class="prod-cat">🧾 Invoice · ใบเสนอราคา</div>
+        <div class="prod-name">Invoice + ใบเสนอราคา</div>
+        <div class="prod-desc">สร้างใบ Invoice และใบเสนอราคาแบบมืออาชีพ เหมาะสำหรับ Freelancer และ Agency</div>
+        <div class="prod-feats">
+          <div class="pf"><div class="pf-check">✓</div>ใบ Invoice ออกได้ทันที</div>
+          <div class="pf"><div class="pf-check">✓</div>ใบเสนอราคา + ใบวางบิล</div>
+          <div class="pf"><div class="pf-check">✓</div>ติดตามสถานะการชำระเงิน</div>
+          <div class="pf"><div class="pf-check">✓</div>พร้อมโลโก้ธุรกิจของคุณ</div>
         </div>
-        <div class="product-footer">
-          <div class="product-price" style="color:var(--gray)"><sup style="font-size:.8rem">฿</sup>299</div>
-          <button class="btn-coming">เร็วๆ นี้</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- Product 5 Coming Soon -->
-    <div class="product-card" style="opacity:.7">
-      <div class="product-preview coming">
-        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px">
-          <div style="font-size:2.5rem">🔜</div>
-          <div style="color:white;font-weight:700;font-size:1rem">เร็วๆ นี้</div>
-        </div>
-        <div class="product-tag soon">Coming Soon</div>
-      </div>
-      <div class="product-body">
-        <div class="product-cat">📊 ธุรกิจ</div>
-        <div class="product-name">แผนธุรกิจ + คำนวณกำไร</div>
-        <div class="product-desc">วางแผนธุรกิจ คำนวณ Break-even point และประมาณการกำไร-ขาดทุน</div>
-        <div class="product-features">
-          <div class="pf"><div class="pf-icon" style="background:var(--mgray)">?</div>คำนวณ Break-even point</div>
-          <div class="pf"><div class="pf-icon" style="background:var(--mgray)">?</div>ประมาณการ 12 เดือน</div>
-          <div class="pf"><div class="pf-icon" style="background:var(--mgray)">?</div>วิเคราะห์ความเสี่ยง</div>
-        </div>
-        <div class="product-footer">
-          <div class="product-price" style="color:var(--gray)"><sup style="font-size:.8rem">฿</sup>499</div>
-          <button class="btn-coming">เร็วๆ นี้</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- Bundle -->
-    <div class="product-card" style="border:2px solid var(--gold)">
-      <div class="product-preview" style="background:linear-gradient(135deg,#1a237e,#f9a825);height:160px">
-        <div style="text-align:center;z-index:1;position:relative">
-          <div style="font-size:2.5rem;margin-bottom:8px">🎁</div>
-          <div style="color:white;font-weight:800;font-size:1.2rem">BUNDLE PACK</div>
-          <div style="color:rgba(255,255,255,.8);font-size:.85rem">รวม 3 Template</div>
-        </div>
-      </div>
-      <div class="product-body">
-        <div class="product-cat" style="color:var(--dgold)">⭐ แนะนำ</div>
-        <div class="product-name">Bundle Pack — 3 Template</div>
-        <div class="product-desc">รวม SME บัญชี + HR เงินเดือน + ออเดอร์สต็อก ประหยัดกว่าซื้อแยก 30%</div>
-        <div class="product-features">
-          <div class="pf"><div class="pf-icon">✓</div>Template บัญชี SME</div>
-          <div class="pf"><div class="pf-icon">✓</div>Template HR เงินเดือน + ใบลา</div>
-          <div class="pf"><div class="pf-icon">✓</div>Template ออเดอร์ + สต็อก</div>
-          <div class="pf"><div class="pf-icon">✓</div>Support ทาง Line 30 วัน</div>
-        </div>
-        <div class="product-footer">
-          <div class="product-price"><sup>฿</sup>799 <span class="old">฿1,097</span></div>
-          <div style="display:flex;gap:8px">
-            <button class="btn-buy" onclick="openModal('Bundle Pack — 3 Template',799)" style="background:linear-gradient(135deg,var(--gold),var(--dgold));color:var(--navy)">ซื้อ Bundle</button>
+        <div class="prod-footer">
+          <div class="prod-price"><sup>฿</sup>299</div>
+          <div class="prod-actions">
+            <button class="btn-disabled" disabled>🔜 เร็วๆ นี้</button>
           </div>
         </div>
       </div>
     </div>
 
+    <!-- ── Product 5: Business Plan (Coming Soon) ── -->
+    <div class="product-card soon">
+      <div class="prod-preview c-gray">
+        <div class="mini-sheet">
+          <div class="ms-head">
+            <div class="ms-dot" style="background:#555"></div>
+            <div class="ms-dot" style="background:#555"></div>
+            <div class="ms-dot" style="background:#555"></div>
+          </div>
+          <div style="padding:8px">
+            <div class="ms-row" style="margin-bottom:4px">
+              <div class="ms-cell hd" style="width:40%;height:8px"></div>
+              <div class="ms-cell" style="flex:1;height:8px;margin-left:4px"></div>
+            </div>
+            <div class="ms-row" style="margin-bottom:4px">
+              <div class="ms-cell" style="width:50%;height:7px"></div>
+              <div class="ms-cell hd" style="flex:1;height:7px;margin-left:4px"></div>
+            </div>
+            <div style="height:40px;margin-top:6px;display:flex;align-items:flex-end;gap:3px">
+              <div style="flex:1;height:30%;border-radius:3px 3px 0 0;background:rgba(249,168,37,.5)"></div>
+              <div style="flex:1;height:50%;border-radius:3px 3px 0 0;background:rgba(249,168,37,.6)"></div>
+              <div style="flex:1;height:70%;border-radius:3px 3px 0 0;background:rgba(249,168,37,.7)"></div>
+              <div style="flex:1;height:55%;border-radius:3px 3px 0 0;background:rgba(249,168,37,.8)"></div>
+              <div style="flex:1;height:90%;border-radius:3px 3px 0 0;background:rgba(249,168,37,.9)"></div>
+            </div>
+          </div>
+        </div>
+        <div class="prod-badge soon">🔜 เร็วๆ นี้</div>
+      </div>
+      <div class="prod-body">
+        <div class="prod-cat">📈 แผนธุรกิจ · Break-even</div>
+        <div class="prod-name">แผนธุรกิจ + คำนวณกำไร</div>
+        <div class="prod-desc">วางแผนธุรกิจอย่างมืออาชีพ คำนวณ Break-even Point และ ROI อัตโนมัติ</div>
+        <div class="prod-feats">
+          <div class="pf"><div class="pf-check">✓</div>คำนวณ Break-even Point</div>
+          <div class="pf"><div class="pf-check">✓</div>ประมาณการรายรับ 3 ปี</div>
+          <div class="pf"><div class="pf-check">✓</div>วิเคราะห์ ROI และ Payback</div>
+          <div class="pf"><div class="pf-check">✓</div>สรุปแผนธุรกิจพร้อมพรีเซนต์</div>
+        </div>
+        <div class="prod-footer">
+          <div class="prod-price"><sup>฿</sup>499</div>
+          <div class="prod-actions">
+            <button class="btn-disabled" disabled>🔜 เร็วๆ นี้</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Product 6: Placeholder ── -->
+    <div class="product-card soon" style="border:2px dashed #dce4f0;background:#f8faff">
+      <div class="prod-preview" style="background:linear-gradient(145deg,#e8edf2,#f0f4f8);height:190px">
+        <div style="text-align:center;color:#b0bec5">
+          <div style="font-size:2.5rem;margin-bottom:8px">🚀</div>
+          <div style="font-size:.85rem;font-weight:700">Template ใหม่กำลังมา</div>
+        </div>
+      </div>
+      <div class="prod-body">
+        <div class="prod-cat" style="color:var(--gray)">🔜 กำลังพัฒนา</div>
+        <div class="prod-name" style="color:var(--gray)">Template ใหม่</div>
+        <div class="prod-desc">กำลังพัฒนา Template เพิ่มเติมสำหรับธุรกิจไทย ติดตามได้เร็วๆ นี้</div>
+        <div class="prod-feats">
+          <div class="pf"><div class="pf-check" style="background:var(--mgray);color:var(--gray)">?</div>ยังไม่เปิดเผย</div>
+        </div>
+        <div class="prod-footer">
+          <div class="prod-price" style="color:var(--gray);font-size:1rem">เร็วๆ นี้</div>
+          <button class="btn-disabled" disabled>ติดตาม</button>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /products-grid -->
+
+  <!-- BUNDLE BANNER -->
+  <div class="bundle-banner">
+    <div class="bundle-left">
+      <div class="bundle-tag">🎁 แพ็กคุ้ม</div>
+      <div class="bundle-title">Bundle Pack — ครบ 3 Template</div>
+      <div class="bundle-desc">รวม SME + HR + ออเดอร์สต็อก ประหยัดกว่าซื้อแยก 298 บาท เหมาะสำหรับธุรกิจที่ต้องการระบบครบวงจร</div>
+      <div class="bundle-includes">
+        <div class="bi">💼 บัญชี SME</div>
+        <div class="bi">👥 HR เงินเดือน</div>
+        <div class="bi">📦 ออเดอร์+สต็อก</div>
+      </div>
+    </div>
+    <div class="bundle-right">
+      <div class="bundle-price"><sup>฿</sup>799</div>
+      <div class="bundle-save">ประหยัด 298 บาท</div>
+      <div style="font-size:.78rem;color:rgba(255,255,255,.4);margin-bottom:8px">ปกติ 1,097 บาท</div>
+      <button class="bundle-buy" onclick="openBuy('Bundle Pack (SME + HR + ออเดอร์สต็อก)',799)">🎁 ซื้อ Bundle</button>
+    </div>
   </div>
+
 </section>
 
-<!-- FEATURES -->
-<section class="features" id="features">
-  <div class="tc">
-    <div class="section-tag">ทำไมต้อง ANJI</div>
-    <h2 class="section-title">ทุก Template ออกแบบมาเพื่อคุณ</h2>
-    <p class="section-sub">ไม่ต้องมีความรู้บัญชีหรือ Excel ก็ใช้งานได้ทันที</p>
-  </div>
-  <div class="features-grid">
-    <div class="feat-card">
-      <div class="feat-icon">📊</div>
-      <h3>Dashboard อัตโนมัติ</h3>
-      <p>กราฟและ KPI อัพเดทอัตโนมัติทุกครั้งที่กรอกข้อมูล ไม่ต้องคำนวณเอง</p>
-    </div>
-    <div class="feat-card">
-      <div class="feat-icon">✅</div>
-      <h3>Dropdown ครบทุกช่อง</h3>
-      <p>หมวดหมู่และตัวเลือกพร้อมใช้ ป้องกันการกรอกผิด ลดเวลาได้มาก</p>
-    </div>
-    <div class="feat-card">
-      <div class="feat-icon">🔗</div>
-      <h3>สูตรเชื่อมกันอัตโนมัติ</h3>
-      <p>กรอกข้อมูลที่เดียว ทุก Sheet อัพเดทพร้อมกัน ไม่ต้องกรอกซ้ำ</p>
-    </div>
-    <div class="feat-card">
-      <div class="feat-icon">📱</div>
-      <h3>ใช้บนมือถือได้</h3>
-      <p>รองรับ Google Sheets App ทั้ง iOS และ Android ทำงานได้ทุกที่</p>
-    </div>
-    <div class="feat-card">
-      <div class="feat-icon">🔒</div>
-      <h3>ข้อมูลปลอดภัย</h3>
-      <p>ข้อมูลอยู่ใน Google Drive ส่วนตัวของคุณ ไม่มีการส่งข้อมูลออก</p>
-    </div>
-    <div class="feat-card">
-      <div class="feat-icon">📖</div>
-      <h3>คู่มือในตัว</h3>
-      <p>มี Sheet คู่มืออธิบายทุกขั้นตอน เริ่มใช้งานได้ภายใน 5 นาที</p>
-    </div>
-  </div>
-</section>
-
-<!-- COMPARISON -->
-<section class="comparison" id="comparison">
+<!-- ═══════════════════ COMPARE TABLE ═══════════════════ -->
+<section class="compare-section" id="compare">
   <div class="tc">
     <div class="section-tag">เปรียบเทียบ</div>
-    <h2 class="section-title">ฟีเจอร์แต่ละ Template</h2>
+    <h2 class="section-title">เลือกที่ใช่ในคลิกเดียว</h2>
+    <p class="section-sub">ดูฟีเจอร์ทั้งหมดเปรียบเทียบกันง่ายๆ</p>
   </div>
-  <div class="comp-wrap">
-    <table>
+  <div class="compare-wrap">
+    <table class="compare">
       <thead>
         <tr>
-          <th style="width:35%;text-align:left">ฟีเจอร์</th>
-          <th>💼 SME บัญชี<br/><small style="font-weight:400;opacity:.8">฿299</small></th>
-          <th>👥 HR<br/><small style="font-weight:400;opacity:.8">฿399</small></th>
-          <th>🛒 ออเดอร์<br/><small style="font-weight:400;opacity:.8">฿399</small></th>
-          <th style="background:rgba(249,168,37,.3)">🎁 Bundle<br/><small style="font-weight:400">฿799</small></th>
+          <th>ฟีเจอร์</th>
+          <th>💼 SME<br/><span style="font-weight:400;font-size:.75rem">299฿</span></th>
+          <th>👥 HR<br/><span style="font-weight:400;font-size:.75rem">399฿</span></th>
+          <th>📦 ออเดอร์<br/><span style="font-weight:400;font-size:.75rem">399฿</span></th>
+          <th>🎁 Bundle<br/><span style="font-weight:400;font-size:.75rem">799฿</span></th>
         </tr>
       </thead>
       <tbody>
-        <tr><td>Dashboard กราฟ</td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
-        <tr><td>สรุปรายเดือนอัตโนมัติ</td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
-        <tr><td>Dropdown หมวดหมู่</td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
-        <tr><td>คู่มือการใช้งาน</td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
-        <tr><td>บัญชีรายรับ-รายจ่าย</td><td><span class="check">✓</span></td><td><span class="cross">—</span></td><td><span class="cross">—</span></td><td><span class="check">✓</span></td></tr>
-        <tr><td>ระบบเงินเดือน + OT + โบนัส</td><td><span class="cross">—</span></td><td><span class="check">✓</span></td><td><span class="cross">—</span></td><td><span class="check">✓</span></td></tr>
-        <tr><td>ระบบใบลา + อนุมัติ</td><td><span class="cross">—</span></td><td><span class="check">✓</span></td><td><span class="cross">—</span></td><td><span class="check">✓</span></td></tr>
-        <tr><td>ติดตามออเดอร์ออนไลน์</td><td><span class="cross">—</span></td><td><span class="cross">—</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
-        <tr><td>ระบบสต็อก + แจ้งเตือน</td><td><span class="cross">—</span></td><td><span class="cross">—</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
-        <tr><td>Support ทาง Line 30 วัน</td><td><span class="cross">—</span></td><td><span class="cross">—</span></td><td><span class="cross">—</span></td><td><span class="check">✓</span><span class="badge-tag">เฉพาะ Bundle</span></td></tr>
+        <tr><td>บันทึกรายรับ-รายจ่าย</td><td><span class="chk">✓</span></td><td><span class="dash">—</span></td><td><span class="dash">—</span></td><td><span class="chk">✓</span></td></tr>
+        <tr><td>Dashboard กราฟอัตโนมัติ</td><td><span class="chk">✓</span></td><td><span class="chk">✓</span></td><td><span class="chk">✓</span></td><td><span class="chk">✓</span></td></tr>
+        <tr><td>สรุปรายเดือน 12 เดือน</td><td><span class="chk">✓</span></td><td><span class="chk">✓</span></td><td><span class="chk">✓</span></td><td><span class="chk">✓</span></td></tr>
+        <tr><td>คำนวณเงินเดือน + OT</td><td><span class="dash">—</span></td><td><span class="chk">✓</span></td><td><span class="dash">—</span></td><td><span class="chk">✓</span></td></tr>
+        <tr><td>ระบบใบลา 6 ประเภท</td><td><span class="dash">—</span></td><td><span class="chk">✓</span></td><td><span class="dash">—</span></td><td><span class="chk">✓</span></td></tr>
+        <tr><td>บันทึกออเดอร์ออนไลน์</td><td><span class="dash">—</span></td><td><span class="dash">—</span></td><td><span class="chk">✓</span></td><td><span class="chk">✓</span></td></tr>
+        <tr><td>ระบบสต็อก + แจ้งเตือน</td><td><span class="dash">—</span></td><td><span class="dash">—</span></td><td><span class="chk">✓</span></td><td><span class="chk">✓</span></td></tr>
+        <tr><td>คำนวณ GP% กำไรต่อชิ้น</td><td><span class="dash">—</span></td><td><span class="dash">—</span></td><td><span class="chk">✓</span></td><td><span class="chk">✓</span></td></tr>
+        <tr><td>คู่มือการใช้งาน</td><td><span class="chk">✓</span></td><td><span class="chk">✓</span></td><td><span class="chk">✓</span></td><td><span class="chk">✓</span></td></tr>
+        <tr><td>อัปเดตฟรีตลอดชีพ</td><td><span class="chk">✓</span></td><td><span class="chk">✓</span></td><td><span class="chk">✓</span></td><td><span class="chk">✓</span></td></tr>
+        <tr>
+          <td style="font-weight:700">ราคา</td>
+          <td><button class="btn-buy" onclick="openBuy('บัญชีรายรับ-รายจ่าย SME',299)" style="font-size:.78rem;padding:7px 14px">ซื้อ 299฿</button></td>
+          <td><button class="btn-buy" onclick="openBuy('HR เงินเดือน + ใบลา',399)" style="font-size:.78rem;padding:7px 14px">ซื้อ 399฿</button></td>
+          <td><button class="btn-buy" onclick="openBuy('ออเดอร์ + สต็อกสินค้า',399)" style="font-size:.78rem;padding:7px 14px">ซื้อ 399฿</button></td>
+          <td><button class="bundle-buy" onclick="openBuy('Bundle Pack',799)" style="font-size:.78rem;padding:9px 16px;margin:0">ซื้อ 799฿</button></td>
+        </tr>
       </tbody>
     </table>
   </div>
 </section>
 
-<!-- TESTIMONIALS -->
-<section class="testimonials">
+<!-- ═══════════════════ TESTIMONIALS ═══════════════════ -->
+<section style="background:#fff;padding:86px 6%">
   <div class="tc">
     <div class="section-tag">รีวิว</div>
-    <h2 class="section-title">ลูกค้าพูดถึง ANJI</h2>
+    <h2 class="section-title">ลูกค้าพูดว่าอย่างไร</h2>
+    <p class="section-sub">ความเห็นจากผู้ใช้จริง</p>
   </div>
   <div class="testi-grid">
     <div class="testi-card">
-      <div class="stars">★★★★★</div>
-      <div class="testi-quote">"</div>
-      <p class="testi-text">ใช้ Template SME มา 2 เดือนแล้ว ช่วยประหยัดเวลาทำบัญชีไปได้มาก Dashboard สวยมาก เห็นกำไรแต่ละเดือนชัดเจนเลย</p>
+      <div class="testi-stars">★★★★★</div>
+      <div class="testi-text">"ก่อนหน้านี้จดบัญชีในสมุด ตอนนี้ทุกอย่างสรุปเองอัตโนมัติ ประหยัดเวลาไปมากมายเลย ราคาคุ้มมากๆ"</div>
+      <div class="testi-author">
+        <div class="testi-avatar">น</div>
+        <div>
+          <div class="testi-name">คุณนภา</div>
+          <div class="testi-role">เจ้าของร้านเบเกอรี่ กรุงเทพฯ</div>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <div class="testi-text">"Template HR ช่วยคำนวณเงินเดือนพนักงาน 8 คนได้ถูกต้องทุกเดือน ไม่ต้องกลัวบวกเลขผิดอีกแล้ว"</div>
       <div class="testi-author">
         <div class="testi-avatar">ส</div>
         <div>
-          <div class="testi-name">สมชาย ร.</div>
-          <div class="testi-role">เจ้าของร้านออนไลน์ จ.เชียงใหม่</div>
+          <div class="testi-name">คุณสมชาย</div>
+          <div class="testi-role">เจ้าของธุรกิจขนส่ง เชียงใหม่</div>
         </div>
       </div>
     </div>
     <div class="testi-card">
-      <div class="stars">★★★★★</div>
-      <div class="testi-quote">"</div>
-      <p class="testi-text">Template HR ดีมากๆ คำนวณเงินเดือนพนักงาน 10 คน ได้ภายใน 15 นาที เมื่อก่อนใช้เวลาครึ่งวัน ประหยัดเวลาไปเยอะมาก</p>
+      <div class="testi-stars">★★★★★</div>
+      <div class="testi-text">"ขาย Shopee และ TikTok Shop ตัว Template ออเดอร์ช่วยรู้ว่าสินค้าตัวไหนกำไรดี แนะนำมากๆ"</div>
       <div class="testi-author">
-        <div class="testi-avatar">ว</div>
+        <div class="testi-avatar">พ</div>
         <div>
-          <div class="testi-name">วิไล ม.</div>
-          <div class="testi-role">HR Manager บริษัทขนาดเล็ก กรุงเทพ</div>
-        </div>
-      </div>
-    </div>
-    <div class="testi-card">
-      <div class="stars">★★★★★</div>
-      <div class="testi-quote">"</div>
-      <p class="testi-text">ขาย Shopee + Lazada คู่กัน ใช้ Template ออเดอร์ติดตามยอดขายได้ดีมาก รู้ทันทีว่าช่องทางไหนกำไรดีกว่า</p>
-      <div class="testi-author">
-        <div class="testi-avatar">ม</div>
-        <div>
-          <div class="testi-name">มานะ ก.</div>
-          <div class="testi-role">เจ้าของร้าน Shopee Top Seller</div>
+          <div class="testi-name">คุณพิม</div>
+          <div class="testi-role">ร้านค้าออนไลน์ ขอนแก่น</div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- PAYMENT -->
+<!-- ═══════════════════ PAYMENT ═══════════════════ -->
 <div class="payment-section">
-  <div class="payment-title">💳 ช่องทางชำระเงินที่รองรับ</div>
-  <div class="payment-grid">
-    <div class="pay-card"><span>📱</span> PromptPay</div>
-    <div class="pay-card"><span>💳</span> Visa / Mastercard</div>
-    <div class="pay-card"><span>🏦</span> Internet Banking</div>
+  <div class="pay-title">ชำระเงินง่าย ปลอดภัย 100%</div>
+  <div class="pay-sub">รองรับหลายช่องทาง ไม่ต้องมีบัตรเครดิตก็ซื้อได้</div>
+  <div class="pay-methods">
+    <div class="pay-card"><div class="pay-icon">📱</div><div><strong>PromptPay</strong><div style="font-size:.75rem;opacity:.6">สแกนจ่ายทันที</div></div></div>
+    <div class="pay-card"><div class="pay-icon">💳</div><div><strong>Visa / Mastercard</strong><div style="font-size:.75rem;opacity:.6">บัตรเครดิต-เดบิต</div></div></div>
+    <div class="pay-card"><div class="pay-icon">🏦</div><div><strong>Internet Banking</strong><div style="font-size:.75rem;opacity:.6">โอนผ่านแอปธนาคาร</div></div></div>
   </div>
-  <div class="secure-note">🔒 ระบบชำระเงินปลอดภัย — ข้อมูลบัตรเครดิตเข้ารหัส SSL ทุกครั้ง</div>
+  <div class="pay-note">🔒 ระบบชำระเงินผ่าน Omise — ปลอดภัยมาตรฐาน PCI DSS</div>
 </div>
 
-<!-- FAQ -->
-<section class="faq" id="faq">
+<!-- ═══════════════════ FAQ ═══════════════════ -->
+<section class="faq-section" id="faq">
   <div class="tc">
     <div class="section-tag">FAQ</div>
     <h2 class="section-title">คำถามที่พบบ่อย</h2>
   </div>
   <div class="faq-list">
     <div class="faq-item">
-      <button class="faq-q" onclick="toggleFaq(this)">ซื้อแล้วจะได้รับไฟล์เมื่อไหร่?<span class="faq-icon">+</span></button>
-      <div class="faq-a"><p>ระบบส่งลิงก์ Google Sheets ไปทางอีเมลทันทีหลังชำระเงินสำเร็จ ภายใน 5 นาที หากไม่ได้รับกรุณาตรวจสอบ Spam หรือทัก Line @507mxsgg</p></div>
+      <button class="faq-q" onclick="toggleFaq(this)">
+        ซื้อแล้วได้รับ Template อย่างไร?
+        <div class="faq-arr">▼</div>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner">หลังจากชำระเงิน ระบบจะส่งลิงก์ Google Sheets ไปทางอีเมลที่กรอกไว้ ภายใน 5 นาที กด "Make a copy" เพื่อได้ไฟล์เป็นของตัวเอง เริ่มใช้งานได้ทันที</div></div>
     </div>
     <div class="faq-item">
-      <button class="faq-q" onclick="toggleFaq(this)">ต้องมีความรู้ Excel หรือ Sheets ก่อนไหม?<span class="faq-icon">+</span></button>
-      <div class="faq-a"><p>ไม่ต้องเลยครับ Template ออกแบบมาสำหรับคนที่ไม่มีพื้นฐาน มีคู่มือในตัวอธิบายทุกขั้นตอน กรอกข้อมูลแค่ไม่กี่ช่อง ระบบคำนวณให้เองทั้งหมด</p></div>
+      <button class="faq-q" onclick="toggleFaq(this)">
+        ต้องใช้ Google Account ไหม?
+        <div class="faq-arr">▼</div>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner">ใช่ครับ ต้องมี Google Account (ฟรี) เพื่อใช้ Google Sheets และ Google Drive สามารถสมัครได้ที่ accounts.google.com ฟรี ไม่มีค่าใช้จ่าย</div></div>
     </div>
     <div class="faq-item">
-      <button class="faq-q" onclick="toggleFaq(this)">ใช้บนมือถือได้ไหม?<span class="faq-icon">+</span></button>
-      <div class="faq-a"><p>ได้ครับ ใช้งานได้บนแอป Google Sheets ทั้ง iOS และ Android รองรับทั้ง iPhone, Android, iPad และแท็บเล็ตทุกรุ่น</p></div>
+      <button class="faq-q" onclick="toggleFaq(this)">
+        ใช้งานบนมือถือได้ไหม?
+        <div class="faq-arr">▼</div>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner">ได้เลยครับ Google Sheets มีแอปสำหรับ iOS และ Android ฟรี ใช้งานได้ทุกที่ทุกเวลา Dashboard จะแสดงผลครบถ้วนบนมือถือด้วย</div></div>
     </div>
     <div class="faq-item">
-      <button class="faq-q" onclick="toggleFaq(this)">ซื้อแล้วใช้ได้กี่คน?<span class="faq-icon">+</span></button>
-      <div class="faq-a"><p>ซื้อ 1 License ใช้ได้ 1 ธุรกิจครับ แต่สามารถ Share ให้คนในทีมร่วมกรอกข้อมูลได้ผ่าน Google Sheets โดยไม่ต้องซื้อซ้ำ</p></div>
+      <button class="faq-q" onclick="toggleFaq(this)">
+        Bundle Pack คุ้มกว่าซื้อแยกอย่างไร?
+        <div class="faq-arr">▼</div>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner">ซื้อแยก: SME 299฿ + HR 399฿ + ออเดอร์สต็อก 399฿ = 1,097฿ / Bundle Pack: 799฿ ประหยัดถึง 298 บาท! เหมาะสำหรับธุรกิจที่ต้องการทั้งสามระบบ</div></div>
     </div>
     <div class="faq-item">
-      <button class="faq-q" onclick="toggleFaq(this)">แก้ไขหมวดหมู่หรือปรับแต่งได้ไหม?<span class="faq-icon">+</span></button>
-      <div class="faq-a"><p>ได้ครับ Template ไม่ได้ Lock ไว้ สามารถเพิ่มหมวดหมู่ เปลี่ยนสี หรือปรับแต่งได้ตามต้องการ มีคู่มืออธิบายวิธีแก้ไขด้วย</p></div>
+      <button class="faq-q" onclick="toggleFaq(this)">
+        หากมีปัญหาการใช้งาน ติดต่อได้ที่ไหน?
+        <div class="faq-arr">▼</div>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner">ติดต่อได้ทาง Line Official: @507mxsgg หรืออีเมล natthapong.arm@outlook.com ยินดีตอบคำถามและช่วยแก้ปัญหาทุกกรณีครับ</div></div>
     </div>
     <div class="faq-item">
-      <button class="faq-q" onclick="toggleFaq(this)">Bundle Pack คุ้มค่ากว่าซื้อแยกไหม?<span class="faq-icon">+</span></button>
-      <div class="faq-a"><p>คุ้มค่ากว่ามากครับ ซื้อแยก 3 Template = 1,097 บาท แต่ Bundle Pack เพียง 799 บาท ประหยัดไป 298 บาท และได้ Support Line เพิ่มด้วย</p></div>
+      <button class="faq-q" onclick="toggleFaq(this)">
+        ซื้อแล้วได้อัปเดตฟรีไหม?
+        <div class="faq-arr">▼</div>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner">ได้ครับ ซื้อครั้งเดียวได้ใช้ตลอดชีพ รวมถึงอัปเดตเวอร์ชันใหม่ในอนาคตด้วย ไม่มีค่าสมาชิกรายเดือน</div></div>
     </div>
   </div>
 </section>
 
-<!-- CTA -->
-<div class="cta">
-  <h2>พร้อมเริ่มใช้งานแล้วหรือยัง?</h2>
-  <p>เลือก Template ที่ใช่ จ่ายครั้งเดียว ใช้ได้ตลอดชีพ ไม่มีค่ารายเดือน</p>
-  <a href="#products" class="btn-gold" style="font-size:1.05rem;padding:16px 40px">🛒 ดูสินค้าทั้งหมด</a>
-</div>
-
-<!-- FOOTER -->
+<!-- ═══════════════════ FOOTER ═══════════════════ -->
 <footer>
-  <div class="footer-top">
+  <div class="footer-grid">
     <div class="footer-brand">
-      <span class="logo-text">ANJ<span>I</span></span>
-      <p>Template Google Sheets คุณภาพสูง ออกแบบมาเพื่อธุรกิจไทยโดยเฉพาะ ช่วยให้จัดการธุรกิจง่ายขึ้น 10 เท่า</p>
+      <a href="#" class="logo">
+        <div class="logo-icon">A</div>
+        <div class="logo-text">AN<span>J</span>I</div>
+      </a>
+      <p class="footer-desc">Template Google Sheets คุณภาพสูง ออกแบบเพื่อธุรกิจไทยโดยเฉพาะ ใช้งานง่าย ไม่ต้องเขียนโค้ด</p>
     </div>
     <div class="footer-col">
       <h4>สินค้า</h4>
-      <a href="#products">บัญชี SME</a>
-      <a href="#products">HR เงินเดือน</a>
-      <a href="#products">ออเดอร์ + สต็อก</a>
-      <a href="#products">Bundle Pack</a>
+      <a href="#products" onclick="openBuy('บัญชีรายรับ-รายจ่าย SME',299);return false">💼 บัญชี SME — 299฿</a>
+      <a href="#products" onclick="openBuy('HR เงินเดือน + ใบลา',399);return false">👥 HR เงินเดือน — 399฿</a>
+      <a href="#products" onclick="openBuy('ออเดอร์ + สต็อกสินค้า',399);return false">📦 ออเดอร์+สต็อก — 399฿</a>
+      <a href="#products" onclick="openBuy('Bundle Pack',799);return false">🎁 Bundle Pack — 799฿</a>
     </div>
     <div class="footer-col">
       <h4>ติดต่อ</h4>
-      <a href="https://line.me/ti/p/@507mxsgg" target="_blank">Line: @507mxsgg</a>
-      <a href="mailto:natthapong.arm@outlook.com">natthapong.arm@outlook.com</a>
+      <a href="https://line.me/R/ti/p/@507mxsgg" target="_blank">💬 Line: @507mxsgg</a>
+      <a href="mailto:natthapong.arm@outlook.com">✉️ natthapong.arm@outlook.com</a>
+      <a href="#faq">❓ FAQ — คำถามที่พบบ่อย</a>
     </div>
   </div>
   <div class="footer-bottom">
-    <p>© 2026 ANJI Templates. All rights reserved.</p>
-    <p>ออกแบบด้วย ❤️ สำหรับธุรกิจไทย</p>
+    <div class="footer-copy">© 2025 ANJI Templates. สงวนลิขสิทธิ์</div>
+    <div class="footer-line">ติดต่อ: <a href="https://line.me/R/ti/p/@507mxsgg" target="_blank">Line @507mxsgg</a></div>
   </div>
 </footer>
 
-<!-- BUY MODAL -->
-<div class="modal-bg" id="buyModal">
-  <div class="modal">
-    <div class="modal-header">
-      <button class="modal-close" onclick="closeModal()">✕</button>
-      <h3>🛒 สั่งซื้อ Template</h3>
-      <p>กรอกข้อมูลเพื่อรับไฟล์ทางอีเมล</p>
-      <div class="modal-product">
-        <span class="modal-product-name" id="mProductName">—</span>
-        <span class="modal-price-tag" id="mPrice">฿0</span>
-      </div>
+<!-- ═══════════════════ PREVIEW MODAL ═══════════════════ -->
+<div class="modal-overlay" id="preview-modal">
+  <div class="modal-box">
+    <div class="modal-head">
+      <div class="modal-title" id="preview-title">ตัวอย่าง Template</div>
+      <button class="modal-close" onclick="closePreview()">✕</button>
     </div>
-    <div class="modal-body">
-      <div class="form-group">
-        <label>ชื่อ-นามสกุล</label>
-        <input type="text" id="buyerName" placeholder="กรุณากรอกชื่อของคุณ"/>
-      </div>
-      <div class="form-group">
-        <label>อีเมล (สำหรับรับไฟล์)</label>
-        <input type="email" id="buyerEmail" placeholder="example@email.com"/>
-      </div>
-      <button class="btn-pay" onclick="proceedCheckout()">💳 ชำระเงิน</button>
-      <div class="modal-pays">
-        <span class="modal-pay-badge">📱 PromptPay</span>
-        <span class="modal-pay-badge">💳 บัตรเครดิต</span>
-        <span class="modal-pay-badge">🏦 Internet Banking</span>
-      </div>
-      <p class="modal-note">⚡ รับลิงก์ Google Sheets ทางอีเมลทันทีหลังชำระเงิน</p>
-    </div>
+    <div class="modal-body" id="preview-body"></div>
   </div>
 </div>
 
-<!-- PREVIEW MODAL -->
-<div class="preview-modal-bg" id="previewModal">
-  <div class="preview-modal">
-    <div class="pm-header">
-      <h3 id="pmTitle">ดูตัวอย่าง Template</h3>
-      <button class="pm-close" onclick="closePreview()">✕</button>
+<!-- ═══════════════════ BUY MODAL ═══════════════════ -->
+<div class="modal-overlay" id="buy-modal">
+  <div class="modal-box">
+    <div class="modal-head">
+      <div class="modal-title">🛒 สั่งซื้อ Template</div>
+      <button class="modal-close" onclick="closeBuy()">✕</button>
     </div>
-    <div class="pm-body" id="pmBody"></div>
+    <div class="modal-body">
+      <div class="order-summary">
+        <div id="buy-product-name">สินค้า</div>
+        <div class="order-price" id="buy-price">฿0</div>
+      </div>
+      <div class="buy-form" id="buy-form">
+        <div class="form-group">
+          <label>ชื่อ-นามสกุล *</label>
+          <input type="text" id="buyer-name" placeholder="เช่น สมชาย ใจดี" required/>
+        </div>
+        <div class="form-group">
+          <label>อีเมล (สำหรับรับ Template) *</label>
+          <input type="email" id="buyer-email" placeholder="your@email.com" required/>
+        </div>
+        <button class="btn-pay" onclick="proceedPayment()">💳 ชำระเงิน</button>
+        <div class="pay-note-modal">🔒 ปลอดภัยด้วยระบบ Omise · PromptPay / Visa / Mastercard<br/>ได้รับ Template ทางอีเมลภายใน 5 นาที</div>
+      </div>
+    </div>
   </div>
 </div>
 
 <script>
-// ── Product Data ──────────────────────────────────────
+/* ── Preview data ── */
 const products = [
   {
-    name: 'บัญชีรายรับ-รายจ่าย SME',
+    name: '💼 บัญชีรายรับ-รายจ่าย SME',
     price: 299,
-    color: 'blue',
     sheets: [
-      {icon:'📝', name:'บันทึกรายการ', desc:'กรอกรายรับ-รายจ่ายรายวัน พร้อม Dropdown หมวดหมู่'},
-      {icon:'📅', name:'สรุปรายเดือน', desc:'สรุปยอดทั้ง 12 เดือนอัตโนมัติ แสดงสถานะกำไร/ขาดทุน'},
-      {icon:'📊', name:'Dashboard', desc:'กราฟ Bar Chart + Line Chart แสดงแนวโน้มธุรกิจ'},
-      {icon:'📖', name:'คู่มือ', desc:'อธิบายวิธีใช้งานทีละขั้นตอน'},
+      {icon:'📝', name:'บันทึกรายการ', desc:'กรอกรายรับ-รายจ่ายรายวัน พร้อม Dropdown หมวดหมู่ รองรับ 95+ รายการ'},
+      {icon:'📅', name:'สรุปรายเดือน', desc:'สรุปรายรับ-รายจ่ายแต่ละเดือนอัตโนมัติด้วย SUMIF 12 เดือน'},
+      {icon:'📊', name:'Dashboard', desc:'กราฟแท่ง + กราฟเส้นกำไร KPI Card รายรับ-รายจ่าย-กำไร'},
+      {icon:'📖', name:'คู่มือ', desc:'ขั้นตอนการใช้งานทีละขั้น เริ่มได้ทันทีไม่ต้องมีประสบการณ์'},
     ],
-    features: [
-      'หมวดหมู่รายรับ 3 ประเภท / รายจ่าย 7 ประเภท',
-      'SUMIF รวมยอดรายเดือนอัตโนมัติ',
-      'กราฟ Bar Chart เปรียบเทียบรายรับ-รายจ่าย',
-      'กราฟ Line Chart แสดงแนวโน้มกำไร',
-      'KPI สรุป 4 ตัว บน Dashboard',
-      'รองรับข้อมูลได้ 95 รายการต่อปี',
-    ]
+    feats:['บันทึกรายรับ-รายจ่ายรายวัน','Dropdown หมวดหมู่ 15+ ประเภท','สรุปรายเดือนอัตโนมัติ 12 เดือน','Dashboard กราฟอัตโนมัติ','KPI Cards กำไร-ขาดทุน','ใช้ได้บน Mobile และ Desktop','คู่มือการใช้งานภาษาไทย','อัปเดตฟรีตลอดชีพ'],
   },
   {
-    name: 'HR เงินเดือน + ใบลา',
+    name: '👥 HR เงินเดือน + ใบลา',
     price: 399,
-    color: 'teal',
     sheets: [
-      {icon:'👥', name:'ข้อมูลพนักงาน', desc:'ทะเบียนพนักงาน ตำแหน่ง แผนก เงินเดือนฐาน'},
-      {icon:'💰', name:'เงินเดือน', desc:'คำนวณเงินเดือนสุทธิ OT โบนัส ประกันสังคม'},
-      {icon:'📋', name:'ใบลา', desc:'บันทึกการลา Dropdown ประเภท + สถานะอนุมัติ'},
-      {icon:'📊', name:'สรุปวันลา + Dashboard', desc:'SUMIF วันลารายคน + KPI + กราฟเงินเดือน'},
+      {icon:'👥', name:'ข้อมูลพนักงาน', desc:'ฐานข้อมูลพนักงาน ตำแหน่ง วันที่เริ่มงาน เงินเดือนฐาน'},
+      {icon:'💰', name:'เงินเดือน', desc:'คำนวณเงินเดือนสุทธิ OT โบนัส ประกันสังคม 5% อัตโนมัติ'},
+      {icon:'📋', name:'ใบลา', desc:'บันทึกใบลา 6 ประเภท ลาป่วย ลาพักร้อน ลากิจ สถานะอนุมัติ'},
+      {icon:'📊', name:'สรุปวันลา', desc:'สรุปวันลาที่ใช้ไปและโควต้าคงเหลือรายคนด้วย SUMIFS'},
+      {icon:'📈', name:'Dashboard HR', desc:'KPI พนักงาน กราฟเงินเดือน Pie Chart วันลาแต่ละประเภท'},
+      {icon:'📖', name:'คู่มือ HR', desc:'คู่มือการใช้งานระบบ HR ครบทุกขั้นตอน'},
     ],
-    features: [
-      'รองรับพนักงานได้ 45 คน',
-      'คำนวณประกันสังคม 5% อัตโนมัติ',
-      'Dropdown ประเภทการลา 6 ประเภท',
-      'สถานะ อนุมัติ/รออนุมัติ/ไม่อนุมัติ',
-      'โควต้าวันลาพักร้อนต่อคน',
-      'Pie Chart สัดส่วนประเภทการลา',
-    ]
+    feats:['คำนวณเงินเดือนสุทธิอัตโนมัติ','OT และโบนัสอัตโนมัติ','ประกันสังคม 5% คำนวณเอง','ใบลา 6 ประเภท','สถานะอนุมัติใบลา','สรุปวันลารายคน','Dashboard HR พร้อม Pie Chart','รองรับพนักงานไม่จำกัด'],
   },
   {
-    name: 'ออเดอร์ + สต็อกสินค้า',
+    name: '📦 ออเดอร์ + สต็อกสินค้า',
     price: 399,
-    color: 'orange',
     sheets: [
-      {icon:'📦', name:'บันทึกออเดอร์', desc:'รองรับ Shopee/Lazada/TikTok/Facebook คำนวณกำไรหัก GP'},
-      {icon:'🏪', name:'สต็อกสินค้า', desc:'จัดการสต็อก แจ้งเตือน ⚠️ ใกล้หมด อัตโนมัติ'},
-      {icon:'📅', name:'สรุปรายเดือน', desc:'COUNTIFS/SUMIFS เฉพาะออเดอร์ที่จัดส่งแล้ว'},
-      {icon:'📊', name:'Dashboard', desc:'KPI ยอดขาย + Pie Chart แยกตามช่องทาง'},
+      {icon:'📦', name:'บันทึกออเดอร์', desc:'บันทึกออเดอร์ทุกแพลตฟอร์ม Shopee Lazada TikTok Facebook คำนวณกำไร GP%'},
+      {icon:'🏪', name:'สต็อกสินค้า', desc:'ติดตามสต็อก แจ้งเตือน ⚠️ ใกล้หมด ❌ หมดแล้ว ✅ พอ'},
+      {icon:'📅', name:'สรุปรายเดือน', desc:'สรุปยอดขาย กำไร แยกตามช่องทางด้วย COUNTIFS/SUMIFS'},
+      {icon:'📊', name:'Dashboard', desc:'KPI ยอดขาย กราฟคลัสเตอร์แท่ง Pie Chart แยกช่องทาง'},
+      {icon:'📖', name:'คู่มือ', desc:'คู่มือครบถ้วนสำหรับร้านออนไลน์'},
     ],
-    features: [
-      'รองรับ 5 ช่องทางขาย (Shopee, Lazada, TikTok, FB, อื่นๆ)',
-      'คำนวณกำไรหัก GP%, ค่าส่ง, ต้นทุน',
-      'แจ้งเตือนสต็อกใกล้หมดอัตโนมัติ',
-      'กรอง เฉพาะออเดอร์ที่จัดส่งแล้ว',
-      'Dropdown สถานะ รอ/จัดส่ง/ยกเลิก/คืนของ',
-      'รองรับออเดอร์ได้ 195 รายการ',
-    ]
-  }
+    feats:['บันทึกออเดอร์ทุกแพลตฟอร์ม','คำนวณ GP% กำไรต่อชิ้น','ระบบสต็อกพร้อมแจ้งเตือน','สรุปยอดแยกช่องทาง','Dashboard ยอดขาย','Pie Chart สัดส่วนช่องทาง','รองรับสินค้าไม่จำกัด','อัปเดตฟรีตลอดชีพ'],
+  },
 ];
 
-// ── Buy Modal ──────────────────────────────────────────
-let currentProduct = '', currentPrice = 0;
-function openModal(name, price) {
-  currentProduct = name; currentPrice = price;
-  document.getElementById('mProductName').textContent = name;
-  document.getElementById('mPrice').textContent = '฿' + price.toLocaleString();
-  document.getElementById('buyModal').classList.add('show');
-  document.body.style.overflow = 'hidden';
-}
-function closeModal() {
-  document.getElementById('buyModal').classList.remove('show');
-  document.body.style.overflow = '';
-}
-document.getElementById('buyModal').addEventListener('click', e => { if(e.target===document.getElementById('buyModal')) closeModal(); });
+let currentBuyProduct = '';
+let currentBuyPrice = 0;
 
-function proceedCheckout() {
-  const name = document.getElementById('buyerName').value.trim();
-  const email = document.getElementById('buyerEmail').value.trim();
-  if (!name) { alert('กรุณากรอกชื่อของคุณ'); return; }
-  if (!email || !email.includes('@')) { alert('กรุณากรอกอีเมลให้ถูกต้อง'); return; }
-  // → เชื่อม Omise API ตรงนี้
-  alert('✅ กำลังเชื่อมต่อระบบชำระเงิน...\n\nสินค้า: ' + currentProduct + '\nราคา: ฿' + currentPrice + '\nอีเมล: ' + email + '\n\n(ระบบชำระเงินจะเปิดให้ใช้งานเร็วๆ นี้)');
-}
-
-// ── Preview Modal ──────────────────────────────────────
 function openPreview(idx) {
   const p = products[idx];
-  document.getElementById('pmTitle').textContent = p.name;
-  const sheetsHtml = p.sheets.map(s => `
-    <div class="pm-sheet">
-      <div class="pm-sheet-icon">${s.icon}</div>
-      <div class="pm-sheet-name">${s.name}</div>
-      <div class="pm-sheet-desc">${s.desc}</div>
-    </div>`).join('');
-  const featsHtml = p.features.map(f => `
-    <div class="pm-feat">
-      <span class="pm-feat-check">✓</span>
-      <span>${f}</span>
-    </div>`).join('');
-  document.getElementById('pmBody').innerHTML = `
-    <div class="pm-sheets">${sheetsHtml}</div>
-    <div class="pm-features">
-      <h4>✨ ฟีเจอร์ทั้งหมด</h4>
-      ${featsHtml}
-    </div>
-    <div class="pm-footer">
-      <div class="pm-price">฿${p.price} <small>จ่ายครั้งเดียว</small></div>
-      <button class="btn-buy" onclick="closePreview();openModal('${p.name}',${p.price})">ซื้อเลย →</button>
+  document.getElementById('preview-title').textContent = p.name;
+  let html = '<div class="preview-sheets">';
+  p.sheets.forEach(s => {
+    html += `<div class="sheet-row">
+      <div class="sheet-icon">${s.icon}</div>
+      <div><div class="sheet-name">${s.name}</div><div class="sheet-desc">${s.desc}</div></div>
     </div>`;
-  document.getElementById('previewModal').classList.add('show');
+  });
+  html += '</div><div class="preview-feats"><h4>✅ ฟีเจอร์ครบในชุดเดียว</h4><div class="feat-grid">';
+  p.feats.forEach(f => { html += `<div class="feat-item">${f}</div>`; });
+  html += `</div></div>
+  <button class="btn-pay" onclick="closePreview();openBuy('${p.name}',${p.price})">🛒 ซื้อเลย ${p.price}฿</button>`;
+  document.getElementById('preview-body').innerHTML = html;
+  document.getElementById('preview-modal').classList.add('active');
   document.body.style.overflow = 'hidden';
 }
+
 function closePreview() {
-  document.getElementById('previewModal').classList.remove('show');
+  document.getElementById('preview-modal').classList.remove('active');
   document.body.style.overflow = '';
 }
-document.getElementById('previewModal').addEventListener('click', e => { if(e.target===document.getElementById('previewModal')) closePreview(); });
 
-// ── FAQ ───────────────────────────────────────────────
+function openBuy(name, price) {
+  currentBuyProduct = name;
+  currentBuyPrice = price;
+  document.getElementById('buy-product-name').textContent = name;
+  document.getElementById('buy-price').textContent = '฿' + price.toLocaleString();
+  document.getElementById('buyer-name').value = '';
+  document.getElementById('buyer-email').value = '';
+  document.getElementById('buy-modal').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeBuy() {
+  document.getElementById('buy-modal').classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+function proceedPayment() {
+  const name = document.getElementById('buyer-name').value.trim();
+  const email = document.getElementById('buyer-email').value.trim();
+  if (!name) { alert('กรุณากรอกชื่อ-นามสกุล'); return; }
+  if (!email || !email.includes('@')) { alert('กรุณากรอกอีเมลให้ถูกต้อง'); return; }
+  // TODO: เชื่อม Omise Checkout ที่นี่
+  alert(`ขอบคุณ ${name}!\n\nสินค้า: ${currentBuyProduct}\nราคา: ฿${currentBuyPrice}\n\nกรุณาติดต่อ Line @507mxsgg เพื่อดำเนินการชำระเงิน\nหรืออีเมล: natthapong.arm@outlook.com`);
+  closeBuy();
+}
+
 function toggleFaq(btn) {
   const item = btn.parentElement;
   const isOpen = item.classList.contains('open');
-  document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
+  document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
   if (!isOpen) item.classList.add('open');
 }
 
-// ── Mobile Nav ────────────────────────────────────────
-function toggleMenu() {
-  const links = document.querySelector('.nav-links');
-  links.style.display = links.style.display === 'flex' ? 'none' : 'flex';
-  links.style.flexDirection = 'column';
-  links.style.position = 'absolute';
-  links.style.top = '68px'; links.style.right = '0'; links.style.left = '0';
-  links.style.background = 'rgba(13,71,161,.98)';
-  links.style.padding = '20px 6%';
-  links.style.gap = '16px';
-}
+/* Close modal on overlay click */
+document.getElementById('preview-modal').addEventListener('click', function(e){
+  if(e.target === this) closePreview();
+});
+document.getElementById('buy-modal').addEventListener('click', function(e){
+  if(e.target === this) closeBuy();
+});
 </script>
 </body>
 </html>
