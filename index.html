@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ANJI — Template Google Sheets สำหรับธุรกิจ SME</title>
+<meta name="description" content="Template Google Sheets คุณภาพสูง พร้อม Dashboard อัตโนมัติ สำหรับธุรกิจ SME และ HR ราคาเริ่มต้น 299 บาท" />
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700;800&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy:   #1a237e;
+    --blue:   #1565c0;
+    --lblue:  #e3f2fd;
+    --gold:   #f9a825;
+    --lgold:  #fff9c4;
+    --green:  #2e7d32;
+    --lgreen: #e8f5e9;
+    --gray:   #546e7a;
+    --lgray:  #f5f7fa;
+    --white:  #ffffff;
+    --dark:   #1a1a2e;
+    --radius: 16px;
+    --shadow: 0 8px 32px rgba(26,35,126,.12);
+  }
+
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Sarabun', sans-serif; color: var(--dark); background: var(--white); line-height: 1.7; }
+
+  /* ── NAV ─────────────────────────────────────────────── */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 5%; height: 64px;
+    background: rgba(26,35,126,.96); backdrop-filter: blur(12px);
+    box-shadow: 0 2px 20px rgba(0,0,0,.2);
+  }
+  .nav-logo { font-size: 1.6rem; font-weight: 800; color: var(--white); letter-spacing: 2px; }
+  .nav-logo span { color: var(--gold); }
+  .nav-links { display: flex; gap: 28px; }
+  .nav-links a { color: rgba(255,255,255,.85); text-decoration: none; font-size: .95rem; font-weight: 500; transition: color .2s; }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-cta {
+    background: var(--gold); color: var(--navy) !important; font-weight: 700 !important;
+    padding: 8px 22px; border-radius: 50px;
+    transition: transform .2s, box-shadow .2s !important;
+  }
+  .nav-cta:hover { transform: translateY(-2px); box-shadow: 0 4px 14px rgba(249,168,37,.4); }
+
+  /* ── HERO ────────────────────────────────────────────── */
+  .hero {
+    min-height: 100vh;
+    background: linear-gradient(135deg, var(--navy) 0%, #0d47a1 50%, #1565c0 100%);
+    display: flex; align-items: center; justify-content: center;
+    text-align: center; padding: 120px 5% 80px;
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: ''; position: absolute; inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+  .hero-badge {
+    display: inline-block; background: rgba(249,168,37,.2); color: var(--gold);
+    border: 1px solid rgba(249,168,37,.4); border-radius: 50px;
+    padding: 6px 20px; font-size: .85rem; font-weight: 600; margin-bottom: 20px;
+    letter-spacing: 1px;
+  }
+  .hero h1 {
+    font-size: clamp(2rem, 5vw, 3.8rem); font-weight: 800; color: var(--white);
+    line-height: 1.2; margin-bottom: 20px;
+  }
+  .hero h1 span { color: var(--gold); }
+  .hero p {
+    font-size: clamp(1rem, 2vw, 1.25rem); color: rgba(255,255,255,.8);
+    max-width: 620px; margin: 0 auto 40px;
+  }
+  .hero-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--gold); color: var(--navy); font-weight: 700; font-size: 1.1rem;
+    padding: 16px 40px; border-radius: 50px; text-decoration: none;
+    box-shadow: 0 8px 24px rgba(249,168,37,.4);
+    transition: transform .2s, box-shadow .2s;
+  }
+  .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(249,168,37,.5); }
+  .btn-secondary {
+    background: transparent; color: var(--white); font-weight: 600; font-size: 1rem;
+    padding: 15px 36px; border-radius: 50px; text-decoration: none;
+    border: 2px solid rgba(255,255,255,.5);
+    transition: border-color .2s, background .2s;
+  }
+  .btn-secondary:hover { border-color: var(--white); background: rgba(255,255,255,.1); }
+
+  .hero-stats {
+    display: flex; gap: 40px; justify-content: center; flex-wrap: wrap;
+    margin-top: 60px;
+  }
+  .stat { text-align: center; }
+  .stat-num { font-size: 2rem; font-weight: 800; color: var(--gold); }
+  .stat-lbl { font-size: .85rem; color: rgba(255,255,255,.7); }
+
+  /* ── SECTIONS ────────────────────────────────────────── */
+  section { padding: 90px 5%; }
+  .section-label {
+    font-size: .85rem; font-weight: 700; color: var(--blue); letter-spacing: 2px;
+    text-transform: uppercase; margin-bottom: 10px;
+  }
+  .section-title { font-size: clamp(1.6rem, 3vw, 2.4rem); font-weight: 800; margin-bottom: 16px; }
+  .section-sub { color: var(--gray); font-size: 1.05rem; max-width: 580px; }
+  .center { text-align: center; }
+  .center .section-sub { margin: 0 auto; }
+
+  /* ── FEATURES ────────────────────────────────────────── */
+  .features { background: var(--lgray); }
+  .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 28px; margin-top: 56px; }
+  .feature-card {
+    background: var(--white); border-radius: var(--radius); padding: 32px 28px;
+    box-shadow: var(--shadow); transition: transform .2s, box-shadow .2s;
+    border-top: 4px solid var(--blue);
+  }
+  .feature-card:hover { transform: translateY(-6px); box-shadow: 0 16px 48px rgba(26,35,126,.18); }
+  .feature-icon { font-size: 2.4rem; margin-bottom: 16px; }
+  .feature-card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 10px; color: var(--navy); }
+  .feature-card p { color: var(--gray); font-size: .95rem; }
+
+  /* ── PREVIEW ─────────────────────────────────────────── */
+  .preview { background: var(--white); }
+  .preview-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; margin-top: 56px; }
+  .preview-screens { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .screen-card {
+    background: var(--lgray); border-radius: 12px; padding: 20px 16px;
+    text-align: center; border: 2px solid transparent;
+    transition: border-color .2s, background .2s;
+  }
+  .screen-card:hover { border-color: var(--blue); background: var(--lblue); }
+  .screen-icon { font-size: 2rem; margin-bottom: 8px; }
+  .screen-card p { font-size: .85rem; font-weight: 600; color: var(--navy); }
+  .checks { list-style: none; margin-top: 24px; }
+  .checks li { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 14px; font-size: .95rem; }
+  .check-icon { width: 22px; height: 22px; background: var(--lgreen); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: .75rem; margin-top: 2px; }
+
+  /* ── PRICING ─────────────────────────────────────────── */
+  .pricing { background: var(--lgray); }
+  .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 28px; margin-top: 56px; max-width: 900px; margin-left: auto; margin-right: auto; }
+  .price-card {
+    background: var(--white); border-radius: var(--radius); padding: 40px 32px;
+    box-shadow: var(--shadow); text-align: center; position: relative;
+    border: 2px solid transparent; transition: border-color .3s, transform .2s;
+  }
+  .price-card.popular { border-color: var(--gold); transform: scale(1.04); }
+  .popular-badge {
+    position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
+    background: var(--gold); color: var(--navy); font-size: .8rem; font-weight: 700;
+    padding: 4px 18px; border-radius: 50px; white-space: nowrap;
+  }
+  .price-name { font-size: 1rem; font-weight: 700; color: var(--gray); margin-bottom: 8px; }
+  .price-amount { font-size: 3rem; font-weight: 800; color: var(--navy); }
+  .price-amount sup { font-size: 1.2rem; vertical-align: top; margin-top: 10px; }
+  .price-desc { color: var(--gray); font-size: .9rem; margin: 10px 0 24px; }
+  .price-features { text-align: left; margin-bottom: 32px; }
+  .price-features li { display: flex; align-items: flex-start; gap: 10px; font-size: .9rem; margin-bottom: 10px; }
+  .btn-buy {
+    display: block; width: 100%; padding: 14px; border-radius: 50px;
+    font-weight: 700; font-size: 1rem; cursor: pointer; text-decoration: none;
+    transition: transform .2s, box-shadow .2s;
+  }
+  .btn-buy-primary { background: var(--gold); color: var(--navy); border: none; }
+  .btn-buy-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(249,168,37,.4); }
+  .btn-buy-outline { background: transparent; color: var(--navy); border: 2px solid var(--navy); }
+  .btn-buy-outline:hover { background: var(--navy); color: var(--white); }
+
+  /* ── HOW TO BUY ──────────────────────────────────────── */
+  .how { background: var(--white); }
+  .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 32px; margin-top: 56px; }
+  .step { text-align: center; }
+  .step-num {
+    width: 56px; height: 56px; border-radius: 50%; background: var(--navy); color: var(--white);
+    font-size: 1.4rem; font-weight: 800; display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 16px;
+  }
+  .step h3 { font-size: 1rem; font-weight: 700; margin-bottom: 8px; }
+  .step p { color: var(--gray); font-size: .9rem; }
+
+  /* ── PAYMENT BADGE ───────────────────────────────────── */
+  .payment-section { background: var(--lgray); padding: 60px 5%; text-align: center; }
+  .payment-title { font-size: 1.1rem; font-weight: 700; color: var(--gray); margin-bottom: 24px; }
+  .payment-badges { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+  .badge {
+    display: flex; align-items: center; gap: 8px; background: var(--white);
+    padding: 12px 24px; border-radius: 50px; font-weight: 600; font-size: .95rem;
+    box-shadow: 0 2px 10px rgba(0,0,0,.08);
+  }
+
+  /* ── FAQ ─────────────────────────────────────────────── */
+  .faq { background: var(--white); }
+  .faq-list { max-width: 720px; margin: 48px auto 0; }
+  .faq-item { border-bottom: 1px solid #e0e0e0; padding: 20px 0; }
+  .faq-q { font-weight: 700; font-size: 1rem; color: var(--navy); cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
+  .faq-a { color: var(--gray); font-size: .95rem; margin-top: 12px; display: none; }
+  .faq-item.open .faq-a { display: block; }
+  .faq-item.open .faq-q .arrow { transform: rotate(180deg); }
+  .arrow { transition: transform .2s; }
+
+  /* ── CTA BANNER ──────────────────────────────────────── */
+  .cta-banner {
+    background: linear-gradient(135deg, var(--navy), var(--blue));
+    padding: 80px 5%; text-align: center; color: var(--white);
+  }
+  .cta-banner h2 { font-size: clamp(1.6rem, 3vw, 2.4rem); font-weight: 800; margin-bottom: 16px; }
+  .cta-banner p { color: rgba(255,255,255,.8); margin-bottom: 36px; font-size: 1.05rem; }
+
+  /* ── FOOTER ──────────────────────────────────────────── */
+  footer {
+    background: var(--dark); color: rgba(255,255,255,.6); text-align: center;
+    padding: 32px 5%; font-size: .88rem;
+  }
+  footer a { color: var(--gold); text-decoration: none; }
+
+  /* ── MODAL ───────────────────────────────────────────── */
+  .modal-overlay {
+    display: none; position: fixed; inset: 0; background: rgba(0,0,0,.6);
+    z-index: 1000; align-items: center; justify-content: center;
+  }
+  .modal-overlay.show { display: flex; }
+  .modal {
+    background: var(--white); border-radius: var(--radius); padding: 40px;
+    max-width: 480px; width: 90%; position: relative; animation: popIn .3s ease;
+  }
+  @keyframes popIn { from { transform: scale(.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+  .modal-close {
+    position: absolute; top: 16px; right: 20px;
+    font-size: 1.4rem; cursor: pointer; color: var(--gray); border: none; background: none;
+  }
+  .modal h3 { font-size: 1.4rem; font-weight: 800; color: var(--navy); margin-bottom: 8px; }
+  .modal-product { background: var(--lgray); border-radius: 10px; padding: 16px; margin: 16px 0; }
+  .modal-product-name { font-weight: 700; color: var(--navy); }
+  .modal-price { font-size: 1.8rem; font-weight: 800; color: var(--gold); }
+  .modal p.note { font-size: .85rem; color: var(--gray); margin-top: 8px; }
+  .form-group { margin-bottom: 16px; }
+  .form-group label { display: block; font-weight: 600; margin-bottom: 6px; font-size: .9rem; }
+  .form-group input {
+    width: 100%; padding: 12px 16px; border-radius: 10px;
+    border: 2px solid #e0e0e0; font-size: 1rem; font-family: 'Sarabun', sans-serif;
+    transition: border-color .2s;
+  }
+  .form-group input:focus { outline: none; border-color: var(--blue); }
+  .btn-checkout {
+    width: 100%; padding: 16px; background: var(--gold); color: var(--navy);
+    font-weight: 800; font-size: 1.05rem; border: none; border-radius: 50px;
+    cursor: pointer; font-family: 'Sarabun', sans-serif;
+    transition: transform .2s, box-shadow .2s;
+  }
+  .btn-checkout:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(249,168,37,.4); }
+  .payment-methods { display: flex; gap: 10px; margin-top: 14px; justify-content: center; flex-wrap: wrap; }
+  .pm-badge { background: var(--lgray); padding: 6px 14px; border-radius: 8px; font-size: .82rem; font-weight: 600; }
+
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .preview-grid { grid-template-columns: 1fr; }
+    .hero-stats { gap: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">ANJ<span>I</span></div>
+  <div class="nav-links">
+    <a href="#features">ฟีเจอร์</a>
+    <a href="#preview">ตัวอย่าง</a>
+    <a href="#pricing">ราคา</a>
+    <a href="#faq">คำถาม</a>
+    <a href="#pricing" class="nav-cta">ซื้อเลย 🛒</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div>
+    <div class="hero-badge">✨ Template พร้อมใช้ — ดาวน์โหลดได้ทันที</div>
+    <h1>จัดการบัญชีธุรกิจ<br/>ให้ง่ายขึ้น <span>10 เท่า</span></h1>
+    <p>Template Google Sheets คุณภาพสูง พร้อม Dashboard อัตโนมัติ ออกแบบมาเพื่อธุรกิจ SME ไทยโดยเฉพาะ</p>
+    <div class="hero-btns">
+      <a href="#pricing" class="btn-primary">🛒 ซื้อเลย เริ่มต้น 299 บาท</a>
+      <a href="#preview" class="btn-secondary">ดูตัวอย่าง →</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><div class="stat-num">4</div><div class="stat-lbl">ชีทในไฟล์เดียว</div></div>
+      <div class="stat"><div class="stat-num">100%</div><div class="stat-lbl">ใช้งานฟรีตลอด</div></div>
+      <div class="stat"><div class="stat-num">5 นาที</div><div class="stat-lbl">เริ่มใช้ได้เลย</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features" id="features">
+  <div class="center">
+    <div class="section-label">ทำไมต้อง ANJI</div>
+    <h2 class="section-title">ทุกอย่างที่ธุรกิจ SME ต้องการ</h2>
+    <p class="section-sub">ไม่ต้องมีความรู้ด้านบัญชี ก็จัดการการเงินธุรกิจได้อย่างมืออาชีพ</p>
+  </div>
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feature-icon">📊</div>
+      <h3>Dashboard อัตโนมัติ</h3>
+      <p>กราฟสรุปรายรับ-รายจ่ายและกำไรสุทธิ อัพเดทอัตโนมัติทุกครั้งที่กรอกข้อมูล ไม่ต้องคำนวณเอง</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📅</div>
+      <h3>สรุปรายเดือนอัตโนมัติ</h3>
+      <p>ระบบ SUMIF คำนวณยอดรายเดือนให้ทันที เห็นภาพรวมตลอดทั้งปีในหน้าเดียว</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">✅</div>
+      <h3>Dropdown เลือกได้เลย</h3>
+      <p>หมวดหมู่รายรับ-รายจ่ายพร้อมใช้ งานแบบ dropdown validation กรอกข้อมูลง่าย ไม่ผิดพลาด</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📱</div>
+      <h3>ใช้ได้ทุกอุปกรณ์</h3>
+      <p>รองรับ Google Sheets บนมือถือ แท็บเล็ต และคอมพิวเตอร์ ทำงานได้ทุกที่ทุกเวลา</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🔒</div>
+      <h3>ข้อมูลอยู่ใน Google Drive ของคุณ</h3>
+      <p>ไม่มีการเก็บข้อมูลจากภายนอก ทุกอย่างอยู่ใน Google Drive ส่วนตัวของคุณ ปลอดภัย 100%</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📖</div>
+      <h3>คู่มือการใช้งานละเอียด</h3>
+      <p>มีชีทคู่มือในตัว อธิบายขั้นตอนทีละข้อ เริ่มใช้งานได้ภายใน 5 นาที แม้ไม่เคยใช้ Sheets</p>
+    </div>
+  </div>
+</section>
+
+<!-- PREVIEW -->
+<section class="preview" id="preview">
+  <div class="preview-grid">
+    <div>
+      <div class="section-label">ภายในไฟล์</div>
+      <h2 class="section-title">4 ชีทครบจบในไฟล์เดียว</h2>
+      <p style="color:var(--gray); margin-bottom:24px;">ทุกอย่างเชื่อมต่อกันอัตโนมัติ กรอกข้อมูลที่เดียว ข้อมูลอัพเดทครบทุกชีท</p>
+      <ul class="checks">
+        <li><div class="check-icon">✓</div><span><strong>บันทึกรายการ</strong> — กรอกรายรับ-รายจ่ายรายวัน พร้อม Dropdown หมวดหมู่</span></li>
+        <li><div class="check-icon">✓</div><span><strong>สรุปรายเดือน</strong> — สรุปยอดทั้ง 12 เดือน แสดงสถานะ กำไร/ขาดทุน</span></li>
+        <li><div class="check-icon">✓</div><span><strong>Dashboard</strong> — กราฟ Bar Chart และ Line Chart แสดงแนวโน้มธุรกิจ</span></li>
+        <li><div class="check-icon">✓</div><span><strong>คู่มือ</strong> — อธิบายวิธีใช้งานทีละขั้นตอน พร้อมข้อควรระวัง</span></li>
+      </ul>
+    </div>
+    <div class="preview-screens">
+      <div class="screen-card"><div class="screen-icon">📝</div><p>บันทึกรายการ</p></div>
+      <div class="screen-card"><div class="screen-icon">📅</div><p>สรุปรายเดือน</p></div>
+      <div class="screen-card"><div class="screen-icon">📊</div><p>Dashboard</p></div>
+      <div class="screen-card"><div class="screen-icon">📖</div><p>คู่มือ</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing" id="pricing">
+  <div class="center">
+    <div class="section-label">ราคา</div>
+    <h2 class="section-title">เลือก Template ที่ใช่สำหรับคุณ</h2>
+    <p class="section-sub">จ่ายครั้งเดียว ใช้ได้ตลอดชีพ ไม่มีค่ารายเดือน</p>
+  </div>
+  <div class="pricing-grid">
+
+    <div class="price-card">
+      <div class="price-name">STARTER</div>
+      <div class="price-amount"><sup>฿</sup>299</div>
+      <p class="price-desc">สำหรับร้านค้าและธุรกิจเริ่มต้น</p>
+      <ul class="price-features">
+        <li><span>✅</span> Template บัญชี SME พร้อมใช้</li>
+        <li><span>✅</span> Dashboard รายรับ-รายจ่าย</li>
+        <li><span>✅</span> สรุปรายเดือนอัตโนมัติ</li>
+        <li><span>✅</span> คู่มือการใช้งาน</li>
+        <li><span>✅</span> รองรับ Google Sheets</li>
+        <li><span>❌</span> AppScript อัตโนมัติ</li>
+        <li><span>❌</span> Support ส่วนตัว</li>
+      </ul>
+      <a href="#" class="btn-buy btn-buy-outline" onclick="openModal('ANJI SME Template — STARTER', 299); return false;">ซื้อเลย</a>
+    </div>
+
+    <div class="price-card popular">
+      <div class="popular-badge">⭐ แนะนำ</div>
+      <div class="price-name">PRO</div>
+      <div class="price-amount"><sup>฿</sup>599</div>
+      <p class="price-desc">สำหรับธุรกิจที่ต้องการระบบจริงจัง</p>
+      <ul class="price-features">
+        <li><span>✅</span> ทุกอย่างใน STARTER</li>
+        <li><span>✅</span> Template HR เงินเดือน + ใบลา</li>
+        <li><span>✅</span> AppScript รายงาน PDF อัตโนมัติ</li>
+        <li><span>✅</span> อัพเดทฟรี 1 ปี</li>
+        <li><span>✅</span> Support ทาง Line 30 วัน</li>
+        <li><span>✅</span> ไฟล์ Template 2 ชุด</li>
+      </ul>
+      <a href="#" class="btn-buy btn-buy-primary" onclick="openModal('ANJI SME + HR Template — PRO', 599); return false;">ซื้อเลย</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- HOW TO BUY -->
+<section class="how" id="how">
+  <div class="center">
+    <div class="section-label">ขั้นตอน</div>
+    <h2 class="section-title">ซื้อและรับไฟล์ภายใน 5 นาที</h2>
+  </div>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <h3>เลือก Template</h3>
+      <p>เลือก Package ที่ต้องการแล้วกดปุ่ม "ซื้อเลย"</p>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <h3>กรอกอีเมล</h3>
+      <p>กรอกอีเมลที่ต้องการรับไฟล์และชำระเงิน</p>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <h3>ชำระผ่าน PromptPay</h3>
+      <p>สแกน QR PromptPay หรือจ่ายผ่านบัตรเครดิต ปลอดภัย 100%</p>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <h3>รับไฟล์ทันที</h3>
+      <p>ลิงก์ดาวน์โหลดส่งมาที่อีเมลทันที เริ่มใช้งานได้เลย</p>
+    </div>
+  </div>
+</section>
+
+<!-- PAYMENT -->
+<div class="payment-section">
+  <div class="payment-title">ช่องทางชำระเงิน</div>
+  <div class="payment-badges">
+    <div class="badge">📱 PromptPay</div>
+    <div class="badge">💳 Visa / Mastercard</div>
+    <div class="badge">🏦 Internet Banking</div>
+    <div class="badge">🔒 ปลอดภัย 100%</div>
+  </div>
+</div>
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <div class="center">
+    <div class="section-label">FAQ</div>
+    <h2 class="section-title">คำถามที่พบบ่อย</h2>
+  </div>
+  <div class="faq-list">
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">ชำระเงินแล้วจะได้รับไฟล์เมื่อไหร่? <span class="arrow">▾</span></div>
+      <div class="faq-a">ระบบจะส่งลิงก์ดาวน์โหลดไปยังอีเมลที่กรอกไว้ทันทีหลังชำระเงินสำเร็จ ภายใน 5 นาที หากไม่ได้รับกรุณาตรวจสอบ Spam หรือติดต่อเราผ่าน Line</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">ต้องมีความรู้ Excel หรือ Sheets ก่อนไหม? <span class="arrow">▾</span></div>
+      <div class="faq-a">ไม่ต้องครับ Template ออกแบบมาสำหรับคนที่ไม่มีพื้นฐาน มีคู่มือในตัวอธิบายทีละขั้นตอน กรอกข้อมูลแค่ไม่กี่ช่อง ระบบจะคำนวณให้เองทั้งหมด</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">ใช้บน iPhone หรือ Android ได้ไหม? <span class="arrow">▾</span></div>
+      <div class="faq-a">ได้ครับ ไฟล์เป็น Google Sheets สามารถเปิดใช้งานได้บนแอป Google Sheets ทั้ง iOS และ Android รวมถึงบน iPad และแท็บเล็ตทุกรุ่น</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">สามารถแก้ไขหมวดหมู่เพิ่มเติมได้ไหม? <span class="arrow">▾</span></div>
+      <div class="faq-a">ได้ครับ Template ไม่ได้ Lock ไว้ สามารถเพิ่มหมวดหมู่หรือปรับแต่งได้ตามต้องการ มีคู่มืออธิบายวิธีการแก้ไขด้วย</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">ซื้อแล้วใช้ได้กี่คน? <span class="arrow">▾</span></div>
+      <div class="faq-a">ซื้อ 1 License ใช้ได้ 1 ธุรกิจครับ สามารถ Share ให้คนในทีมร่วมกรอกข้อมูลได้ผ่าน Google Sheets โดยไม่ต้องซื้อซ้ำ</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<div class="cta-banner">
+  <h2>เริ่มจัดการบัญชีธุรกิจ<br/>แบบมืออาชีพวันนี้</h2>
+  <p>จ่ายครั้งเดียว ใช้ได้ตลอด ไม่มีค่ารายเดือน</p>
+  <a href="#pricing" class="btn-primary">🛒 ซื้อเลย เริ่มต้น 299 บาท</a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p style="margin-bottom:8px; font-weight:700; color:var(--white);">ANJI Templates</p>
+  <p>Line: @ANJI.template &nbsp;|&nbsp; Email: <a href="mailto:your@email.com">your@email.com</a></p>
+  <p style="margin-top:12px;">© 2026 ANJI Templates. All rights reserved.</p>
+</footer>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="buyModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <h3>🛒 สั่งซื้อ Template</h3>
+    <div class="modal-product">
+      <div class="modal-product-name" id="modalProductName">ANJI SME Template</div>
+      <div class="modal-price" id="modalPrice">฿299</div>
+    </div>
+    <p class="note">⚡ รับไฟล์ทันทีหลังชำระเงิน ส่งไปที่อีเมลด้านล่าง</p>
+    <br/>
+    <div class="form-group">
+      <label>ชื่อ-นามสกุล</label>
+      <input type="text" placeholder="กรุณากรอกชื่อของคุณ" id="buyerName"/>
+    </div>
+    <div class="form-group">
+      <label>อีเมล (สำหรับรับไฟล์)</label>
+      <input type="email" placeholder="example@email.com" id="buyerEmail"/>
+    </div>
+    <button class="btn-checkout" onclick="proceedCheckout()">💳 ชำระเงิน</button>
+    <div class="payment-methods">
+      <div class="pm-badge">📱 PromptPay</div>
+      <div class="pm-badge">💳 บัตรเครดิต</div>
+      <div class="pm-badge">🏦 Internet Banking</div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // FAQ toggle
+  function toggleFaq(el) {
+    el.parentElement.classList.toggle('open');
+  }
+
+  // Modal
+  let currentProduct = '', currentPrice = 0;
+  function openModal(product, price) {
+    currentProduct = product;
+    currentPrice = price;
+    document.getElementById('modalProductName').textContent = product;
+    document.getElementById('modalPrice').textContent = '฿' + price.toLocaleString();
+    document.getElementById('buyModal').classList.add('show');
+  }
+  function closeModal() {
+    document.getElementById('buyModal').classList.remove('show');
+  }
+  document.getElementById('buyModal').addEventListener('click', function(e) {
+    if (e.target === this) closeModal();
+  });
+
+  function proceedCheckout() {
+    const name  = document.getElementById('buyerName').value.trim();
+    const email = document.getElementById('buyerEmail').value.trim();
+    if (!name)  { alert('กรุณากรอกชื่อของคุณ'); return; }
+    if (!email || !email.includes('@')) { alert('กรุณากรอกอีเมลให้ถูกต้อง'); return; }
+    // ── เชื่อม Omise Checkout ตรงนี้ ──
+    // ตอนนี้แสดง placeholder สำหรับทดสอบ
+    alert('✅ กำลังเชื่อมต่อระบบชำระเงิน...\n\nขั้นตอนต่อไป: เชื่อม Omise API Key\nสินค้า: ' + currentProduct + '\nราคา: ฿' + currentPrice + '\nอีเมล: ' + email);
+  }
+
+  // Smooth scroll for nav links
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
+    });
+  });
+</script>
+</body>
+</html>
