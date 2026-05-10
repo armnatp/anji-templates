@@ -248,6 +248,10 @@ section{padding:86px 6%}
 .prod-preview.c-purple{background:linear-gradient(145deg,#4a148c,#6a1b9a,#7b1fa2)}
 .prod-preview.c-orange{background:linear-gradient(145deg,#bf360c,#d84315,#e64a19)}
 .prod-preview.c-gray{background:linear-gradient(145deg,#263238,#37474f,#455a64)}
+.prod-preview.c-brown{background:linear-gradient(145deg,#3e2723,#4e342e,#6d4c41)}
+.prod-preview.c-rose{background:linear-gradient(145deg,#880e4f,#ad1457,#c2185b)}
+.prod-preview.c-steel{background:linear-gradient(145deg,#1c313a,#37474f,#546e7a)}
+.prod-preview.c-indigo{background:linear-gradient(145deg,#1a237e,#283593,#303f9f)}
 .prod-preview.c-gold{background:linear-gradient(145deg,#e65100,#f57c00,#ff8f00)}
 
 /* Mini spreadsheet inside each card */
@@ -611,7 +615,7 @@ footer{
         <button class="btn-ghost" onclick="document.getElementById('how').scrollIntoView({behavior:'smooth'})">วิธีใช้งาน →</button>
       </div>
       <div class="hero-stats">
-        <div class="stat"><div class="stat-n">3+</div><div class="stat-l">Template พร้อมขาย</div></div>
+        <div class="stat"><div class="stat-n">9</div><div class="stat-l">Template พร้อมขาย</div></div>
         <div class="stat"><div class="stat-n">299฿</div><div class="stat-l">ราคาเริ่มต้น</div></div>
         <div class="stat"><div class="stat-n">5 นาที</div><div class="stat-l">เริ่มใช้ได้ทันที</div></div>
         <div class="stat"><div class="stat-n">∞</div><div class="stat-l">ใช้ได้ตลอดชีพ</div></div>
@@ -915,14 +919,14 @@ footer{
       </div>
     </div>
 
-    <!-- ── Product 4: Invoice (Coming Soon) ── -->
-    <div class="product-card soon">
+    <!-- ── Product 4: Invoice ── -->
+    <div class="product-card">
       <div class="prod-preview c-orange">
         <div class="mini-sheet">
           <div class="ms-head">
-            <div class="ms-dot" style="background:#555"></div>
-            <div class="ms-dot" style="background:#555"></div>
-            <div class="ms-dot" style="background:#555"></div>
+            <div class="ms-dot" style="background:#ff5f57"></div>
+            <div class="ms-dot" style="background:#febc2e"></div>
+            <div class="ms-dot" style="background:#28c840"></div>
           </div>
           <div style="padding:8px">
             <div class="ms-row" style="justify-content:center;margin-bottom:6px">
@@ -934,6 +938,10 @@ footer{
             </div>
             <div class="ms-row" style="margin-top:3px">
               <div class="ms-cell" style="width:50%;height:7px"></div>
+              <div class="ms-cell hi" style="flex:1;height:7px;margin-left:4px"></div>
+            </div>
+            <div class="ms-row" style="margin-top:3px">
+              <div class="ms-cell" style="width:55%;height:7px"></div>
               <div class="ms-cell" style="flex:1;height:7px;margin-left:4px"></div>
             </div>
             <div class="ms-row" style="margin-top:8px;border-top:1px solid rgba(255,255,255,.2);padding-top:6px">
@@ -941,7 +949,7 @@ footer{
             </div>
           </div>
         </div>
-        <div class="prod-badge soon">🔜 เร็วๆ นี้</div>
+        <div class="prod-badge">🧾 มืออาชีพ</div>
       </div>
       <div class="prod-body">
         <div class="prod-cat">🧾 Invoice · ใบเสนอราคา</div>
@@ -956,20 +964,21 @@ footer{
         <div class="prod-footer">
           <div class="prod-price"><sup>฿</sup>299</div>
           <div class="prod-actions">
-            <button class="btn-disabled" disabled>🔜 เร็วๆ นี้</button>
+            <button class="btn-preview" onclick="openPreview(3)">👁 ตัวอย่าง</button>
+            <button class="btn-buy" onclick="openBuy('Invoice + ใบเสนอราคา',299)">ซื้อเลย</button>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- ── Product 5: Business Plan (Coming Soon) ── -->
-    <div class="product-card soon">
+    <!-- ── Product 5: Business Plan ── -->
+    <div class="product-card">
       <div class="prod-preview c-gray">
         <div class="mini-sheet">
           <div class="ms-head">
-            <div class="ms-dot" style="background:#555"></div>
-            <div class="ms-dot" style="background:#555"></div>
-            <div class="ms-dot" style="background:#555"></div>
+            <div class="ms-dot" style="background:#ff5f57"></div>
+            <div class="ms-dot" style="background:#febc2e"></div>
+            <div class="ms-dot" style="background:#28c840"></div>
           </div>
           <div style="padding:8px">
             <div class="ms-row" style="margin-bottom:4px">
@@ -989,7 +998,7 @@ footer{
             </div>
           </div>
         </div>
-        <div class="prod-badge soon">🔜 เร็วๆ นี้</div>
+        <div class="prod-badge">📈 ธุรกิจใหม่</div>
       </div>
       <div class="prod-body">
         <div class="prod-cat">📈 แผนธุรกิจ · Break-even</div>
@@ -1004,30 +1013,246 @@ footer{
         <div class="prod-footer">
           <div class="prod-price"><sup>฿</sup>499</div>
           <div class="prod-actions">
-            <button class="btn-disabled" disabled>🔜 เร็วๆ นี้</button>
+            <button class="btn-preview" onclick="openPreview(4)">👁 ตัวอย่าง</button>
+            <button class="btn-buy" onclick="openBuy('แผนธุรกิจ + คำนวณกำไร',499)">ซื้อเลย</button>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- ── Product 6: Placeholder ── -->
-    <div class="product-card soon" style="border:2px dashed #dce4f0;background:#f8faff">
-      <div class="prod-preview" style="background:linear-gradient(145deg,#e8edf2,#f0f4f8);height:190px">
-        <div style="text-align:center;color:#b0bec5">
-          <div style="font-size:2.5rem;margin-bottom:8px">🚀</div>
-          <div style="font-size:.85rem;font-weight:700">Template ใหม่กำลังมา</div>
+    <!-- ── Product 6: Café/Restaurant ── -->
+    <div class="product-card">
+      <div class="prod-preview c-brown">
+        <div class="mini-sheet">
+          <div class="ms-head">
+            <div class="ms-dot" style="background:#ff5f57"></div>
+            <div class="ms-dot" style="background:#febc2e"></div>
+            <div class="ms-dot" style="background:#28c840"></div>
+          </div>
+          <div style="padding:8px">
+            <div class="ms-row">
+              <div class="ms-cell hd" style="width:30%;height:8px"></div>
+              <div class="ms-cell hd" style="width:22%;height:8px;margin-left:4px"></div>
+              <div class="ms-cell hd" style="flex:1;height:8px;margin-left:4px"></div>
+            </div>
+            <div class="ms-row" style="margin-top:3px">
+              <div class="ms-cell hi" style="width:28%;height:7px"></div>
+              <div class="ms-cell" style="width:20%;height:7px;margin-left:4px"></div>
+              <div class="ms-cell hi" style="flex:1;height:7px;margin-left:4px;background:rgba(255,204,128,.5)"></div>
+            </div>
+            <div class="ms-row" style="margin-top:3px">
+              <div class="ms-cell" style="width:32%;height:7px"></div>
+              <div class="ms-cell hi" style="width:24%;height:7px;margin-left:4px"></div>
+              <div class="ms-cell" style="flex:1;height:7px;margin-left:4px;background:rgba(255,138,101,.4)"></div>
+            </div>
+            <div class="ms-bars" style="height:44px;margin-top:8px">
+              <div class="ms-b" style="height:50%;background:rgba(255,204,128,.7)"></div>
+              <div class="ms-b" style="height:75%;background:rgba(255,183,77,.8)"></div>
+              <div class="ms-b" style="height:40%;background:rgba(255,204,128,.7)"></div>
+              <div class="ms-b" style="height:90%;background:rgba(255,183,77,.9)"></div>
+              <div class="ms-b" style="height:60%;background:rgba(255,204,128,.7)"></div>
+            </div>
+          </div>
         </div>
+        <div class="prod-badge">☕ ร้านอาหาร</div>
       </div>
       <div class="prod-body">
-        <div class="prod-cat" style="color:var(--gray)">🔜 กำลังพัฒนา</div>
-        <div class="prod-name" style="color:var(--gray)">Template ใหม่</div>
-        <div class="prod-desc">กำลังพัฒนา Template เพิ่มเติมสำหรับธุรกิจไทย ติดตามได้เร็วๆ นี้</div>
+        <div class="prod-cat">🍽️ คาเฟ่ · ร้านอาหาร</div>
+        <div class="prod-name">คาเฟ่ + ร้านอาหาร</div>
+        <div class="prod-desc">ระบบจัดการต้นทุนเมนู Food Cost วัตถุดิบ และ Food Waste พร้อม Dashboard คาเฟ่</div>
         <div class="prod-feats">
-          <div class="pf"><div class="pf-check" style="background:var(--mgray);color:var(--gray)">?</div>ยังไม่เปิดเผย</div>
+          <div class="pf"><div class="pf-check">✓</div>ต้นทุนเมนู Food Cost % อัตโนมัติ</div>
+          <div class="pf"><div class="pf-check">✓</div>สต็อกวัตถุดิบ + แจ้งเตือนใกล้หมด</div>
+          <div class="pf"><div class="pf-check">✓</div>บันทึก Food Waste ลดต้นทุน</div>
+          <div class="pf"><div class="pf-check">✓</div>Dashboard Top 10 เมนูขายดี</div>
         </div>
         <div class="prod-footer">
-          <div class="prod-price" style="color:var(--gray);font-size:1rem">เร็วๆ นี้</div>
-          <button class="btn-disabled" disabled>ติดตาม</button>
+          <div class="prod-price"><sup>฿</sup>399</div>
+          <div class="prod-actions">
+            <button class="btn-preview" onclick="openPreview(5)">👁 ตัวอย่าง</button>
+            <button class="btn-buy" onclick="openBuy('คาเฟ่ + ร้านอาหาร',399)">ซื้อเลย</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Product 7: Clinic/Beauty ── -->
+    <div class="product-card">
+      <div class="prod-preview c-rose">
+        <div class="mini-sheet">
+          <div class="ms-head">
+            <div class="ms-dot" style="background:#ff5f57"></div>
+            <div class="ms-dot" style="background:#febc2e"></div>
+            <div class="ms-dot" style="background:#28c840"></div>
+          </div>
+          <div style="padding:8px">
+            <div class="ms-row">
+              <div class="ms-cell hd" style="width:22%;height:8px"></div>
+              <div class="ms-cell hd" style="width:28%;height:8px;margin-left:4px"></div>
+              <div class="ms-cell hd" style="width:20%;height:8px;margin-left:4px"></div>
+              <div class="ms-cell hd" style="flex:1;height:8px;margin-left:4px"></div>
+            </div>
+            <div class="ms-row" style="margin-top:3px">
+              <div class="ms-cell hi" style="width:20%;height:7px"></div>
+              <div class="ms-cell" style="width:26%;height:7px;margin-left:4px"></div>
+              <div class="ms-cell hi" style="width:18%;height:7px;margin-left:4px;background:rgba(240,98,146,.5)"></div>
+              <div class="ms-cell" style="flex:1;height:7px;margin-left:4px"></div>
+            </div>
+            <div class="ms-row" style="margin-top:3px">
+              <div class="ms-cell" style="width:24%;height:7px"></div>
+              <div class="ms-cell hi" style="width:22%;height:7px;margin-left:4px"></div>
+              <div class="ms-cell" style="width:20%;height:7px;margin-left:4px"></div>
+              <div class="ms-cell hi" style="flex:1;height:7px;margin-left:4px;background:rgba(206,147,216,.5)"></div>
+            </div>
+            <div style="margin-top:8px;display:flex;gap:6px;align-items:center">
+              <div class="ms-pie" style="border-color:rgba(240,98,146,.6)"></div>
+              <div style="flex:1">
+                <div style="display:flex;gap:3px;margin-bottom:3px">
+                  <div style="height:6px;flex:3;border-radius:3px;background:rgba(240,98,146,.7)"></div>
+                  <div style="height:6px;flex:1;border-radius:3px;background:rgba(255,255,255,.25)"></div>
+                </div>
+                <div style="display:flex;gap:3px">
+                  <div style="height:6px;flex:1;border-radius:3px;background:rgba(206,147,216,.5)"></div>
+                  <div style="height:6px;flex:2;border-radius:3px;background:rgba(255,255,255,.2)"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="prod-badge">💉 คลินิก</div>
+      </div>
+      <div class="prod-body">
+        <div class="prod-cat">💊 คลินิก · ความงาม</div>
+        <div class="prod-name">คลินิกความงาม + สปา</div>
+        <div class="prod-desc">ระบบนัดหมาย สต็อกยา รายได้ + คอมมิชชั่นพนักงาน พร้อม Dashboard คลินิก</div>
+        <div class="prod-feats">
+          <div class="pf"><div class="pf-check">✓</div>จัดการนัดหมาย 9 ประเภทการรักษา</div>
+          <div class="pf"><div class="pf-check">✓</div>สต็อกยา + แจ้งเตือนใกล้หมดอายุ</div>
+          <div class="pf"><div class="pf-check">✓</div>คำนวณคอมมิชชั่นพนักงานอัตโนมัติ</div>
+          <div class="pf"><div class="pf-check">✓</div>Dashboard รายได้ + ผู้ป่วยรายเดือน</div>
+        </div>
+        <div class="prod-footer">
+          <div class="prod-price"><sup>฿</sup>499</div>
+          <div class="prod-actions">
+            <button class="btn-preview" onclick="openPreview(6)">👁 ตัวอย่าง</button>
+            <button class="btn-buy" onclick="openBuy('คลินิกความงาม + สปา',499)">ซื้อเลย</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Product 8: Contractor/BOQ ── -->
+    <div class="product-card">
+      <div class="prod-preview c-steel">
+        <div class="mini-sheet">
+          <div class="ms-head">
+            <div class="ms-dot" style="background:#ff5f57"></div>
+            <div class="ms-dot" style="background:#febc2e"></div>
+            <div class="ms-dot" style="background:#28c840"></div>
+          </div>
+          <div style="padding:8px">
+            <div class="ms-row">
+              <div class="ms-cell hd" style="width:35%;height:8px"></div>
+              <div class="ms-cell hd" style="width:18%;height:8px;margin-left:4px"></div>
+              <div class="ms-cell hd" style="width:18%;height:8px;margin-left:4px"></div>
+              <div class="ms-cell hd" style="flex:1;height:8px;margin-left:4px"></div>
+            </div>
+            <div class="ms-row" style="margin-top:3px">
+              <div class="ms-cell hi" style="width:33%;height:7px"></div>
+              <div class="ms-cell" style="width:16%;height:7px;margin-left:4px"></div>
+              <div class="ms-cell" style="width:16%;height:7px;margin-left:4px"></div>
+              <div class="ms-cell hi" style="flex:1;height:7px;margin-left:4px;background:rgba(255,167,38,.5)"></div>
+            </div>
+            <div class="ms-row" style="margin-top:3px">
+              <div class="ms-cell" style="width:37%;height:7px"></div>
+              <div class="ms-cell hi" style="width:18%;height:7px;margin-left:4px;background:rgba(255,167,38,.4)"></div>
+              <div class="ms-cell" style="width:18%;height:7px;margin-left:4px"></div>
+              <div class="ms-cell" style="flex:1;height:7px;margin-left:4px"></div>
+            </div>
+            <div style="margin-top:8px;background:rgba(255,255,255,.06);border-radius:4px;padding:5px">
+              <div style="height:5px;border-radius:3px;background:rgba(255,167,38,.3);margin-bottom:3px">
+                <div style="width:70%;height:100%;border-radius:3px;background:rgba(255,167,38,.8)"></div>
+              </div>
+              <div style="height:5px;border-radius:3px;background:rgba(255,255,255,.1)">
+                <div style="width:45%;height:100%;border-radius:3px;background:rgba(255,255,255,.5)"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="prod-badge">🏗️ ก่อสร้าง</div>
+      </div>
+      <div class="prod-body">
+        <div class="prod-cat">🔧 ผู้รับเหมา · ก่อสร้าง</div>
+        <div class="prod-name">ผู้รับเหมา + BOQ</div>
+        <div class="prod-desc">ระบบถอดแบบ BOQ แผนงานก่อสร้าง ติดตามรายจ่ายจริง vs งบประมาณ พร้อม Progress Bar</div>
+        <div class="prod-feats">
+          <div class="pf"><div class="pf-check">✓</div>ถอดแบบ BOQ 12 หมวดงาน</div>
+          <div class="pf"><div class="pf-check">✓</div>แผนงาน 5 เฟส + % ความคืบหน้า</div>
+          <div class="pf"><div class="pf-check">✓</div>ติดตามรายจ่ายจริง vs งบประมาณ</div>
+          <div class="pf"><div class="pf-check">✓</div>Dashboard ส่วนต่างกำไรโครงการ</div>
+        </div>
+        <div class="prod-footer">
+          <div class="prod-price"><sup>฿</sup>599</div>
+          <div class="prod-actions">
+            <button class="btn-preview" onclick="openPreview(7)">👁 ตัวอย่าง</button>
+            <button class="btn-buy" onclick="openBuy('ผู้รับเหมา + BOQ',599)">ซื้อเลย</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Product 9: Freelancer ── -->
+    <div class="product-card">
+      <div class="prod-preview c-indigo">
+        <div class="mini-sheet">
+          <div class="ms-head">
+            <div class="ms-dot" style="background:#ff5f57"></div>
+            <div class="ms-dot" style="background:#febc2e"></div>
+            <div class="ms-dot" style="background:#28c840"></div>
+          </div>
+          <div style="padding:8px">
+            <div class="ms-row">
+              <div class="ms-cell hd" style="width:28%;height:8px"></div>
+              <div class="ms-cell hd" style="width:25%;height:8px;margin-left:4px"></div>
+              <div class="ms-cell hd" style="flex:1;height:8px;margin-left:4px"></div>
+            </div>
+            <div class="ms-row" style="margin-top:3px">
+              <div class="ms-cell hi" style="width:26%;height:7px"></div>
+              <div class="ms-cell" style="width:23%;height:7px;margin-left:4px"></div>
+              <div class="ms-cell hi" style="flex:1;height:7px;margin-left:4px;background:rgba(100,220,190,.4)"></div>
+            </div>
+            <div class="ms-row" style="margin-top:3px">
+              <div class="ms-cell" style="width:30%;height:7px"></div>
+              <div class="ms-cell hi" style="width:27%;height:7px;margin-left:4px"></div>
+              <div class="ms-cell" style="flex:1;height:7px;margin-left:4px"></div>
+            </div>
+            <div class="ms-bars" style="height:44px;margin-top:8px">
+              <div class="ms-b" style="height:65%;background:rgba(100,220,190,.6)"></div>
+              <div class="ms-b" style="height:45%;background:rgba(159,168,218,.7)"></div>
+              <div class="ms-b" style="height:80%;background:rgba(100,220,190,.6)"></div>
+              <div class="ms-b" style="height:55%;background:rgba(159,168,218,.7)"></div>
+              <div class="ms-b" style="height:70%;background:rgba(100,220,190,.6)"></div>
+            </div>
+          </div>
+        </div>
+        <div class="prod-badge">💻 Freelance</div>
+      </div>
+      <div class="prod-body">
+        <div class="prod-cat">💻 Freelancer · ครีเอเตอร์</div>
+        <div class="prod-name">Freelancer + ภาษีหัก ณ ที่จ่าย</div>
+        <div class="prod-desc">ระบบจัดการโปรเจกต์ บันทึกเวลา คำนวณ WHT 3% และภาษีเงินได้บุคคลธรรมดา</div>
+        <div class="prod-feats">
+          <div class="pf"><div class="pf-check">✓</div>จัดการโปรเจกต์ + ติดตามสถานะ</div>
+          <div class="pf"><div class="pf-check">✓</div>บันทึกเวลา + คำนวณมูลค่างาน</div>
+          <div class="pf"><div class="pf-check">✓</div>WHT 3% และรายได้สุทธิอัตโนมัติ</div>
+          <div class="pf"><div class="pf-check">✓</div>ประมาณการภาษีเงินได้ปีละครั้ง</div>
+        </div>
+        <div class="prod-footer">
+          <div class="prod-price"><sup>฿</sup>399</div>
+          <div class="prod-actions">
+            <button class="btn-preview" onclick="openPreview(8)">👁 ตัวอย่าง</button>
+            <button class="btn-buy" onclick="openBuy('Freelancer + ภาษีหัก ณ ที่จ่าย',399)">ซื้อเลย</button>
+          </div>
         </div>
       </div>
     </div>
@@ -1037,20 +1262,26 @@ footer{
   <!-- BUNDLE BANNER -->
   <div class="bundle-banner">
     <div class="bundle-left">
-      <div class="bundle-tag">🎁 แพ็กคุ้ม</div>
-      <div class="bundle-title">Bundle Pack — ครบ 3 Template</div>
-      <div class="bundle-desc">รวม SME + HR + ออเดอร์สต็อก ประหยัดกว่าซื้อแยก 298 บาท เหมาะสำหรับธุรกิจที่ต้องการระบบครบวงจร</div>
+      <div class="bundle-tag">🎁 Super Bundle</div>
+      <div class="bundle-title">Bundle Pack — ครบทั้ง 9 Template</div>
+      <div class="bundle-desc">รวมทุก Template ในชุดเดียว ประหยัดกว่าซื้อแยก 1,792 บาท เหมาะสำหรับทุกธุรกิจที่ต้องการระบบครบวงจร</div>
       <div class="bundle-includes">
         <div class="bi">💼 บัญชี SME</div>
         <div class="bi">👥 HR เงินเดือน</div>
         <div class="bi">📦 ออเดอร์+สต็อก</div>
+        <div class="bi">🧾 Invoice</div>
+        <div class="bi">📈 แผนธุรกิจ</div>
+        <div class="bi">🍽️ คาเฟ่</div>
+        <div class="bi">💊 คลินิก</div>
+        <div class="bi">🏗️ ผู้รับเหมา</div>
+        <div class="bi">💻 Freelancer</div>
       </div>
     </div>
     <div class="bundle-right">
-      <div class="bundle-price"><sup>฿</sup>799</div>
-      <div class="bundle-save">ประหยัด 298 บาท</div>
-      <div style="font-size:.78rem;color:rgba(255,255,255,.4);margin-bottom:8px">ปกติ 1,097 บาท</div>
-      <button class="bundle-buy" onclick="openBuy('Bundle Pack (SME + HR + ออเดอร์สต็อก)',799)">🎁 ซื้อ Bundle</button>
+      <div class="bundle-price"><sup>฿</sup>1,999</div>
+      <div class="bundle-save">ประหยัด 1,792 บาท</div>
+      <div style="font-size:.78rem;color:rgba(255,255,255,.4);margin-bottom:8px">ปกติ 3,791 บาท</div>
+      <button class="bundle-buy" onclick="openBuy('Super Bundle Pack (ครบ 9 Template)',1999)">🎁 ซื้อ Bundle</button>
     </div>
   </div>
 
@@ -1067,30 +1298,27 @@ footer{
     <table class="compare">
       <thead>
         <tr>
-          <th>ฟีเจอร์</th>
-          <th>💼 SME<br/><span style="font-weight:400;font-size:.75rem">299฿</span></th>
-          <th>👥 HR<br/><span style="font-weight:400;font-size:.75rem">399฿</span></th>
-          <th>📦 ออเดอร์<br/><span style="font-weight:400;font-size:.75rem">399฿</span></th>
-          <th>🎁 Bundle<br/><span style="font-weight:400;font-size:.75rem">799฿</span></th>
+          <th>Template</th>
+          <th>เหมาะสำหรับ</th>
+          <th>จุดเด่น</th>
+          <th>ราคา</th>
         </tr>
       </thead>
       <tbody>
-        <tr><td>บันทึกรายรับ-รายจ่าย</td><td><span class="chk">✓</span></td><td><span class="dash">—</span></td><td><span class="dash">—</span></td><td><span class="chk">✓</span></td></tr>
-        <tr><td>Dashboard กราฟอัตโนมัติ</td><td><span class="chk">✓</span></td><td><span class="chk">✓</span></td><td><span class="chk">✓</span></td><td><span class="chk">✓</span></td></tr>
-        <tr><td>สรุปรายเดือน 12 เดือน</td><td><span class="chk">✓</span></td><td><span class="chk">✓</span></td><td><span class="chk">✓</span></td><td><span class="chk">✓</span></td></tr>
-        <tr><td>คำนวณเงินเดือน + OT</td><td><span class="dash">—</span></td><td><span class="chk">✓</span></td><td><span class="dash">—</span></td><td><span class="chk">✓</span></td></tr>
-        <tr><td>ระบบใบลา 6 ประเภท</td><td><span class="dash">—</span></td><td><span class="chk">✓</span></td><td><span class="dash">—</span></td><td><span class="chk">✓</span></td></tr>
-        <tr><td>บันทึกออเดอร์ออนไลน์</td><td><span class="dash">—</span></td><td><span class="dash">—</span></td><td><span class="chk">✓</span></td><td><span class="chk">✓</span></td></tr>
-        <tr><td>ระบบสต็อก + แจ้งเตือน</td><td><span class="dash">—</span></td><td><span class="dash">—</span></td><td><span class="chk">✓</span></td><td><span class="chk">✓</span></td></tr>
-        <tr><td>คำนวณ GP% กำไรต่อชิ้น</td><td><span class="dash">—</span></td><td><span class="dash">—</span></td><td><span class="chk">✓</span></td><td><span class="chk">✓</span></td></tr>
-        <tr><td>คู่มือการใช้งาน</td><td><span class="chk">✓</span></td><td><span class="chk">✓</span></td><td><span class="chk">✓</span></td><td><span class="chk">✓</span></td></tr>
-        <tr><td>อัปเดตฟรีตลอดชีพ</td><td><span class="chk">✓</span></td><td><span class="chk">✓</span></td><td><span class="chk">✓</span></td><td><span class="chk">✓</span></td></tr>
-        <tr>
-          <td style="font-weight:700">ราคา</td>
-          <td><button class="btn-buy" onclick="openBuy('บัญชีรายรับ-รายจ่าย SME',299)" style="font-size:.78rem;padding:7px 14px">ซื้อ 299฿</button></td>
-          <td><button class="btn-buy" onclick="openBuy('HR เงินเดือน + ใบลา',399)" style="font-size:.78rem;padding:7px 14px">ซื้อ 399฿</button></td>
-          <td><button class="btn-buy" onclick="openBuy('ออเดอร์ + สต็อกสินค้า',399)" style="font-size:.78rem;padding:7px 14px">ซื้อ 399฿</button></td>
-          <td><button class="bundle-buy" onclick="openBuy('Bundle Pack',799)" style="font-size:.78rem;padding:9px 16px;margin:0">ซื้อ 799฿</button></td>
+        <tr><td>💼 บัญชีรายรับ-รายจ่าย SME</td><td>ธุรกิจขนาดเล็ก</td><td>Dashboard กำไร-ขาดทุนอัตโนมัติ</td><td><button class="btn-buy" onclick="openBuy('บัญชีรายรับ-รายจ่าย SME',299)" style="font-size:.78rem;padding:7px 14px">ซื้อ 299฿</button></td></tr>
+        <tr><td>👥 HR เงินเดือน + ใบลา</td><td>มีพนักงาน 1–50 คน</td><td>เงินเดือน + ประกันสังคมอัตโนมัติ</td><td><button class="btn-buy" onclick="openBuy('HR เงินเดือน + ใบลา',399)" style="font-size:.78rem;padding:7px 14px">ซื้อ 399฿</button></td></tr>
+        <tr><td>📦 ออเดอร์ + สต็อกสินค้า</td><td>ร้านออนไลน์ทุก Platform</td><td>GP% กำไรต่อชิ้น + แจ้งเตือนสต็อก</td><td><button class="btn-buy" onclick="openBuy('ออเดอร์ + สต็อกสินค้า',399)" style="font-size:.78rem;padding:7px 14px">ซื้อ 399฿</button></td></tr>
+        <tr><td>🧾 Invoice + ใบเสนอราคา</td><td>Freelancer · Agency</td><td>ออกใบ Invoice มืออาชีพได้ทันที</td><td><button class="btn-buy" onclick="openBuy('Invoice + ใบเสนอราคา',299)" style="font-size:.78rem;padding:7px 14px">ซื้อ 299฿</button></td></tr>
+        <tr><td>📈 แผนธุรกิจ + Break-even</td><td>เปิดธุรกิจใหม่</td><td>Break-even · ROI · ประมาณการ 3 ปี</td><td><button class="btn-buy" onclick="openBuy('แผนธุรกิจ + คำนวณกำไร',499)" style="font-size:.78rem;padding:7px 14px">ซื้อ 499฿</button></td></tr>
+        <tr><td>🍽️ คาเฟ่ + ร้านอาหาร</td><td>คาเฟ่ · ร้านอาหาร</td><td>Food Cost + Waste ลดต้นทุน</td><td><button class="btn-buy" onclick="openBuy('คาเฟ่ + ร้านอาหาร',399)" style="font-size:.78rem;padding:7px 14px">ซื้อ 399฿</button></td></tr>
+        <tr><td>💊 คลินิกความงาม + สปา</td><td>คลินิก · สปา · นวด</td><td>นัดหมาย + คอมมิชชั่นพนักงาน</td><td><button class="btn-buy" onclick="openBuy('คลินิกความงาม + สปา',499)" style="font-size:.78rem;padding:7px 14px">ซื้อ 499฿</button></td></tr>
+        <tr><td>🏗️ ผู้รับเหมา + BOQ</td><td>รับเหมาก่อสร้าง</td><td>BOQ ถอดแบบ + ติดตาม Progress</td><td><button class="btn-buy" onclick="openBuy('ผู้รับเหมา + BOQ',599)" style="font-size:.78rem;padding:7px 14px">ซื้อ 599฿</button></td></tr>
+        <tr><td>💻 Freelancer + ภาษี WHT</td><td>Freelance · ครีเอเตอร์</td><td>บันทึกเวลา + WHT 3% อัตโนมัติ</td><td><button class="btn-buy" onclick="openBuy('Freelancer + ภาษีหัก ณ ที่จ่าย',399)" style="font-size:.78rem;padding:7px 14px">ซื้อ 399฿</button></td></tr>
+        <tr style="background:rgba(212,175,55,.08)">
+          <td style="font-weight:700">🎁 Super Bundle ครบ 9 Template</td>
+          <td style="font-weight:600">ทุกธุรกิจ</td>
+          <td style="font-weight:600;color:var(--gold)">ประหยัด 1,792 บาท!</td>
+          <td><button class="bundle-buy" onclick="openBuy('Super Bundle Pack (ครบ 9 Template)',1999)" style="font-size:.78rem;padding:9px 16px;margin:0">ซื้อ 1,999฿</button></td>
         </tr>
       </tbody>
     </table>
@@ -1186,7 +1414,7 @@ footer{
         Bundle Pack คุ้มกว่าซื้อแยกอย่างไร?
         <div class="faq-arr">▼</div>
       </button>
-      <div class="faq-a"><div class="faq-a-inner">ซื้อแยก: SME 299฿ + HR 399฿ + ออเดอร์สต็อก 399฿ = 1,097฿ / Bundle Pack: 799฿ ประหยัดถึง 298 บาท! เหมาะสำหรับธุรกิจที่ต้องการทั้งสามระบบ</div></div>
+      <div class="faq-a"><div class="faq-a-inner">ซื้อแยกทั้ง 9 Template = 3,791฿ / Super Bundle Pack: 1,999฿ ประหยัดถึง 1,792 บาท! ได้ครบทุก Template ในราคาเดียว เหมาะสำหรับธุรกิจที่ต้องการระบบครบวงจร</div></div>
     </div>
     <div class="faq-item">
       <button class="faq-q" onclick="toggleFaq(this)">
@@ -1220,7 +1448,13 @@ footer{
       <a href="#products" onclick="openBuy('บัญชีรายรับ-รายจ่าย SME',299);return false">💼 บัญชี SME — 299฿</a>
       <a href="#products" onclick="openBuy('HR เงินเดือน + ใบลา',399);return false">👥 HR เงินเดือน — 399฿</a>
       <a href="#products" onclick="openBuy('ออเดอร์ + สต็อกสินค้า',399);return false">📦 ออเดอร์+สต็อก — 399฿</a>
-      <a href="#products" onclick="openBuy('Bundle Pack',799);return false">🎁 Bundle Pack — 799฿</a>
+      <a href="#products" onclick="openBuy('Invoice + ใบเสนอราคา',299);return false">🧾 Invoice — 299฿</a>
+      <a href="#products" onclick="openBuy('แผนธุรกิจ + คำนวณกำไร',499);return false">📈 แผนธุรกิจ — 499฿</a>
+      <a href="#products" onclick="openBuy('คาเฟ่ + ร้านอาหาร',399);return false">🍽️ คาเฟ่/ร้านอาหาร — 399฿</a>
+      <a href="#products" onclick="openBuy('คลินิกความงาม + สปา',499);return false">💊 คลินิกความงาม — 499฿</a>
+      <a href="#products" onclick="openBuy('ผู้รับเหมา + BOQ',599);return false">🏗️ ผู้รับเหมา BOQ — 599฿</a>
+      <a href="#products" onclick="openBuy('Freelancer + ภาษีหัก ณ ที่จ่าย',399);return false">💻 Freelancer — 399฿</a>
+      <a href="#products" onclick="openBuy('Super Bundle Pack (ครบ 9 Template)',1999);return false">🎁 Super Bundle — 1,999฿</a>
     </div>
     <div class="footer-col">
       <h4>ติดต่อ</h4>
@@ -1230,7 +1464,7 @@ footer{
     </div>
   </div>
   <div class="footer-bottom">
-    <div class="footer-copy">© 2025 ANJI Templates. สงวนลิขสิทธิ์</div>
+    <div class="footer-copy">© 2026 ANJI Templates. สงวนลิขสิทธิ์</div>
     <div class="footer-line">ติดต่อ: <a href="https://line.me/R/ti/p/@507mxsgg" target="_blank">Line @507mxsgg</a></div>
   </div>
 </footer>
@@ -1312,6 +1546,79 @@ const products = [
       {icon:'📖', name:'คู่มือ', desc:'คู่มือครบถ้วนสำหรับร้านออนไลน์'},
     ],
     feats:['บันทึกออเดอร์ทุกแพลตฟอร์ม','คำนวณ GP% กำไรต่อชิ้น','ระบบสต็อกพร้อมแจ้งเตือน','สรุปยอดแยกช่องทาง','Dashboard ยอดขาย','Pie Chart สัดส่วนช่องทาง','รองรับสินค้าไม่จำกัด','อัปเดตฟรีตลอดชีพ'],
+  },
+  {
+    name: '🧾 Invoice + ใบเสนอราคา',
+    price: 299,
+    sheets: [
+      {icon:'🧾', name:'ใบเสนอราคา', desc:'สร้างใบเสนอราคาแบบมืออาชีพ ใส่โลโก้ธุรกิจ ส่งให้ลูกค้าได้ทันที'},
+      {icon:'📄', name:'Invoice', desc:'ออกใบ Invoice พร้อมเลขที่เอกสาร วันครบกำหนด และรายละเอียดครบถ้วน'},
+      {icon:'📋', name:'ใบวางบิล', desc:'ใบวางบิล สรุปยอดที่ต้องชำระ ติดตามสถานะการชำระ'},
+      {icon:'📊', name:'สรุปรายรับ', desc:'Dashboard รายรับจากลูกค้าแต่ละราย ยอดค้างชำระ'},
+      {icon:'📖', name:'คู่มือ', desc:'วิธีใช้งานทุกขั้นตอน เริ่มออก Invoice ได้ใน 5 นาที'},
+    ],
+    feats:['ใบ Invoice มืออาชีพ','ใบเสนอราคา + ใบวางบิล','ติดตามสถานะชำระเงิน','ใส่โลโก้ธุรกิจได้','เลขที่เอกสารอัตโนมัติ','รองรับ VAT 7%','ลูกค้าไม่จำกัด','อัปเดตฟรีตลอดชีพ'],
+  },
+  {
+    name: '📈 แผนธุรกิจ + คำนวณกำไร',
+    price: 499,
+    sheets: [
+      {icon:'📈', name:'ข้อมูลธุรกิจ', desc:'กำหนดต้นทุนคงที่ ต้นทุนผันแปร ราคาขาย และเป้าหมายกำไร'},
+      {icon:'🎯', name:'Break-even Analysis', desc:'คำนวณจุดคุ้มทุน จำนวนชิ้นและยอดขายที่ต้องทำให้คุ้มทุน'},
+      {icon:'📅', name:'ประมาณการ 3 ปี', desc:'Projection รายรับ-รายจ่าย กำไร 36 เดือนพร้อมกราฟแนวโน้ม'},
+      {icon:'💰', name:'ROI & Payback', desc:'คำนวณ Return on Investment และระยะเวลาคืนทุนอัตโนมัติ'},
+      {icon:'📊', name:'Dashboard', desc:'กราฟ Break-even Scenario Analysis ผลตอบแทนต่อปี'},
+      {icon:'📖', name:'คู่มือ', desc:'คำแนะนำการกรอกข้อมูลและตีความผลลัพธ์'},
+    ],
+    feats:['Break-even Point อัตโนมัติ','ประมาณการรายรับ 3 ปี','วิเคราะห์ ROI และ Payback','Scenario Analysis','กราฟแนวโน้มอัตโนมัติ','พร้อมพรีเซนต์นักลงทุน','ปรับสมมติฐานได้ทันที','อัปเดตฟรีตลอดชีพ'],
+  },
+  {
+    name: '🍽️ คาเฟ่ + ร้านอาหาร',
+    price: 399,
+    sheets: [
+      {icon:'🍽️', name:'เมนู + ต้นทุน', desc:'คำนวณต้นทุนต่อจาน Food Cost % แนะนำราคาขายเหมาะสม รองรับ 80 เมนู'},
+      {icon:'📦', name:'สต็อกวัตถุดิบ', desc:'ติดตามสต็อกวัตถุดิบ 100 รายการ แจ้งเตือนใกล้หมด'},
+      {icon:'🗑️', name:'Food Waste', desc:'บันทึก Food Waste 6 ประเภท คำนวณมูลค่าที่สูญเสียรายเดือน'},
+      {icon:'📊', name:'Dashboard', desc:'Top 10 เมนูขายดี กราฟ Waste แยกประเภท KPI ต้นทุนรายเดือน'},
+      {icon:'📖', name:'คู่มือ', desc:'วิธีใช้งานสำหรับคาเฟ่และร้านอาหาร'},
+    ],
+    feats:['Food Cost % ต่อเมนู','Top 10 เมนูกำไรดี','สต็อกวัตถุดิบ + แจ้งเตือน','ติดตาม Food Waste','ลดต้นทุนได้จริง','Dashboard รายเดือน','รองรับ 80 เมนู','อัปเดตฟรีตลอดชีพ'],
+  },
+  {
+    name: '💊 คลินิกความงาม + สปา',
+    price: 499,
+    sheets: [
+      {icon:'📅', name:'นัดหมาย', desc:'บันทึกนัดหมาย 9 ประเภทการรักษา 5 พนักงาน สถานะ Done/Cancel/No Show'},
+      {icon:'💉', name:'สต็อกยา', desc:'ติดตามสต็อกยาและผลิตภัณฑ์ 100 รายการ แจ้งเตือนใกล้หมดอายุ'},
+      {icon:'💰', name:'รายได้ + คอมมิชชั่น', desc:'บันทึกรายได้ คำนวณคอมมิชชั่น % พนักงานอัตโนมัติ รองรับ 300 รายการ'},
+      {icon:'📊', name:'Dashboard', desc:'KPI รายได้ จำนวนผู้ป่วย คอมมิชชั่นรายคน กราฟรายเดือน'},
+      {icon:'📖', name:'คู่มือ', desc:'คู่มือการใช้งานระบบคลินิกครบถ้วน'},
+    ],
+    feats:['นัดหมาย 9 ประเภท','5 พนักงาน/ช่างความงาม','สต็อกยา + แจ้งเตือนหมดอายุ','คอมมิชชั่น % อัตโนมัติ','Dashboard รายได้รายเดือน','สถิติผู้ป่วยรายเดือน','กรอง/สรุปตามเดือน-ปี','อัปเดตฟรีตลอดชีพ'],
+  },
+  {
+    name: '🏗️ ผู้รับเหมา + BOQ',
+    price: 599,
+    sheets: [
+      {icon:'📋', name:'BOQ ถอดแบบ', desc:'ถอดแบบ 12 หมวดงาน คำนวณราคาวัสดุ + แรงงาน + กำไรอัตโนมัติ 150 รายการ'},
+      {icon:'📅', name:'แผนงาน', desc:'150 Task แบ่ง 5 เฟส Progress Bar %, วันเริ่ม-สิ้นสุด สถานะ'},
+      {icon:'💵', name:'รายจ่ายจริง', desc:'บันทึกรายจ่ายจริง 500 รายการ เทียบ BOQ ส่วนต่างกำไร-ขาดทุน'},
+      {icon:'📊', name:'Dashboard', desc:'งบประมาณ vs จริง กราฟแยกหมวด ส่วนต่างกำไรโครงการ'},
+      {icon:'📖', name:'คู่มือ', desc:'คู่มือการใช้งานสำหรับงานก่อสร้าง'},
+    ],
+    feats:['BOQ 12 หมวดงาน','แผนงาน 5 เฟส + Progress','ติดตามรายจ่ายจริง 500 รายการ','งบ vs จริง ส่วนต่างอัตโนมัติ','Dashboard กำไรโครงการ','Progress Bar %','150 Task แผนงาน','อัปเดตฟรีตลอดชีพ'],
+  },
+  {
+    name: '💻 Freelancer + ภาษีหัก ณ ที่จ่าย',
+    price: 399,
+    sheets: [
+      {icon:'📋', name:'โปรเจกต์', desc:'บันทึกโปรเจกต์ 200 รายการ ลูกค้า มูลค่า Deadline สถานะ'},
+      {icon:'⏱️', name:'บันทึกเวลา', desc:'Time Tracking 500 รายการ ชั่วโมง อัตราค่าจ้าง มูลค่างาน'},
+      {icon:'💰', name:'รายได้ + ภาษี', desc:'รวมรายได้ปี คำนวณ WHT 3% รายรับสุทธิ ประมาณการภาษีเงินได้'},
+      {icon:'📊', name:'Dashboard', desc:'รายได้รายเดือน Top ลูกค้า ชั่วโมงงาน สัดส่วนโปรเจกต์'},
+      {icon:'📖', name:'คู่มือ', desc:'วิธีใช้งานสำหรับ Freelancer และครีเอเตอร์'},
+    ],
+    feats:['บันทึกโปรเจกต์ 200 รายการ','Time Tracking ชั่วโมงงาน','WHT 3% อัตโนมัติ','รายได้สุทธิหลังหัก WHT','ประมาณการภาษีเงินได้','Dashboard Top ลูกค้า','สรุปรายได้ 12 เดือน','อัปเดตฟรีตลอดชีพ'],
   },
 ];
 
